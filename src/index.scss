@@ -4,14 +4,14 @@
 
 @layer base {
   body {
-    @apply font-body px-5 text-white;
-    background-color: #1f222a;
+    @apply font-montserrat text-sm bg-white dark:bg-zinc-900;
+    // background-color: #191A1F;
+    background-color: #fff;
   }
 }
 @layer components {
   .page-container {
-    max-width: 1280px;
-    @apply mx-auto;
+    @apply min-h-screen 2xl:max-w-screen-2xl 2xl:mx-auto 2xl:border-x-2 2xl:border-gray-200 dark:2xl:border-zinc-700;
   }
   .movie-list .swiper-slide {
     width: 300px;

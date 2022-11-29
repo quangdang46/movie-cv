@@ -1,9 +1,24 @@
+import { Route, Routes } from "react-router-dom";
+import { DashBoard } from "./components/Dashboard";
+
+
 function App() {
   return (
-    <div className="text-3xl font-bold text-secondary">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum at
-      consectetur corporis iste illum, sed odit maiores deleniti optio totam,
-      sint cum adipisci quas! Numquam nostrum illum ea accusamus dolores.
+    <div className="page-container">
+      <Routes>
+        <Route path="/" element={<DashBoard></DashBoard>}>
+          {/* <Route
+            path="/"
+            element={
+              <>
+                <Header></Header>
+                <Banner></Banner>
+                <HomePage></HomePage>
+              </>
+            }
+          ></Route> */}
+        </Route>
+      </Routes>
     </div>
   );
 }
