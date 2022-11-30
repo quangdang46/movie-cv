@@ -1,30 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { IMAGE_URL } from "../../api/configApi";
+import { useGetDetailsMovie } from "../../hooks/useGetDetailsMovie";
+import { Button } from "../Button";
 
-const MovieCard = () => {
+const MovieCard = ({ movie, genreList }) => {
+  const { poster_path, title, genres, vote_average } = useGetDetailsMovie({
+    movie,
+    genreList,
+  });
   return (
     <div className="flex flex-col dark:border-zinc-600 p-4 bg-slate-100 rounded-xl">
       <div className="h-[200px]">
         <img
-          src="https://www.wdwinfo.com/wp-content/uploads/2022/10/avatar-way-of-water.jpeg"
+          src={`${IMAGE_URL}/w500/${poster_path}`}
           alt=""
           className="w-full h-full object-cover rounded-xl"
         />
       </div>
-      <div className="mt-3 text-center">
-        <p className="font-bold text-sm">Avatar: The Way Of Water</p>
-        <div className="mt-2 flex items-center gap-x-1 justify-center">
-          <span className="px-2 py-1 border-2 rounded-xl text-xs font-bold">
-            Action
-          </span>
-          <span className="px-2 py-1 border-2 rounded-xl text-xs font-bold">
-            Action
-          </span>
-          <span className="px-2 py-1 border-2 rounded-xl text-xs font-bold">
-            Action
-          </span>
+      <div className="mt-3 text-center flex flex-col flex-1">
+        <p className="font-bold text-sm">{title}</p>
+        <div className="mt-2 flex items-center gap-x-1 justify-center flex-wrap">
+          {genres.length > 0 &&
+            genres.map((genre) => (
+              <span
+                className="px-2 py-1 border-2 rounded-xl text-xs font-bold"
+                key={genre.id}
+              >
+                {genre.name}
+              </span>
+            ))}
         </div>
-        <div className="flex items-center justify-center mt-2 gap-x-1 text-yellow-500">
-          <span className="font-bold text-base">9.8</span>
+        <div className="flex items-center justify-center gap-x-1 text-yellow-500 mt-2">
+          <span className="font-bold text-base">{vote_average}</span>
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -40,9 +47,7 @@ const MovieCard = () => {
             </svg>
           </span>
         </div>
-        <button className="bg-secondary px-6 py-2 xl:px-8 xl:py-3 rounded-lg text-xl font-sans mt-2">
-          Watch Movie
-        </button>
+        <Button></Button>
       </div>
     </div>
   );
