@@ -9,7 +9,7 @@ const MovieCard = ({ movie, genreList }) => {
     genreList,
   });
   return (
-    <div className="flex flex-col dark:border-zinc-600 p-4 bg-slate-100 rounded-xl">
+    <div className="flex flex-col dark:border-zinc-600 p-4 bg-slate-100 rounded-xl h-full">
       <div className="h-[200px]">
         <img
           src={`${IMAGE_URL}/w500/${poster_path}`}

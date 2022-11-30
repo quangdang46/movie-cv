@@ -1,18 +1,24 @@
 import React from "react";
-import { CastList, MovieList } from "../components/Cards";
+import { MovieList } from "../components/Cards";
 import { LabelList } from "../components/Label";
+import { Wrapper } from "../components/Wrapper";
+import { MovieProvider } from "../context/MovieContext";
 
 const HomePage = () => {
   return (
     <>
-      <section className="mt-9">
-        <LabelList title={"Popular movies"}></LabelList>
-        <MovieList></MovieList>
-      </section>
-      <section className="mt-9">
-        <LabelList title={"Now playing"}></LabelList>
-        <MovieList category={"NOW_PLAYING"}></MovieList>
-      </section>
+      <Wrapper className={"mt-9"}>
+        <MovieProvider>
+          <LabelList title={"Popular movies"}></LabelList>
+          <MovieList></MovieList>
+        </MovieProvider>
+      </Wrapper>
+      <Wrapper className={"mt-9"}>
+        <MovieProvider>
+          <LabelList title={"Now playing"}></LabelList>
+          <MovieList category={"NOW_PLAYING"}></MovieList>
+        </MovieProvider>
+      </Wrapper>
     </>
   );
 };

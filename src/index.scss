@@ -13,7 +13,12 @@
   .page-container {
     @apply min-h-screen 2xl:max-w-screen-2xl 2xl:mx-auto 2xl:border-x-2 2xl:border-gray-200 dark:2xl:border-zinc-700;
   }
+  .movie-list {
+    .swiper-slide {
+      width: 300px !important;
+    }
 
+  }
 }
 // pagination
 .pagination {
