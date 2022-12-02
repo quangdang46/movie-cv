@@ -5,6 +5,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      padding: {
+        "1/6": "16.666667%",
+      },
       screens: {
         xs: "350px",
         ...defaultTheme.screens,

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useGetDetailsMovie = ({ movie, genreList }) => {
+export const useGetDetailsMovie = ({ movie, genreList = null }) => {
   const [genres, setGenres] = useState([]);
   const {
     title,
@@ -15,7 +15,8 @@ export const useGetDetailsMovie = ({ movie, genreList }) => {
     release_date,
   } = movie;
   useEffect(() => {
-    const genre = genreList.filter((genre) => genre_ids.includes(genre.id));
+    const genre =
+      genreList && genreList.filter((genre) => genre_ids.includes(genre.id));
     setGenres(genre);
   }, [genreList, genre_ids]);
   return {

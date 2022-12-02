@@ -1,25 +1,24 @@
-
-
-import HomePage from "../../pages/HomePage";
-import { BannerList } from "../Banner";
-import Banner from "../Banner/Banner";
+import { useContext, useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
 import Header from "../layout/Header";
 import HeaderMobile from "../layout/HeaderMobile";
 import { LeftSideBar } from "../Sidebar";
 import RightSideBar from "../Sidebar/RightSideBar";
 const DashBoard = () => {
-
-
+  const { isShowRightSideBar, setIsShowRightSideBar } = useContext(AppContext);
+  // useEffect(() => {
+  //   setIsShowRightSideBar(true);
+  // }, [isShowRightSideBar, setIsShowRightSideBar]);
   return (
     <div className="flex">
       <LeftSideBar></LeftSideBar>
-      <main className="flex-1 py-10 px-5 sm:px-10">
+      <main className="flex-1 py-10 px-5 w-full">
         <HeaderMobile></HeaderMobile>
         <Header></Header>
-        <BannerList></BannerList>
-        <HomePage></HomePage>
+        <Outlet></Outlet>
       </main>
-      <RightSideBar></RightSideBar>
+      {isShowRightSideBar && <RightSideBar></RightSideBar>}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { Search } from "../Search";
 
 const RightSideBar = () => {
   return (
-    <aside className="w-1/5 py-10 px-10 min-w-min border-l border-gray-300 dark:border-zinc-700 hidden lg:block">
+    <aside className="w-1/5 py-10 px-10 min-w-min   hidden lg:block">
       <Search></Search>
       <div className="mt-10">
         <span className="font-semibold text-gray-700 dark:text-white">

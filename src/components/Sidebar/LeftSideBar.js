@@ -3,9 +3,8 @@ import { Logo } from '../Logo';
 
 const LeftSideBar = () => {
   return (
-    <aside className="w-1/6 py-10 pl-10 min-w-min border-r border-gray-300 dark:border-zinc-700 hidden md:block">
+    <aside className="w-1/6 py-10 pl-10 min-w-min hidden md:block">
       <Logo></Logo>
-      {/* Menu */}
       <div className="mt-12 flex flex-col gap-y-4 text-gray-500 fill-gray-500 text-sm">
         <div className="text-gray-400/70 font-medium uppercase">Menu</div>
         <a
@@ -177,7 +176,6 @@ const LeftSideBar = () => {
           <label htmlFor="toggle">Dark Theme</label>
         </a>
       </div>
-      {/* /Menu */}
     </aside>
   );
 };

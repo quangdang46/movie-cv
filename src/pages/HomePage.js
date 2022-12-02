@@ -7,15 +7,15 @@ import { MovieProvider } from "../context/MovieContext";
 const HomePage = () => {
   return (
     <>
-      <Wrapper className={"mt-9"}>
+      <Wrapper className={"mt-9 relative h-[450px]"}>
         <MovieProvider>
-          <LabelList title={"Popular movies"}></LabelList>
-          <MovieList></MovieList>
+          <LabelList title={"Popular movies"} type={"POPULAR"}></LabelList>
+          <MovieList category={"POPULAR"}></MovieList>
         </MovieProvider>
       </Wrapper>
-      <Wrapper className={"mt-9"}>
+      <Wrapper className={"mt-9 relative h-[450px]"}>
         <MovieProvider>
-          <LabelList title={"Now playing"}></LabelList>
+          <LabelList title={"Now playing"} type={"NOW_PLAYING"}></LabelList>
           <MovieList category={"NOW_PLAYING"}></MovieList>
         </MovieProvider>
       </Wrapper>

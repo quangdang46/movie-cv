@@ -10,8 +10,8 @@ const type = {
 export const useFetchMovie = ({ category, currPage = null }) => {
   const [movieList, setMovieList] = useState([]);
   const [genreList, setGenreList] = useState([]);
-
-  
+  const [totalPage, setTotalPage] = useState(0);
+  const [totalResults, setTotalResults] = useState(0);
   useEffect(() => {
     const fetchGenre = async () => {
       const { data } = await fetchGenreMovie();
@@ -21,7 +21,10 @@ export const useFetchMovie = ({ category, currPage = null }) => {
     };
     const fetch = async () => {
       const { data } = await fetchMovies(type[category], currPage);
-      const { page, results } = data;
+      console.log(data);
+      const { page, results, total_pages, total_results } = data;
+      setTotalResults(total_results);
+      setTotalPage(total_pages);
       if (results && results.length > 0) {
         setMovieList(results);
       }
@@ -29,5 +32,5 @@ export const useFetchMovie = ({ category, currPage = null }) => {
     fetch();
     fetchGenre();
   }, [category, currPage]);
-  return { movieList, genreList };
+  return { movieList, genreList, totalPage, totalResults };
 };

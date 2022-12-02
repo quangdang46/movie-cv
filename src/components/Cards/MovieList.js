@@ -30,15 +30,12 @@ const MovieList = ({ category = "TOP_RATED" }) => {
     }
   }, [nextRef, prevRef, swiper]);
   return (
-    <div className="movie-list mt-4 flex gap-x-2 max-w-[700px] md:max-w-[900px]">
-      {/* <div className="swiper-button" ref={prevRef}>
-        prev
-      </div> */}
+    <div className="movie-list mt-4 w-full absolute">
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y, Controller]}
         className="external-buttons"
         spaceBetween={20}
-        slidesPerView={3}
+        slidesPerView={4}
         navigation={{
           prevEl: prevRef?.current,
           nextEl: nextRef?.current,
@@ -55,9 +52,7 @@ const MovieList = ({ category = "TOP_RATED" }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      {/* <div className="swiper-button" ref={nextRef}>
-        next
-      </div> */}
+
     </div>
   );
 };

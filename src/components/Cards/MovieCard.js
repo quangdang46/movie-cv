@@ -19,17 +19,19 @@ const MovieCard = ({ movie, genreList }) => {
       </div>
       <div className="mt-3 text-center flex flex-col flex-1">
         <p className="font-bold text-sm">{title}</p>
-        <div className="mt-2 flex items-center gap-x-1 justify-center flex-wrap">
-          {genres.length > 0 &&
-            genres.map((genre) => (
-              <span
-                className="px-2 py-1 border-2 rounded-xl text-xs font-bold"
-                key={genre.id}
-              >
-                {genre.name}
-              </span>
-            ))}
-        </div>
+        {genreList && (
+          <div className="mt-2 flex items-center gap-x-1 justify-center flex-wrap">
+            {genres.length > 0 &&
+              genres.map((genre) => (
+                <span
+                  className="px-2 py-1 border-2 rounded-xl text-xs font-bold"
+                  key={genre.id}
+                >
+                  {genre.name}
+                </span>
+              ))}
+          </div>
+        )}
         <div className="flex items-center justify-center gap-x-1 text-yellow-500 mt-2">
           <span className="font-bold text-base">{vote_average}</span>
           <span>
