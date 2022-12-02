@@ -9,7 +9,9 @@ const List = ({ movies, className = "" }) => {
       {movies &&
         movies.length > 0 &&
         movies.map((movie) => {
-          return <MovieCard key={movie.id} movie={movie}></MovieCard>;
+          return (
+            <MovieCard key={movie.id} movie={movie} id={movie.id}></MovieCard>
+          );
         })}
     </div>
   );

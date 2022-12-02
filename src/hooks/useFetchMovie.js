@@ -8,7 +8,6 @@ const type = {
   LATEST: "latest",
 };
 export const useFetchMovie = ({ category, currPage = null }) => {
-  console.log(type[category]);
   const [movieList, setMovieList] = useState([]);
   const [genreList, setGenreList] = useState([]);
   const [totalPage, setTotalPage] = useState(0);
@@ -22,7 +21,6 @@ export const useFetchMovie = ({ category, currPage = null }) => {
     };
     const fetch = async () => {
       const { data } = await fetchMovies(type[category], currPage);
-      console.log(data);
       const { page, results, total_pages, total_results } = data;
       setTotalResults(total_results);
       setTotalPage(total_pages);

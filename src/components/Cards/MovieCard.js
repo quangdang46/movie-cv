@@ -3,7 +3,7 @@ import { IMAGE_URL } from "../../api/configApi";
 import { useGetDetailsMovie } from "../../hooks/useGetDetailsMovie";
 import { Button } from "../Button";
 
-const MovieCard = ({ movie, genreList }) => {
+const MovieCard = ({ movie, genreList, id }) => {
   const { poster_path, title, genres, vote_average } = useGetDetailsMovie({
     movie,
     genreList,
@@ -49,7 +49,7 @@ const MovieCard = ({ movie, genreList }) => {
             </svg>
           </span>
         </div>
-        <Button></Button>
+        <Button id={id}></Button>
       </div>
     </div>
   );

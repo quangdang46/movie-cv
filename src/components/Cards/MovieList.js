@@ -22,7 +22,6 @@ const MovieList = ({ category = "TOP_RATED" }) => {
 
   useEffect(() => {
     if (swiper) {
-      console.log("Swiper instance:", swiper);
       swiper.params.navigation.prevEl = prevRef?.current;
       swiper.params.navigation.nextEl = nextRef?.current;
       swiper.navigation.init();
@@ -48,11 +47,14 @@ const MovieList = ({ category = "TOP_RATED" }) => {
       >
         {movieList.map((movie) => (
           <SwiperSlide key={movie.id}>
-            <MovieCard movie={movie} genreList={genreList}></MovieCard>
+            <MovieCard
+              movie={movie}
+              genreList={genreList}
+              id={movie.id}
+            ></MovieCard>
           </SwiperSlide>
         ))}
       </Swiper>
-
     </div>
   );
 };

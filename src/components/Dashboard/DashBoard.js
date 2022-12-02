@@ -7,11 +7,8 @@ import { LeftSideBar } from "../Sidebar";
 import RightSideBar from "../Sidebar/RightSideBar";
 const DashBoard = () => {
   const { isShowRightSideBar, setIsShowRightSideBar } = useContext(AppContext);
-  // useEffect(() => {
-  //   setIsShowRightSideBar(true);
-  // }, [isShowRightSideBar, setIsShowRightSideBar]);
   return (
-    <div className="flex">
+    <div className="flex page-container">
       <LeftSideBar></LeftSideBar>
       <main className="flex-1 py-10 px-5 w-full">
         <HeaderMobile></HeaderMobile>

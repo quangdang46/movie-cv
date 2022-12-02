@@ -4,7 +4,7 @@ import { BannerList } from "./components/Banner";
 import { DashBoard } from "./components/Dashboard";
 import { ViewAllPage } from "./components/layout";
 import { PageNotFound } from "./components/PageNotFound";
-import { HomePage } from "./pages";
+import { HomePage, MovieDetail } from "./pages";
 const routes = [
   {
     path: "/popular",
@@ -26,7 +26,7 @@ const routes = [
 
 function App() {
   return (
-    <div className="page-container">
+    <div className="">
       <Routes>
         <Route element={<DashBoard></DashBoard>}>
           <Route
@@ -48,6 +48,7 @@ function App() {
             );
           })}
         </Route>
+        <Route path="/movie/:id" element={<MovieDetail></MovieDetail>}></Route>
         <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
     </div>
