@@ -20,7 +20,7 @@ const MovieCard = ({ movie, genreList }) => {
       <div className="mt-3 text-center flex flex-col flex-1">
         <p className="font-bold text-sm">{title}</p>
         {genreList && (
-          <div className="mt-2 flex items-center gap-x-1 justify-center flex-wrap">
+          <div className="mt-2 flex items-center gap-1 justify-center flex-wrap">
             {genres.length > 0 &&
               genres.map((genre) => (
                 <span

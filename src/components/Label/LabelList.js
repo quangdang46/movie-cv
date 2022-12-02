@@ -6,12 +6,11 @@ const category = {
   UPCOMING: "upcoming",
   TOP_RATED: "toprated",
   POPULAR: "popular",
-  NOW_PLAYING: "nowplaying",
+  NOWPLAYING: "nowplaying",
   LATEST: "latest",
 };
 const LabelList = ({ title, className = "", type, isShowAll = true }) => {
   const { prevRef, nextRef } = useContext(MovieContext);
-  console.log(category[type]);
   return (
     <div className={`flex items-center justify-between ${className}`}>
       <RouterLink to={category[type] || "/"}>

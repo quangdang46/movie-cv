@@ -4,10 +4,11 @@ const type = {
   UPCOMING: "upcoming",
   TOP_RATED: "top_rated",
   POPULAR: "popular",
-  NOW_PLAYING: "now_playing",
+  NOWPLAYING: "now_playing",
   LATEST: "latest",
 };
 export const useFetchMovie = ({ category, currPage = null }) => {
+  console.log(type[category]);
   const [movieList, setMovieList] = useState([]);
   const [genreList, setGenreList] = useState([]);
   const [totalPage, setTotalPage] = useState(0);

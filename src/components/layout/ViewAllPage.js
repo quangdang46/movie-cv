@@ -1,29 +1,31 @@
 import React, { useContext, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
+import { useParams } from "react-router-dom";
 import SimpleBreadcrumbs from "../../Breadcrums/SimpleBreadcrumbs";
 import { AppContext } from "../../context/AppContext";
 import useDebounce from "../../hooks/useDebounce";
 import { useFetchMovie } from "../../hooks/useFetchMovie";
 import { LabelList } from "../Label";
 import List from "../List/List";
-const type = {
+const category = {
   UPCOMING: "upcoming",
   TOP_RATED: "top_rated",
   POPULAR: "popular",
-  NOW_PLAYING: "now_playing",
+  NOWPLAYING: "now_playing",
   LATEST: "latest",
 };
 const itemsPerPage = 20;
-const Popular = ({ type }) => {
+const ViewAllPage = () => {
+  const params = window.location.pathname.split("/").filter((item) => item);
+  const type = params[0].toUpperCase();
   const { setIsShowRightSideBar } = useContext(AppContext);
 
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [nextPage, setNextPage] = useState(1);
-  const [movies, setMovies] = useState([]);
   const [typeMovie, setTypeMovie] = useState(type || "POPULAR");
-  const [filter, setFilter] = useState("");
-  const filterDebounce = useDebounce(filter, 500);
+  // const [filter, setFilter] = useState("");
+  // const filterDebounce = useDebounce(filter, 500);
   const { movieList, totalPage, totalResults } = useFetchMovie({
     category: typeMovie,
     currPage: nextPage,
@@ -42,16 +44,17 @@ const Popular = ({ type }) => {
   }, [itemOffset, movieList, totalResults]);
 
   const handlePageClick = (event) => {
+    if (+event.selected > 500) return;
     const newOffset = (event.selected * itemsPerPage) % totalResults;
     setItemOffset(newOffset);
     setNextPage(event.selected + 1);
   };
-  const handleFilterChange = (e) => {
-    setFilter(e.target.value);
-  };
+  // const handleFilterChange = (e) => {
+  //   setFilter(e.target.value);
+  // };
   return (
     <>
-      <div className="flex mb-10">
+      {/* <div className="flex mb-10">
         <div className="flex-1">
           <input
             type="text"
@@ -76,10 +79,10 @@ const Popular = ({ type }) => {
             />
           </svg>
         </button>
-      </div>
+      </div> */}
       <SimpleBreadcrumbs></SimpleBreadcrumbs>
       <LabelList
-        title="Popular movies"
+        title={category[type]}
         isShowAll={false}
         className="mt-3"
       ></LabelList>
@@ -90,7 +93,7 @@ const Popular = ({ type }) => {
           nextLabel="next >"
           onPageChange={handlePageClick}
           pageRangeDisplayed={5}
-          pageCount={pageCount}
+          pageCount={pageCount > 500 ? 500 : pageCount}
           previousLabel="< previous"
           renderOnZeroPageCount={null}
           className="pagination"
@@ -100,4 +103,4 @@ const Popular = ({ type }) => {
   );
 };
 
-export default Popular;
+export default ViewAllPage;
