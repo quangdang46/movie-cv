@@ -20,6 +20,7 @@
     "react-paginate": "^8.1.4",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
     "sass": "^1.56.1",
     "swiper": "^7.4.1",
     "uuid": "^9.0.0",

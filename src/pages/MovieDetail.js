@@ -3,9 +3,15 @@ import { useParams } from "react-router-dom";
 import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
 import { Button } from "../components/Button";
 import StarIcon from "../components/Icon/StarIcon";
-import Header from "../components/layout/Header";
-import HeaderMobile from "../components/layout/HeaderMobile";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+// import required modules
+import { Pagination, Navigation } from "swiper";
+import { v4 } from "uuid";
+import "./styles.scss";
 const MovieDetail = () => {
   const { id } = useParams();
   return (
@@ -14,10 +20,10 @@ const MovieDetail = () => {
         backgroundImage:
           'url("https://vtv1.mediacdn.vn/thumb_w/640/2019/4/3/568192382702538005773084275735552188171608n-1554266472791390104356.jpg")',
       }}
-      className="relative bg-cover bg-center bg-no-repeat bg-fixed bg-gray-900 min-h-screen text-white"
+      className="bg-cover bg-center bg-no-repeat bg-fixed bg-gray-900 min-h-screen text-white"
     >
-      <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.2)] rounded-lg z-10"></div>
-      <div className="py-10 2xl:max-w-screen-2xl 2xl:mx-auto absolute inset-0 z-50 px-10 2xl:px-0">
+      {/* <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.2)] rounded-lg z-10"></div> */}
+      <div className="py-10 2xl:max-w-screen-2xl 2xl:mx-auto px-10 2xl:px-0">
         <div className="2xl:flex gap-x-5 items-stretch">
           <div className="hidden 2xl:block 2xl:shrink-0 w-full h-[600px] 2xl:h-auto 2xl:max-w-[400px] rounded-lg">
             <img
@@ -56,10 +62,10 @@ const MovieDetail = () => {
                 <div className="flex items-center gap-x-2">
                   <span className="text-lg ">Rated this</span>
                   <div className="flex items-center gap-x-1">
-                    {Array(5)
+                    {Array(10)
                       .fill()
                       .map((_, i) => (
-                        <StarIcon></StarIcon>
+                        <StarIcon key={i}></StarIcon>
                       ))}
                   </div>
                 </div>
@@ -95,7 +101,7 @@ const MovieDetail = () => {
         </div>
         <div className="">
           <p className="font-bold text-2xl uppercase mt-10">Cast</p>
-          <div className="grid gap-5 grid-cols-5">
+          {/* <div className="grid gap-5 grid-cols-5 mt-2">
             {Array(5)
               .fill()
               .map((_, i) => (
@@ -110,6 +116,39 @@ const MovieDetail = () => {
                   </p>
                 </div>
               ))}
+          </div> */}
+          <div className="mt-2 cast-list">
+            <Swiper
+              slidesPerView={3}
+              spaceBetween={30}
+              slidesPerGroup={3}
+              loop={true}
+              loopFillGroupWithBlank={true}
+              pagination={{
+                clickable: true,
+              }}
+              navigation={true}
+              modules={[Pagination, Navigation]}
+              className="mySwiper"
+            >
+              {Array(10)
+                .fill()
+                .slice(0, 8)
+                .map((_, i) => (
+                  <SwiperSlide key={v4()}>
+                    <div className="w-full h-full p-3 bg-slate-800 rounded-lg">
+                      <img
+                        src="https://www.joblo.com/wp-content/uploads/2019/08/joker-poster-main2-1.jpg"
+                        alt=""
+                        className="w-full h-[300px] object-cover rounded-lg"
+                      />
+                      <p className="text-center font-montserrat text-xl mt-3">
+                        Name AppContext
+                      </p>
+                    </div>
+                  </SwiperSlide>
+                ))}
+            </Swiper>
           </div>
         </div>
       </div>
