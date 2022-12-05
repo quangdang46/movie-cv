@@ -25,7 +25,7 @@ const Banner = ({ movie, genreList }) => {
             className="w-full h-full object-cover rounded-lg"
           />
         </div>
-        <div className="sm:p-4">
+        <div className="p-2 sm:p-4">
           <h1 className="capitalize text-2xl font-bold">{title}</h1>
           <p className="mt-2">{release_date}</p>
           <p className="mt-2 leading-6 max-w-md hidden sm:block">{overview}</p>

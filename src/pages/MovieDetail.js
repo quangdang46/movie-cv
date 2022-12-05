@@ -3,17 +3,34 @@ import { useParams } from "react-router-dom";
 import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
 import { Button } from "../components/Button";
 import StarIcon from "../components/Icon/StarIcon";
-import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-// import required modules
-import { Pagination, Navigation } from "swiper";
 import { v4 } from "uuid";
 import "./styles.scss";
+import Slider from "react-slick";
 const MovieDetail = () => {
   const { id } = useParams();
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+        },
+      }
+    ],
+  };
   return (
     <div
       style={{
@@ -23,7 +40,7 @@ const MovieDetail = () => {
       className="bg-cover bg-center bg-no-repeat bg-fixed bg-gray-900 min-h-screen text-white"
     >
       {/* <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.2)] rounded-lg z-10"></div> */}
-      <div className="py-10 2xl:max-w-screen-2xl 2xl:mx-auto px-10 2xl:px-0">
+      <div className="py-10 2xl:max-w-screen-2xl 2xl:mx-auto px-10 2xl:px-0 ">
         <div className="2xl:flex gap-x-5 items-stretch">
           <div className="hidden 2xl:block 2xl:shrink-0 w-full h-[600px] 2xl:h-auto 2xl:max-w-[400px] rounded-lg">
             <img
@@ -37,11 +54,11 @@ const MovieDetail = () => {
               <SimpleBreadcrumbs></SimpleBreadcrumbs>
             </div>
             <div className="mt-5 flex justify-between text-center 2xl:text-start">
-              <div className="flex-1">
+              <div style={{ width: "-webkit-fill-available" }}>
                 <p className="text-8xl font-bold">
                   Joker<span className="text-5xl">(2019)</span>
                 </p>
-                <div className="block w-full h-[600px] 2xl:hidden rounded-lg sm:p-5 lg:p-10">
+                <div className="block w-auto h-auto 2xl:hidden rounded-lg sm:p-5 lg:p-10">
                   <img
                     src="https://www.joblo.com/wp-content/uploads/2019/08/joker-poster-main2-1.jpg"
                     alt=""
@@ -84,13 +101,13 @@ const MovieDetail = () => {
               ab ullam repellendus fuga?
             </p>
             <div className="flex items-center gap-x-5 mt-5 flex-wrap justify-center 2xl:justify-start">
-              <span className="py-1 px-3 text-lg font-bold border-primary text-secondary border rounded">
+              <span className="m-1 py-1 px-3 text-lg font-bold border-primary text-secondary border rounded">
                 Tagáđasađa
               </span>
-              <span className="py-1 px-3 text-lg font-bold border-primary text-secondary border rounded">
+              <span className="m-1 py-1 px-3 text-lg font-bold border-primary text-secondary border rounded">
                 Tag
               </span>
-              <span className="py-1 px-3 text-lg font-bold border-primary text-secondary border rounded">
+              <span className="m-1 py-1 px-3 text-lg font-bold border-primary text-secondary border rounded">
                 Tag
               </span>
             </div>
@@ -101,56 +118,34 @@ const MovieDetail = () => {
         </div>
         <div className="">
           <p className="font-bold text-2xl uppercase mt-10">Cast</p>
-          {/* <div className="grid gap-5 grid-cols-5 mt-2">
-            {Array(5)
-              .fill()
-              .map((_, i) => (
-                <div className="w-full h-full p-3 bg-slate-800 rounded-lg">
-                  <img
-                    src="https://www.joblo.com/wp-content/uploads/2019/08/joker-poster-main2-1.jpg"
-                    alt=""
-                    className="w-full h-[300px] object-cover rounded-lg"
-                  />
-                  <p className="text-center font-montserrat text-xl mt-3">
-                    Name AppContext
-                  </p>
-                </div>
-              ))}
-          </div> */}
           <div className="mt-2 cast-list">
-            <Swiper
-              slidesPerView={3}
-              spaceBetween={30}
-              slidesPerGroup={3}
-              loop={true}
-              loopFillGroupWithBlank={true}
-              pagination={{
-                clickable: true,
-              }}
-              navigation={true}
-              modules={[Pagination, Navigation]}
-              className="mySwiper"
-            >
-              {Array(10)
+            <Slider {...settings}>
+              {Array(20)
                 .fill()
-                .slice(0, 8)
                 .map((_, i) => (
-                  <SwiperSlide key={v4()}>
-                    <div className="w-full h-full p-3 bg-slate-800 rounded-lg">
-                      <img
-                        src="https://www.joblo.com/wp-content/uploads/2019/08/joker-poster-main2-1.jpg"
-                        alt=""
-                        className="w-full h-[300px] object-cover rounded-lg"
-                      />
-                      <p className="text-center font-montserrat text-xl mt-3">
-                        Name AppContext
-                      </p>
-                    </div>
-                  </SwiperSlide>
+                  <div
+                    key={v4()}
+                    className="border-0 w-[300px] h-full p-3 bg-slate-800 rounded-lg m-2"
+                  >
+                    <img
+                      src="https://www.joblo.com/wp-content/uploads/2019/08/joker-poster-main2-1.jpg"
+                      alt=""
+                      className="w-full h-[300px] object-cover rounded-lg"
+                    />
+                    <p className="text-center font-montserrat text-xl mt-3">
+                      Name AppContext
+                    </p>
+                  </div>
                 ))}
-            </Swiper>
+            </Slider>
           </div>
         </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro natus
+          veritatis autem aspernatur possimus explicabo quidem inventore
+          praesentium, tempora voluptatem accusantium reiciendis. Veniam qui ex
+          obcaecati blanditiis cum placeat delectus!
+        </p>
       </div>
     </div>
   );

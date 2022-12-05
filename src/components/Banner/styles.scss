@@ -1,4 +1,4 @@
-.cast-list {
+.banner-list {
   .slick-slide div {
     outline: none;
   }
@@ -6,6 +6,7 @@
   .slick-track {
     display: flex;
     width: fit-content;
-    gap: 20px;
+    gap: 10px;
+    
   }
 }
