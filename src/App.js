@@ -33,8 +33,8 @@ function App() {
             path="/"
             element={
               <>
-                <BannerList></BannerList>
-                <HomePage></HomePage>
+                {/* <BannerList></BannerList> */}
+                {/* <HomePage></HomePage> */}
               </>
             }
           ></Route>
