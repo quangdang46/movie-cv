@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useParams } from "react-router-dom";
-import SimpleBreadcrumbs from "../../Breadcrums/SimpleBreadcrumbs";
-import { AppContext } from "../../context/AppContext";
-import useDebounce from "../../hooks/useDebounce";
-import { useFetchMovie } from "../../hooks/useFetchMovie";
-import { LabelList } from "../Label";
-import List from "../List/List";
+import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
+import { AppContext } from "../context/AppContext";
+import useDebounce from "../hooks/useDebounce";
+import { useFetchMovie } from "../hooks/useFetchMovie";
+import { LabelList } from "../components/Label";
+import List from "../components/List/List";
 const category = {
   UPCOMING: "upcoming",
   TOP_RATED: "top_rated",

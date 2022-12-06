@@ -1,10 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import { v4 } from "uuid";
-import { BannerList } from "./components/Banner";
-import { DashBoard } from "./components/Dashboard";
-import { ViewAllPage } from "./components/layout";
-import { PageNotFound } from "./components/PageNotFound";
-import { HomePage, MovieDetail } from "./pages";
+import DashBoard from "./components/Dashboard/DashBoard";
+import { Account, Login, MovieDetail, PageNotFound } from "./pages";
+import ViewAllPage from "./pages/ViewAllPage";
 const routes = [
   {
     path: "/popular",
@@ -49,6 +47,8 @@ function App() {
           })}
         </Route>
         <Route path="/movie/:id" element={<MovieDetail></MovieDetail>}></Route>
+        <Route path="/account" element={<Account></Account>}></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
         <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
     </div>

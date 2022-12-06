@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
-import { IMAGE_URL } from "../../api/configApi";
 // banner
-const Show = ({ netflixOriginals }) => {
+const MainBanner = ({ netflixOriginals }) => {
   const [movie, setMovie] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [currentMovie, setCurrentMovie] = useState(null);
@@ -79,4 +78,4 @@ const Show = ({ netflixOriginals }) => {
   );
 };
 
-export default Show;
+export default MainBanner;

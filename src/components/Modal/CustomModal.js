@@ -1,8 +1,8 @@
+import { Modal } from "@mui/material";
 import React, { useState } from "react";
-import { MuiModal } from "@mui/material";
 import toast, { Toaster } from "react-hot-toast";
 import ReactPlayer from "react-player/lazy";
-const Modal = () => {
+const CustomModal = () => {
   const [movie, setMovie] = useState([]);
   const [trailer, setTrailer] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -27,7 +27,7 @@ const Modal = () => {
   };
   const handleList = () => {};
   return (
-    <MuiModal
+    <Modal
       open={showModal}
       onClose={handleClose}
       className="fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide"
@@ -191,8 +191,8 @@ const Modal = () => {
           </div>
         </div>
       </>
-    </MuiModal>
+    </Modal>
   );
 };
 
-export default Modal;
+export default CustomModal;

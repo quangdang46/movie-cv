@@ -1,8 +1,7 @@
 import React from "react";
-import { useState } from "react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { v4 } from "uuid";
-import Thumbnail from "./Thumbnail";
+import { Thumbnail } from "../Cards";
 
 const Row = ({ title, movies }) => {
   const rowRef = useRef(null);
