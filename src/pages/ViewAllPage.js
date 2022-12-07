@@ -1,15 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { useParams } from "react-router-dom";
 import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
-import { AppContext } from "../context/AppContext";
 import useDebounce from "../hooks/useDebounce";
 import { useFetchMovie } from "../hooks/useFetchMovie";
-import { LabelList } from "../components/Label";
+import { Label } from "../components/Label";
 import List from "../components/List/List";
 const category = {
   UPCOMING: "upcoming",
-  TOP_RATED: "top_rated",
+  TOPRATED: "top_rated",
   POPULAR: "popular",
   NOWPLAYING: "now_playing",
   LATEST: "latest",
@@ -18,7 +16,6 @@ const itemsPerPage = 20;
 const ViewAllPage = () => {
   const params = window.location.pathname.split("/").filter((item) => item);
   const type = params[0].toUpperCase();
-  const { setIsShowRightSideBar } = useContext(AppContext);
 
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -26,17 +23,13 @@ const ViewAllPage = () => {
   const [typeMovie, setTypeMovie] = useState(type || "POPULAR");
   // const [filter, setFilter] = useState("");
   // const filterDebounce = useDebounce(filter, 500);
-  const { movieList, totalPage, totalResults } = useFetchMovie({
+  const { movieList, totalPage, totalResults, genreList } = useFetchMovie({
     category: typeMovie,
     currPage: nextPage,
   });
   useEffect(() => {
     setTypeMovie(type);
   }, [type]);
-
-  useEffect(() => {
-    setIsShowRightSideBar(false);
-  }, [setIsShowRightSideBar]);
 
   useEffect(() => {
     if (!movieList || !totalResults) return;
@@ -81,12 +74,8 @@ const ViewAllPage = () => {
         </button>
       </div> */}
       <SimpleBreadcrumbs></SimpleBreadcrumbs>
-      <LabelList
-        title={category[type]}
-        isShowAll={false}
-        className="mt-3"
-      ></LabelList>
-      <List movies={movieList} className="mt-5"></List>
+      <Label title={type}></Label>
+      <List movies={movieList} genreList={genreList}></List>
       <div className="mt-10">
         <ReactPaginate
           breakLabel="..."

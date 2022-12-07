@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { fetchGenreMovie, fetchMovies } from "../service/movieService";
 const type = {
   UPCOMING: "upcoming",
-  TOP_RATED: "top_rated",
+  TOPRATED: "top_rated",
   POPULAR: "popular",
   NOWPLAYING: "now_playing",
   LATEST: "latest",
 };
-export const useFetchMovie = ({ category, currPage = null }) => {
+export const useFetchMovie = ({ category, currPage = 1 }) => {
   const [movieList, setMovieList] = useState([]);
   const [genreList, setGenreList] = useState([]);
   const [totalPage, setTotalPage] = useState(0);

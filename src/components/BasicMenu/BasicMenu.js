@@ -1,18 +1,20 @@
-import React from 'react';
+import React from "react";
 import { Button, Menu, MenuItem } from "@mui/material";
-import { useState } from 'react';
+import { useState } from "react";
 
 const BasicMenu = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = anchorEl;
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
 
-    const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+    setOpen(false);
+  };
 
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
   return (
     <div className="md:!hidden">
       <Button

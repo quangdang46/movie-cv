@@ -1,1 +1,1 @@
-export { default as LabelList } from "./LabelList";
+export { default as Label } from "./Label";

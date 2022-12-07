@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { v4 } from "uuid";
 import DashBoard from "./components/Dashboard/DashBoard";
-import { Account, Login, MovieDetail, PageNotFound } from "./pages";
+import { Account, HomePage, Login, MovieDetail, PageNotFound } from "./pages";
 import ViewAllPage from "./pages/ViewAllPage";
 const routes = [
   {
@@ -31,8 +31,7 @@ function App() {
             path="/"
             element={
               <>
-                {/* <BannerList></BannerList> */}
-                {/* <HomePage></HomePage> */}
+                <HomePage></HomePage>
               </>
             }
           ></Route>
@@ -46,7 +45,7 @@ function App() {
             );
           })}
         </Route>
-        <Route path="/movie/:id" element={<MovieDetail></MovieDetail>}></Route>
+        <Route path="/movies/:id" element={<MovieDetail></MovieDetail>}></Route>
         <Route path="/account" element={<Account></Account>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="*" element={<PageNotFound></PageNotFound>}></Route>

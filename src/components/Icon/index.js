@@ -1,1 +1,11 @@
-import { default as StarIcon } from "./StarIcon";
+export { default as StarIcon } from "./StarIcon";
+export { default as ChevronLeftIcon } from "./ChevronLeftIcon";
+export { default as ChevronRightIcon } from "./ChevronRightIcon";
+export { default as XIcon } from "./XIcon";
+export { default as PlayIcon } from "./PlayIcon";
+export { default as CheckIcon } from "./CheckIcon";
+export { default as PlusIcon } from "./PlusIcon";
+export { default as LikeIcon } from "./LikeIcon";
+export { default as VolumeOff } from "./VolumeOff";
+export { default as VolumeUp } from "./VolumeUp";
+export { default as InfoIcon } from "./InfoIcon";

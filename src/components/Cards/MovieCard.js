@@ -9,7 +9,7 @@ const MovieCard = ({ movie, genreList, id }) => {
     genreList,
   });
   return (
-    <div className="flex flex-col dark:border-zinc-600 p-4 bg-slate-100 rounded-xl h-full">
+    <div className="flex flex-col dark:border-zinc-600 p-4 rounded-xl h-full bg-zinc-700">
       <div className="h-[200px]">
         <img
           src={`${IMAGE_URL}/w500/${poster_path}`}
@@ -18,13 +18,13 @@ const MovieCard = ({ movie, genreList, id }) => {
         />
       </div>
       <div className="mt-3 text-center flex flex-col flex-1">
-        <p className="font-bold text-sm">{title}</p>
+        <p className="font-bold text-sm text-shadow-sm">{title}</p>
         {genreList && (
           <div className="mt-2 flex items-center gap-1 justify-center flex-wrap">
             {genres.length > 0 &&
               genres.map((genre) => (
                 <span
-                  className="px-2 py-1 border-2 rounded-xl text-xs font-bold"
+                  className="px-2 py-1 border-2 rounded-xl text-xs font-bold border-zinc-600 text-shadow-md"
                   key={genre.id}
                 >
                   {genre.name}
