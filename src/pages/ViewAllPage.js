@@ -74,7 +74,7 @@ const ViewAllPage = () => {
         </button>
       </div> */}
       <SimpleBreadcrumbs></SimpleBreadcrumbs>
-      <Label title={type}></Label>
+      <Label title={type} isLink={true}></Label>
       <List movies={movieList} genreList={genreList}></List>
       <div className="mt-10">
         <ReactPaginate

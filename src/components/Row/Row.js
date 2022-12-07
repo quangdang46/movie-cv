@@ -29,7 +29,7 @@ const Row = ({ title, type }) => {
   };
   return (
     <div className="h-40 space-y-0.5 md:space-y-2">
-      <Label toPath={category[type]} title={title}></Label>
+      <Label toPath={category[type]} title={title} isLink={true}></Label>
       <div className="group relative md:-ml-2">
         <span
           className={`absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125  group-hover:opacity-100 ${

@@ -14,4 +14,9 @@ const fetchGenreMovie = async () => {
 const fetchMovieById = async (id) => {
   return await axios.get(`/movie/${id}?api_key=${API_KEY}&language=en-US`);
 };
-export { fetchMovies, fetchGenreMovie, fetchMovieById };
+const fetchMovieMeta = async (movieId, type) => {
+  return await axios.get(
+    `/movie/${movieId}/${type}?api_key=${API_KEY}&language=en-US`
+  );
+};
+export { fetchMovies, fetchGenreMovie, fetchMovieById, fetchMovieMeta };

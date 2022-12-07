@@ -1,6 +1,5 @@
 import React from "react";
-import { useState } from "react";
-import { Link, useNavigation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IMAGE_URL } from "../../api/configApi";
 const Thumbnail = ({ movie }) => {
   // const [currentMovie, setCurrentMovie] = useState(null);

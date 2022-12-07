@@ -1,37 +1,29 @@
-import React from 'react';
+import React from "react";
+import { Image } from "../Image";
 
-const CastCard = () => {
+const CastCard = ({ data }) => {
+  const { name, character, profile_path } = data;
   return (
-    <div className="relative rounded-xl overflow-hidden">
-      <img
-        src="https://www.jolie.de/sites/default/files/styles/image_gallery360w/public/2020-02/leonardo-dicaprio-oscars.jpg?h=64dbc2fc&itok=EH0B3oo4"
-        className="object-cover h-full w-full -z-10"
-        alt=""
-      />
-      <div className="absolute top-0 h-full w-full bg-gradient-to-t from-black/50 p-3 flex flex-col justify-between">
-        <a
-          href="/"
-          className="p-2.5 bg-gray-800/80 bg-white rounded-lg text-white self-end hover:bg-red-600/80"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </a>
-        <div className="self-center flex flex-col items-center space-y-2">
-          <span className="capitalize text-white font-medium drop-shadow-md">
-            Leonardo DiCaprio
-          </span>
-          <span className="text-gray-100 text-xs">+12 Movies</span>
-        </div>
+    <div className="">
+      <div
+        className="bg-[#222] rounded-lg overflow-hidden"
+        style={{
+          aspectRatio: "9/16",
+        }}
+      >
+        <Image
+          lazy_src={
+            profile_path
+              ? `https://image.tmdb.org/t/p/w500${profile_path}`
+              : "https://images.unsplash.com/photo-1535704882196-765e5fc62a53?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YW5pbWUlMjBnaXJsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          }
+          alt={name}
+          className={"w-full h-full rounded-lg object-cover"}
+        />
+      </div>
+      <div className="mt-3">
+        <p className="text-sm leading-6">{name}</p>
+        <p className="text-yellow-400 text-sm">{character}</p>
       </div>
     </div>
   );

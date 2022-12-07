@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IMAGE_URL } from "../../api/configApi";
 import { useGetDetailsMovie } from "../../hooks/useGetDetailsMovie";
 import { Button } from "../Button";

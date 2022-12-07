@@ -1,11 +1,28 @@
-import React from 'react';
-import CastCard from './CastCard';
+import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import { fetchMovieMeta } from "../../service/movieService";
+import CastCard from "./CastCard";
 
-const CastList = () => {
+const CastList = ({ id, className = "" }) => {
+  const [cast, setCast] = useState([]);
+  useEffect(() => {
+    const fetchCast = async () => {
+      const { data } = await fetchMovieMeta(id, "credits");
+      setCast(data.cast);
+    };
+    fetchCast();
+  }, [id]);
+  console.log(cast);
   return (
-    <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-5">
-      <CastCard></CastCard>
-      <CastCard></CastCard>
+    <div
+      className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 ${className}`}
+    >
+      {cast &&
+        cast.length > 0 &&
+        cast
+          .slice(0, 10)
+          .map((item) => <CastCard key={item.id} data={item}></CastCard>)}
     </div>
   );
 };
