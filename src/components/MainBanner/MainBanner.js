@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { IMAGE_URL } from "../../api/configApi";
 import { InfoIcon, PlayIcon } from "../Icon";
+import { Image } from "../Image";
 // banner
-const MainBanner = ({randomMovies}) => {
+const MainBanner = ({ randomMovies }) => {
   const [showModal, setShowModal] = useState(false);
   const [currentMovie, setCurrentMovie] = useState(null);
   const [movie, setMovie] = useState(null);
@@ -16,11 +17,12 @@ const MainBanner = ({randomMovies}) => {
   return (
     <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
       <div className="absolute top-0 left-0 -z-10 h-[100vh] w-screen">
-        <img
-          src={`${IMAGE_URL}/w500${movie?.backdrop_path || movie?.poster_path}`}
-          alt=""
+        <Image
+          lazy_src={`${IMAGE_URL}/w500${
+            movie?.backdrop_path || movie?.poster_path
+          }`}
           className="w-full h-full object-cover"
-        />
+        ></Image>
       </div>
 
       <h1 className="text-2xl font-bold md:text-4xl lg:text-7xl">

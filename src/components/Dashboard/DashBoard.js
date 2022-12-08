@@ -4,7 +4,6 @@ import { useFetchMovie } from "../../hooks/useFetchMovie";
 import Header from "../layout/Header";
 import { MainBanner } from "../MainBanner";
 import { CustomModal } from "../Modal";
-import { Row } from "../Row";
 const DashBoard = () => {
   const [showModal, setShowModal] = useState(false);
   // showModal is a boolean value that is used to show or hide the modal

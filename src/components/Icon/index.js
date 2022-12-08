@@ -9,3 +9,7 @@ export { default as LikeIcon } from "./LikeIcon";
 export { default as VolumeOff } from "./VolumeOff";
 export { default as VolumeUp } from "./VolumeUp";
 export { default as InfoIcon } from "./InfoIcon";
+export { default as Toggle } from "./Toggle";
+export { default as Loader } from "./Loader";
+export { default as SearchIcon } from "./SearchIcon";
+export { default as RingIcon } from "./RingIcon";

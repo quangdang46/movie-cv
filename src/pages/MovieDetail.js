@@ -8,6 +8,7 @@ import useGetMovie from "../hooks/useGetMovie";
 import { IMAGE_URL } from "../api/configApi";
 import { CastList, Similar } from "../components/Cards";
 import Label from "../components/Label/Label";
+import { Image } from "../components/Image";
 const MovieDetail = () => {
   const { id } = useParams();
   const {
@@ -30,18 +31,14 @@ const MovieDetail = () => {
       }}
       className="bg-cover bg-center bg-no-repeat bg-fixed min-h-screen text-white "
     >
-      {/* <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.2)] rounded-lg z-10"></div> */}
-      <div className="py-10 2xl:max-w-screen-2xl 2xl:mx-auto px-2 sm:px-10 2xl:px-0">
+      <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.2)] rounded-lg z-10"></div>
+      <div className="absolute z-50 inset-0 py-10 2xl:max-w-screen-2xl 2xl:mx-auto px-2 sm:px-10 2xl:px-0">
         <div className="2xl:flex gap-x-5 items-stretch">
           <div className="hidden 2xl:block 2xl:shrink-0 w-full h-[600px] 2xl:h-auto 2xl:max-w-[400px] rounded-lg">
-            <img
-              src={
-                `${IMAGE_URL}/w500${posterPath || backdropPath}` ||
-                `https://via.placeholder.com/300x450`
-              }
-              alt=""
+            <Image
+              lazy_src={`${IMAGE_URL}/w500${posterPath || backdropPath}`}
               className="w-full h-full object-cover rounded-lg"
-            />
+            ></Image>
           </div>
           <div className="">
             <div className="bg-violet-500">
@@ -56,14 +53,10 @@ const MovieDetail = () => {
                   </span>
                 </p>
                 <div className="block w-auto h-[300px] sm:h-[500px] md:h-[700px] xl:h-[900px] 2xl:h-auto 2xl:hidden rounded-lg p-3 sm:p-5 lg:p-10">
-                  <img
-                    src={
-                      `${IMAGE_URL}/w500${posterPath || backdropPath}` ||
-                      `https://via.placeholder.com/300x450`
-                    }
-                    alt=""
+                  <Image
+                    lazy_src={`${IMAGE_URL}/w500${posterPath || backdropPath}`}
                     className="w-full h-full object-cover rounded-lg"
-                  />
+                  ></Image>
                 </div>
                 <p className="mt-6 text-2xl line-clamp-1 sm:line-clamp-none text-shadow-lg">
                   {tagline || "No tagline"}

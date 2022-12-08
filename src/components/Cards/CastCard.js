@@ -15,7 +15,7 @@ const CastCard = ({ data }) => {
           lazy_src={
             profile_path
               ? `https://image.tmdb.org/t/p/w500${profile_path}`
-              : "https://images.unsplash.com/photo-1535704882196-765e5fc62a53?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YW5pbWUlMjBnaXJsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              : "https://images.unsplash.com/photo-1670258880467-211fb6642971?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
           }
           alt={name}
           className={"w-full h-full rounded-lg object-cover"}

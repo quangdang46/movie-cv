@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Loader } from '../components/Loader';
+import { Loader } from '../components/Icon';
 
 const Membership = () => {
     const [isBillingLoading, setBillingLoading] = useState(false);

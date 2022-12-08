@@ -13,7 +13,6 @@ const CastList = ({ id, className = "" }) => {
     };
     fetchCast();
   }, [id]);
-  console.log(cast);
   return (
     <div
       className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 ${className}`}
