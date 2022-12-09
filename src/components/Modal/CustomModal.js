@@ -45,7 +45,7 @@ const CustomModal = () => {
       <>
         <Toaster position="bottom-center" />
         <button
-          className="modalButton absolute right-5 top-5 !z-40 h-9 w-9 border-none bg-[#181818] hover:bg-[#181818]"
+          className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10 absolute right-5 top-5 !z-40 border-none bg-[#181818] hover:bg-[#181818]"
           onClick={handleClose}
         >
           <XIcon></XIcon>
@@ -67,14 +67,14 @@ const CustomModal = () => {
                 <PlayIcon></PlayIcon>
                 <span>Play</span>
               </button>
-              <button className="modalButton" onClick={handleList}>
+              <button className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10" onClick={handleList}>
                 {addedToList ? <CheckIcon></CheckIcon> : <PlusIcon></PlusIcon>}
               </button>
-              <button className="modalButton">
+              <button className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10">
                 <LikeIcon></LikeIcon>
               </button>
             </div>
-            <button className="modalButton" onClick={() => setMuted(!muted)}>
+            <button className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10" onClick={() => setMuted(!muted)}>
               {muted ? <VolumeOff></VolumeOff> : <VolumeUp></VolumeUp>}
             </button>
           </div>

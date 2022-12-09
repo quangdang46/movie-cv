@@ -39,7 +39,7 @@ const Login = () => {
             <input
               type="email"
               placeholder="Email"
-              className={`input ${
+              className={`w-full rounded bg-[#333333] px-5 py-3.5 placeholder-[gray] outline-none focus:bg-[#454545] ${
                 errors.email && "border-b-2 border-orange-500"
               }`}
               {...register("email", { required: true })}
@@ -55,7 +55,7 @@ const Login = () => {
               type="password"
               {...register("password", { required: true })}
               placeholder="Password"
-              className={`input ${
+              className={`w-full rounded bg-[#333333] px-5 py-3.5 placeholder-[gray] outline-none focus:bg-[#454545] ${
                 errors.password && "border-b-2 border-orange-500"
               }`}
             />

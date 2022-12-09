@@ -32,7 +32,7 @@ const BasicMenu = () => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        className="menu"
+        className="md:hidden"
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}

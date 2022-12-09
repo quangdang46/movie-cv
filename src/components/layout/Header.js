@@ -40,7 +40,10 @@ const Header = () => {
         <ul className="hidden space-x-4 md:flex">
           {links.map(({ name, link }) => {
             return (
-              <li key={name} className="headerLink">
+              <li
+                key={name}
+                className="cursor-pointer text-sm font-light text-[#e5e5e5] transition duration-[.4s] hover:text-[#b3b3b3]"
+              >
                 <Link to={link}>{name}</Link>
               </li>
             );

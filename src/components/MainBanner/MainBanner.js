@@ -33,13 +33,13 @@ const MainBanner = ({ randomMovies }) => {
           "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore distinctio, ratione optio facilis ipsum laborum odio laboriosam in eligendi impedit, beatae tenetur dolor placeat obcaecati doloremque quasi soluta, quos vitae. "}
       </p>
       <div className="flex space-x-3">
-        <button className="bannerButton bg-white text-black">
+        <button className="flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl bg-white text-black">
           <PlayIcon></PlayIcon>
           <span>Play</span>
         </button>
 
         <button
-          className="bannerButton bg-[gray]/70"
+          className="flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl bg-[gray]/70"
           onClick={() => {
             setCurrentMovie(movie);
             setShowModal(true);

@@ -35,8 +35,8 @@ const Membership = () => {
             <p className="text-[gray]">Password: ********</p>
           </div>
           <div className="md:text-right">
-            <p className="membershipLink">Change email</p>
-            <p className="membershipLink">Change password</p>
+            <p className="cursor-pointer text-blue-500 hover:underline">Change email</p>
+            <p className="cursor-pointer text-blue-500 hover:underline">Change password</p>
           </div>
         </div>
 
@@ -50,10 +50,10 @@ const Membership = () => {
             </p>
           </div>
           <div className="md:text-right">
-            <p className="membershipLink">Manage payment info</p>
-            <p className="membershipLink">Add backup payment method</p>
-            <p className="membershipLink">Billing Details</p>
-            <p className="membershipLink">Change billing day</p>
+            <p className="cursor-pointer text-blue-500 hover:underline">Manage payment info</p>
+            <p className="cursor-pointer text-blue-500 hover:underline">Add backup payment method</p>
+            <p className="cursor-pointer text-blue-500 hover:underline">Billing Details</p>
+            <p className="cursor-pointer text-blue-500 hover:underline">Change billing day</p>
           </div>
         </div>
       </div>
