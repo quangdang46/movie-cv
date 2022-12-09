@@ -30,16 +30,16 @@ const RightSideBar = ({
           : films?.slice(0, limitNumber).map((item) => (
               <li key={item.id}>
                 <Link
-                  to={
-                    item.media_type === "movie"
-                      ? `/movie/${item.id}`
-                      : `/tv/${item.id}`
-                  }
+                  to={`/watch/${item.id}`}
                   className="hover:brightness-75 transiton duration-300 flex gap-5 items-center"
                 >
                   <div className="shrink-0 max-w-[100px] w-full">
                     <Image
-                      src={`${IMAGE_URL}w154${item.poster_path}`}
+                      lazy_src={
+                        item.poster_path
+                          ? `${IMAGE_URL}/w500${item.poster_path}`
+                          : `${IMAGE_URL}/w500${item.backdrop_path}`
+                      }
                       className="w-full h-full object-cover rounded-md"
                       alt="poster"
                     ></Image>

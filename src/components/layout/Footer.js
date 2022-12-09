@@ -4,14 +4,14 @@ const Footer = () => {
   return (
     <div className="bg-dark-lighten text-white flex justify-between items-center py-3 px-4 shadow-md mt-3">
       <p className="flex gap-2">
-        <span>Copyright _Fuocy</span>
-        <span className="hidden md:block"> &copy; 19/7/2022</span>
+        <span>Copyright Dang</span>
+        <span className="hidden md:block"> &copy; 12/12/2022</span>
       </p>
       <div className="flex gap-3 items-center">
         <p className="hidden md:block">Contact me: </p>
         <div className="flex gap-2">
           <a
-            href="https://github.com/fuocy"
+            href="https://github.com/quangdang46"
             target="_blank"
             rel="noreferrer"
             className="hover:text-[#6e5494] transition duration-300"

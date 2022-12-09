@@ -5,15 +5,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { fetchMovieMeta } from "../../service/movieService";
 import MovieCard from "./MovieCard";
 import SwiperCore, { Navigation } from "swiper";
+import { useViewportView } from "../../hooks/useViewportView";
 const Similar = ({ id }) => {
   SwiperCore.use([Navigation]);
   const [movie, setMovie] = useState([]);
-  const [width, setWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [width]);
+  const { width } = useViewportView();
 
   useEffect(() => {
     const fetchMovie = async () => {

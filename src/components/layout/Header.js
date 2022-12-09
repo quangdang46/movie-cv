@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BasicMenu } from "../BasicMenu";
 import { RingIcon, SearchIcon } from "../Icon";
 import { Image } from "../Image";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -48,7 +48,7 @@ const Header = () => {
         </ul>
       </div>
       <div className="flex items-center space-x-4 text-sm font-light">
-        <SearchIcon></SearchIcon>
+        <SearchIcon onClick={() => navigate("/explore")}></SearchIcon>
         <p className="hidden lg:inline">Kids</p>
         <RingIcon></RingIcon>
         <Link href="/account">

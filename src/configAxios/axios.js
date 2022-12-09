@@ -5,7 +5,6 @@ const instance = axios.create({
 });
 instance.defaults.headers.common["Authorization"] = "AUTH TOKEN";
 instance.defaults.headers.post["Content-Type"] = "application/json";
-
 instance.interceptors.request.use(
   (request) => {
     console.log(request);

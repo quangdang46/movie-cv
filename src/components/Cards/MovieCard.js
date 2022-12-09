@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { IMAGE_URL } from "../../api/configApi";
 import { useGetDetailsMovie } from "../../hooks/useGetDetailsMovie";
 import { Button } from "../Button";
@@ -10,12 +11,13 @@ const MovieCard = ({ movie, genreList, id }) => {
     movie,
     genreList,
   });
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col dark:border-zinc-600 p-4 rounded-xl h-full bg-zinc-700">
-      <div className="h-[200px]">
+      <div className="h-[200px]" onClick={() => navigate(`/watch/${id}`)}>
         <Image
           lazy_src={`${IMAGE_URL}/w500/${poster_path}`}
-          className="w-full h-full object-cover rounded-xl"
+          className="w-full h-full object-cover rounded-xl cursor-pointer"
         ></Image>
       </div>
       <div className="mt-3 text-center flex flex-col flex-1">

@@ -123,8 +123,8 @@ const MovieDetail = () => {
           <Label title={"Cast"} isLink={false}></Label>
           <CastList id={id} className={"mt-5"}></CastList>
         </div>
-        <div className="mt-10">
-          <Label title={"Similar movies"} isLink={false}></Label>
+        <div className="my-10">
+          <Label title={"Similar movies"} isLink={false} id={id}></Label>
           <Similar id={id}></Similar>
         </div>
       </div>
