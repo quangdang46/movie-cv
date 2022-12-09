@@ -19,6 +19,11 @@ module.exports = {
       colors: {
         primary: "#E21221",
         secondary: "#ED6A74",
+        "gray-lighten": "#989898",
+        "gray-darken": "#3a3939",
+        "dark-darken": "#19191b",
+        "dark-lighten": "#333335",
+        "dark-lighten-2": "#49494b",
         tagsLinear:
           "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(180,175,46,0.9048723897911833) 0%, rgba(162,255,0,0.9953596287703016) 70%);",
       },

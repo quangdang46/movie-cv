@@ -1,29 +1,59 @@
-import { Breadcrumbs, Typography } from "@mui/material";
 import React from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
+import { v4 } from "uuid";
+import { BreadcrumbsIcon, HomeIcon } from "../components/Icon";
 
 const SimpleBreadcrumbs = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   return (
-    <div className="mt-2">
-      <Breadcrumbs separator=">" aria-label="breadcrumb">
-        <RouterLink to="/">Home</RouterLink>
+    <div className="px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 inline-block">
+      <ol className="flex items-center gap-x-1 md:gap-x-3">
+        <li className="flex items-center">
+          <RouterLink
+            to="/"
+            style={{
+              fontSize: "0.875rem",
+              lineHeight: "1.25rem",
+              fontWeight: "500",
+            }}
+          >
+            <div className="inline-flex items-center text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+              <HomeIcon></HomeIcon>
+              <span>Home</span>
+            </div>
+          </RouterLink>
+        </li>
         {pathnames.map((value, index) => {
           const last = index === pathnames.length - 1;
           const to = `/${pathnames.slice(0, index + 1).join("/")}`;
           value = value.charAt(0).toUpperCase() + value.slice(1);
           return last ? (
-            <Typography sx={{ color: "#00adb5" }} key={to}>
-              {value}
-            </Typography>
+            <li className="flex items-center" key={v4()}>
+              <BreadcrumbsIcon></BreadcrumbsIcon>
+              <span className="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">
+                {value}
+              </span>
+            </li>
           ) : (
-            <RouterLink to={to} key={to}>
-              {value}
-            </RouterLink>
+            <li className="flex items-center" key={v4()}>
+              <BreadcrumbsIcon></BreadcrumbsIcon>
+              <RouterLink
+                to={to}
+                style={{
+                  fontSize: "0.875rem",
+                  lineHeight: "1.25rem",
+                  fontWeight: "500",
+                }}
+              >
+                <span className="ml-1 text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+                  {value}
+                </span>
+              </RouterLink>
+            </li>
           );
         })}
-      </Breadcrumbs>
+      </ol>
     </div>
   );
 };

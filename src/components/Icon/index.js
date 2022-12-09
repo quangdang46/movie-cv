@@ -13,3 +13,7 @@ export { default as Toggle } from "./Toggle";
 export { default as Loader } from "./Loader";
 export { default as SearchIcon } from "./SearchIcon";
 export { default as RingIcon } from "./RingIcon";
+export { default as CalendarIcon } from "./CalendarIcon";
+export { default as BulletIcon } from "./BulletIcon";
+export { default as HomeIcon } from "./HomeIcon";
+export { default as BreadcrumbsIcon } from "./BreadcrumbsIcon";

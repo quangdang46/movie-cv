@@ -41,9 +41,7 @@ const MovieDetail = () => {
             ></Image>
           </div>
           <div className="">
-            <div className="bg-violet-500">
-              <SimpleBreadcrumbs></SimpleBreadcrumbs>
-            </div>
+            <SimpleBreadcrumbs></SimpleBreadcrumbs>
             <div className="mt-5 flex justify-between text-center 2xl:text-start">
               <div style={{ width: "-webkit-fill-available" }}>
                 <p className="text-2xl sm:text-5xl md:text-8xl font-bold text-shadow-lg">
@@ -117,7 +115,7 @@ const MovieDetail = () => {
               } vote)`}</div>
             </div>
             <div className="mt-4">
-              <Button content={"Watch now"}></Button>
+              <Button content={"Watch now"} isWatching={true} id={id}></Button>
             </div>
           </div>
         </div>
