@@ -17,3 +17,4 @@ export { default as CalendarIcon } from "./CalendarIcon";
 export { default as BulletIcon } from "./BulletIcon";
 export { default as HomeIcon } from "./HomeIcon";
 export { default as BreadcrumbsIcon } from "./BreadcrumbsIcon";
+export { default as ChevronDownIcon } from "./ChevronDownIcon";

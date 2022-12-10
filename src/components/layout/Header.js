@@ -51,7 +51,7 @@ const Header = () => {
         </ul>
       </div>
       <div className="flex items-center space-x-4 text-sm font-light">
-        <SearchIcon onClick={() => navigate("/explore")}></SearchIcon>
+        <SearchIcon onClick={() => navigate("/search")}></SearchIcon>
         <p className="hidden lg:inline">Kids</p>
         <RingIcon></RingIcon>
         <Link href="/account">

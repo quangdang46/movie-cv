@@ -30,7 +30,7 @@ const RightSideBar = ({
           : films?.slice(0, limitNumber).map((item) => (
               <li key={item.id}>
                 <Link
-                  to={`/watch/${item.id}`}
+                  to={`/movies/${item.id}`}
                   className="hover:brightness-75 transiton duration-300 flex gap-5 items-center"
                 >
                   <div className="shrink-0 max-w-[100px] w-full">

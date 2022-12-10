@@ -1,0 +1,74 @@
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import ReactPaginate from "react-paginate";
+import { getSearchResult } from "../../service/movieService";
+import FilmItem from "../Cards/FilmItem";
+import Image from "../Image/Image";
+import Skeleton from "../Skeleton/Skeleton";
+
+const SearchResult = ({ currentTab, query, page }) => {
+  const { data, error, isPreviousData } = useQuery(
+    ["search-result", currentTab, query, page],
+    () => getSearchResult(currentTab, query, page),
+    {
+      keepPreviousData: true,
+    }
+  );
+  if (error) return <div>ERROR: ${error.message}</div>;
+
+  const changePageHandler = (page) => {
+    if (isPreviousData) return "";
+    return `/search?query=${encodeURIComponent(query)}&page=${page}`;
+  };
+  return (
+    <div className="md:mt-32 mt-7 px-[2vw]">
+      <p className="text-white md:text-xl text-lg mb-10">
+        Search results for "{query}" ({data?.total_results} results found)
+      </p>
+      {data && data.results?.length === 0 && (
+        <div className="flex flex-col items-center mb-12">
+          <Image
+            lazy_src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuHWK06y8c81VfuX3R5sNXDfKWxWIOqH8C2g&usqp=CAU"
+            className="w-[600px] opacity-60"
+          ></Image>
+          <p className="text-white text-3xl mt-5">There is no such films</p>
+        </div>
+      )}
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 xl:grid-cols-5 gap-x-3 md:gap-x-8 gap-y-10">
+        {data &&
+          data.results.map((item) => (
+            <li key={item.id}>
+              <FilmItem item={item}></FilmItem>
+            </li>
+          ))}
+        {!data &&
+          [...new Array(15)].map((_, index) => (
+            <li key={index}>
+              <Skeleton className="h-0 pb-[160%]" />
+            </li>
+          ))}
+      </ul>
+      {/* {data && (
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="next >"
+          onPageChange={changePageHandler}
+          pageRangeDisplayed={2}
+          pageCount={data.total_pages}
+          previousLabel="< previous"
+          renderOnZeroPageCount={null}
+          className="pagination"
+        />
+      )} */}
+    </div>
+  );
+};
+
+{
+  /* <Pagination
+  maxPage={data.total_pages}
+  currentPage={data.page}
+  onChangePage={changePageHandler}
+/> */
+}
+export default SearchResult;

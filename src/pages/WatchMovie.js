@@ -57,8 +57,8 @@ const WatchMovie = () => {
                 {detail && (
                   <div className="flex gap-5 mt-5">
                     <div className="flex gap-2 items-center">
-                      <StarIcon className={"text-primary"}></StarIcon>
                       <span>{detail?.vote_average}</span>
+                      <StarIcon className={"text-primary"}></StarIcon>
                     </div>
                     <div className="flex gap-2 items-center">
                       <CalendarIcon className={"text-primary"}></CalendarIcon>

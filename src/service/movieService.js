@@ -31,7 +31,31 @@ const getWatchMovie = async (id) => {
   };
 };
 
+const getSearchResult = async (typeSearch, query, page) => {
+  const data = (
+    await axios.get(`/search/${typeSearch}?api_key=${API_KEY}&language=en-US`, {
+      params: {
+        query,
+        page,
+      },
+    })
+  ).data;
+
+  const results = data.results
+    .map((item) => ({
+      ...item,
+      ...(typeSearch !== "multi" && { media_type: typeSearch }),
+    }))
+    .filter((item) => item.poster_path || item.profile_path);
+
+  return {
+    ...data,
+    results,
+  };
+};
+
 export {
+  getSearchResult,
   fetchMovies,
   fetchGenreMovie,
   fetchMovieById,

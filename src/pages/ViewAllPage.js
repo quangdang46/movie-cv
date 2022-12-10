@@ -3,13 +3,6 @@ import ReactPaginate from "react-paginate";
 import { useFetchMovie } from "../hooks/useFetchMovie";
 import { Label } from "../components/Label";
 import List from "../components/List/List";
-// const category = {
-//   UPCOMING: "upcoming",
-//   TOPRATED: "top_rated",
-//   POPULAR: "popular",
-//   NOWPLAYING: "now_playing",
-//   LATEST: "latest",
-// };
 const itemsPerPage = 20;
 const ViewAllPage = () => {
   const params = window.location.pathname.split("/").filter((item) => item);
@@ -20,7 +13,7 @@ const ViewAllPage = () => {
   const [nextPage, setNextPage] = useState(1);
   const [typeMovie, setTypeMovie] = useState(type || "POPULAR");
 
-  const { movieList, totalPage, totalResults, genreList } = useFetchMovie({
+  const { movieList,totalResults, genreList } = useFetchMovie({
     category: typeMovie,
     currPage: nextPage,
   });

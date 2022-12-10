@@ -38,6 +38,10 @@ module.exports = {
       textShadow: {
         md: "2px 2px 4px rgb(0 0 0 / 45%);",
       },
+      gridTemplateColumns: {
+        sm: "repeat(auto-fill, minmax(130px, 1fr))",
+        lg: "repeat(auto-fill, minmax(160px, 1fr))",
+      },
     },
   },
   plugins: [

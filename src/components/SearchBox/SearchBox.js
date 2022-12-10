@@ -41,9 +41,8 @@ const SearchBox = ({ autoFocus = false }) => {
 
   const searchSubmitHandler = (e) => {
     e.preventDefault();
-
     if (!searchInput.trim()) return;
-
+    console.log(searchInput);
     navigate(`/search?query=${encodeURIComponent(searchInput.trim())}`);
     clearTimeout(timeoutRef.current);
     setSuggestions([]);
@@ -53,10 +52,11 @@ const SearchBox = ({ autoFocus = false }) => {
     setSuggestions([]);
     clearTimeout(timeoutRef.current);
   }, [location.search]);
+
   return (
     <div
       className={`absolute z-30 shadow-md left-6 right-6 top-7 group bg-[#333335] rounded-full ${
-        suggestions.length > 0 && "!rounded-3xl"
+        suggestions?.length > 0 && "!rounded-3xl"
       }`}
     >
       <form className="relative" onSubmit={searchSubmitHandler}>
@@ -73,7 +73,7 @@ const SearchBox = ({ autoFocus = false }) => {
         />
       </form>
 
-      {suggestions.length > 0 && (
+      {suggestions?.length > 0 && (
         <ul className="hidden group-focus-within:flex flex-col gap-3 py-3 relative after:absolute after:top-0 after:h-[2px]  after:bg-[#19191b] after:left-[5%] after:right-[5%]">
           {suggestions.map((suggestion, index) => (
             <li

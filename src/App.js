@@ -1,7 +1,16 @@
 import { Route, Routes } from "react-router-dom";
 import { v4 } from "uuid";
 import DashBoard from "./components/Dashboard/DashBoard";
-import { Account, HomePage, Login, MovieDetail, PageNotFound, WatchMovie } from "./pages";
+import {
+  Account,
+  Explore,
+  HomePage,
+  Login,
+  MovieDetail,
+  PageNotFound,
+  SearchPage,
+  WatchMovie,
+} from "./pages";
 import ViewAllPage from "./pages/ViewAllPage";
 const routes = [
   {
@@ -47,7 +56,9 @@ function App() {
         </Route>
         <Route path="/movies/:id" element={<MovieDetail></MovieDetail>}></Route>
         <Route path="/watch/:id" element={<WatchMovie></WatchMovie>}></Route>
+        <Route path="/explore" element={<Explore></Explore>}></Route>
         <Route path="/account" element={<Account></Account>}></Route>
+        <Route path="/search" element={<SearchPage></SearchPage>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
