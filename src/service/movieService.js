@@ -53,7 +53,17 @@ const getSearchResult = async (typeSearch, query, page) => {
     results,
   };
 };
-
+const getSearchKeyword = async (query) => {
+  return (
+    await axios.get(`/search/keyword?api_key=${API_KEY}&language=en-US`, {
+      params: {
+        query,
+      },
+    })
+  ).data.results
+    .map((item) => item.name)
+    .filter((_, index) => index < 5);
+};
 export {
   getSearchResult,
   fetchMovies,
@@ -61,4 +71,5 @@ export {
   fetchMovieById,
   fetchMovieMeta,
   getWatchMovie,
+  getSearchKeyword,
 };

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { getSearchKeyword } from "../../service/movieService";
 import { SearchIcon } from "../Icon";
 let isInitial = true;
 const SearchBox = ({ autoFocus = false }) => {
@@ -25,12 +26,11 @@ const SearchBox = ({ autoFocus = false }) => {
     if (!searchInput.trim()) return;
 
     timeoutRef.current = setTimeout(async () => {
-      // const keywords = await getSearchKeyword(searchInput.trim());
-      const keywords = null;
+      const keywords = await getSearchKeyword(searchInput.trim());
+      console.log(keywords);
       setSuggestions(keywords);
 
       if (isInitial) {
-        // When user search for "doctor strange", the search params change to "query=doctor+strange". If user now reload the page, the searchBox still hold value "doctor strange". That's good. But I don't like the fact that the suggestion also showing up on first mount/page-reload, so I put this check here to stop it
         isInitial = false;
         setSuggestions([]);
       }
@@ -85,6 +85,7 @@ const SearchBox = ({ autoFocus = false }) => {
                 onClick={() => {
                   navigate(`/search?query=${encodeURIComponent(suggestion)}`);
                   setSuggestions([]);
+                  setSearchInput(suggestion);
                 }}
                 className="flex items-center gap-3 ml-5 hover:text-white transition duration-300"
               >
