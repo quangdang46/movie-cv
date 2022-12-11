@@ -18,3 +18,8 @@ export { default as BulletIcon } from "./BulletIcon";
 export { default as HomeIcon } from "./HomeIcon";
 export { default as BreadcrumbsIcon } from "./BreadcrumbsIcon";
 export { default as ChevronDownIcon } from "./ChevronDownIcon";
+export { default as BookmarkIcon } from "./BookmarkIcon";
+export { default as HistoryIcon } from "./HistoryIcon";
+export { default as LogIcon } from "./LogIcon";
+export { default as BuggerIcon } from "./BuggerIcon";
+export { default as ExploreIcon } from "./ExploreIcon";

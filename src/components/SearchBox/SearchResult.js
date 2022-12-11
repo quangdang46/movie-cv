@@ -1,12 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
+import { useNavigate } from "react-router-dom";
 import { getSearchResult } from "../../service/movieService";
 import FilmItem from "../Cards/FilmItem";
 import Image from "../Image/Image";
 import Skeleton from "../Skeleton/Skeleton";
 
 const SearchResult = ({ currentTab, query, page }) => {
+  const navigate = useNavigate();
   const { data, error, isPreviousData } = useQuery(
     ["search-result", currentTab, query, page],
     () => getSearchResult(currentTab, query, page),
@@ -16,10 +18,14 @@ const SearchResult = ({ currentTab, query, page }) => {
   );
   if (error) return <div>ERROR: ${error.message}</div>;
 
-  const changePageHandler = (page) => {
+  const changePageHandler = (e) => {
     if (isPreviousData) return "";
-    return `/search?query=${encodeURIComponent(query)}&page=${page}`;
+    navigate(
+      `/search?query=${encodeURIComponent(query)}&page=${+e.selected + 1}`
+    );
   };
+
+
   return (
     <div className="md:mt-32 mt-7 px-[2vw]">
       <p className="text-white md:text-xl text-lg mb-10">
@@ -34,7 +40,8 @@ const SearchResult = ({ currentTab, query, page }) => {
           <p className="text-white text-3xl mt-5">There is no such films</p>
         </div>
       )}
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 xl:grid-cols-5 gap-x-3 md:gap-x-8 gap-y-10">
+      {/* grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 xl:grid-cols-5 */}
+      <ul className="grid grid-cols-sm md:grid-cols-lg gap-x-3 md:gap-x-8 gap-y-10">
         {data &&
           data.results.map((item) => (
             <li key={item.id}>
@@ -48,27 +55,22 @@ const SearchResult = ({ currentTab, query, page }) => {
             </li>
           ))}
       </ul>
-      {/* {data && (
+      {data && (
         <ReactPaginate
-          breakLabel="..."
-          nextLabel="next >"
-          onPageChange={changePageHandler}
-          pageRangeDisplayed={2}
+          previousLabel={"previous"}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
           pageCount={data.total_pages}
-          previousLabel="< previous"
-          renderOnZeroPageCount={null}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={2}
+          onPageChange={changePageHandler}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
           className="pagination"
         />
-      )} */}
+      )}
     </div>
   );
 };
-
-{
-  /* <Pagination
-  maxPage={data.total_pages}
-  currentPage={data.page}
-  onChangePage={changePageHandler}
-/> */
-}
 export default SearchResult;

@@ -3,11 +3,13 @@ import { Link as RouterLink, useLocation } from "react-router-dom";
 import { v4 } from "uuid";
 import { BreadcrumbsIcon, HomeIcon } from "../components/Icon";
 
-const SimpleBreadcrumbs = () => {
+const SimpleBreadcrumbs = ({ className = "", textLight = false }) => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   return (
-    <div className="px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 inline-block">
+    <div
+      className={`px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 inline-block ${className}`}
+    >
       <ol className="flex items-center gap-x-1 md:gap-x-3">
         <li className="flex items-center">
           <RouterLink
@@ -18,8 +20,12 @@ const SimpleBreadcrumbs = () => {
               fontWeight: "500",
             }}
           >
-            <div className="inline-flex items-center text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
-              <HomeIcon></HomeIcon>
+            <div
+              className={`inline-flex items-center text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white ${
+                textLight ? "text-white text-shadow-sm hover:text-cyan-100" : ""
+              }`}
+            >
+              <HomeIcon className={"w-4 h-4 mr-2"}></HomeIcon>
               <span>Home</span>
             </div>
           </RouterLink>
@@ -31,7 +37,13 @@ const SimpleBreadcrumbs = () => {
           return last ? (
             <li className="flex items-center" key={v4()}>
               <BreadcrumbsIcon></BreadcrumbsIcon>
-              <span className="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">
+              <span
+                className={`ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400 ${
+                  textLight
+                    ? "text-white text-shadow-sm hover:text-cyan-100"
+                    : ""
+                }`}
+              >
                 {value}
               </span>
             </li>
@@ -46,7 +58,13 @@ const SimpleBreadcrumbs = () => {
                   fontWeight: "500",
                 }}
               >
-                <span className="ml-1 text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+                <span
+                  className={`ml-1 text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white ${
+                    textLight
+                      ? "text-white text-shadow-sm hover:text-cyan-100"
+                      : ""
+                  }`}
+                >
                   {value}
                 </span>
               </RouterLink>

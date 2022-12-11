@@ -26,8 +26,9 @@ const MovieDetail = () => {
   return (
     <div
       style={{
-        backgroundImage:
-          `url(` + IMAGE_URL + "/original" + backdropPath || posterPath + `)`,
+        backgroundImage: backdropPath
+          ? `url(` + IMAGE_URL + "/original" + backdropPath + `)`
+          : `url(` + IMAGE_URL + "/original" + posterPath + `)`,
       }}
       className="bg-cover bg-center bg-no-repeat bg-fixed min-h-screen text-white "
     >

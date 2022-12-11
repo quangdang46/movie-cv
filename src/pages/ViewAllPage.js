@@ -38,7 +38,7 @@ const ViewAllPage = () => {
       <Label title={type} isLink={true}></Label>
       <List movies={movieList} genreList={genreList}></List>
       <div className="mt-10">
-        <ReactPaginate
+        {/* <ReactPaginate
           breakLabel="..."
           nextLabel="next >"
           onPageChange={handlePageClick}
@@ -46,6 +46,19 @@ const ViewAllPage = () => {
           pageCount={pageCount > 500 ? 500 : pageCount}
           previousLabel="< previous"
           renderOnZeroPageCount={null}
+          className="pagination"
+        /> */}
+        <ReactPaginate
+          previousLabel={"previous"}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={pageCount > 500 ? 500 : pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={2}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
           className="pagination"
         />
       </div>

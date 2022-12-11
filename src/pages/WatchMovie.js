@@ -26,7 +26,7 @@ const WatchMovie = () => {
   if (!detail || !recommendations) return <div>Not found</div>;
   return (
     <>
-      <Header></Header>
+      <Header isSearch={false}></Header>
       <div className="flex flex-col md:flex-row pl-4 pr-4 pb-24 lg:pl-16 lg:pr-16 mt-10">
         <div className="flex-grow px-[2vw] md:pt-11 pt-5">
           {!isMobile && <SimpleBreadcrumbs></SimpleBreadcrumbs>}

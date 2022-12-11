@@ -1,10 +1,10 @@
 import React from "react";
 
-const HomeIcon = () => {
+const HomeIcon = ({ className = "" }) => {
   return (
     <span>
       <svg
-        className="w-4 h-4 mr-2"
+        className={`w-6 h-6 ${className}`}
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"

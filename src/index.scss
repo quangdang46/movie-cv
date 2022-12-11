@@ -17,6 +17,7 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+  @apply mt-5;
   .selected {
     @apply text-primary;
   }

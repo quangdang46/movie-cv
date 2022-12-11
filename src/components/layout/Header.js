@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BasicMenu } from "../BasicMenu";
 import { RingIcon, SearchIcon } from "../Icon";
 import { Image } from "../Image";
-const Header = () => {
+const Header = ({ isSearch = true }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
@@ -51,7 +51,9 @@ const Header = () => {
         </ul>
       </div>
       <div className="flex items-center space-x-4 text-sm font-light">
-        <SearchIcon onClick={() => navigate("/search")}></SearchIcon>
+        {isSearch && (
+          <SearchIcon onClick={() => navigate("/search")}></SearchIcon>
+        )}
         <p className="hidden lg:inline">Kids</p>
         <RingIcon></RingIcon>
         <Link href="/account">

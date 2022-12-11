@@ -1,13 +1,13 @@
 import React from "react";
 
-const SearchIcon = ({ className, onClick }) => {
+const SearchIcon = ({ className = "", onClick }) => {
   return (
     <span className={`cursor-pointer ${className}`} onClick={onClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
-        className="sm hidden h-6 w-6 sm:inline pointer-events-none"
+        className="sm hidden h-6 w-6 xs:inline pointer-events-none"
       >
         <path
           fillRule="evenodd"

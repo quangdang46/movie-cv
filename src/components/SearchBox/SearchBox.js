@@ -55,7 +55,7 @@ const SearchBox = ({ autoFocus = false }) => {
 
   return (
     <div
-      className={`absolute z-30 shadow-md left-6 right-6 top-7 group bg-[#333335] rounded-full ${
+      className={`absolute z-30 shadow-md left-6 right-6 top-12 xs:top-10 group bg-[#333335] rounded-full ${
         suggestions?.length > 0 && "!rounded-3xl"
       }`}
     >

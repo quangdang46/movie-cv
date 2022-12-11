@@ -6,6 +6,8 @@ import { SearchResult } from "../components/SearchBox";
 import SearchBox from "../components/SearchBox/SearchBox";
 import { useViewportView } from "../hooks/useViewportView";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
+import { LeftSideBar } from "../components/SideBar";
 const SearchPage = () => {
   const { isMobile } = useViewportView();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,7 +18,15 @@ const SearchPage = () => {
   const [openSearchFilter, setOpenSearchFilter] = useState(true);
   return (
     <>
-      <div className="flex min-h-screen flex-col-reverse md:flex-row">
+      <div className=""></div>
+      <div className="flex min-h-screen flex-col md:flex-row">
+        {isMobile && (
+          <SimpleBreadcrumbs
+            className={"block rounded-none border-none bg-dark-lighten"}
+            textLight={true}
+          ></SimpleBreadcrumbs>
+        )}
+        {!isMobile && <LeftSideBar></LeftSideBar>}
         <div className="flex-grow">
           <div
             className={`relative z-30 md:max-w-[50vw] w-full mx-auto translate-y-[120px] transition duration-300 text-xl ${
