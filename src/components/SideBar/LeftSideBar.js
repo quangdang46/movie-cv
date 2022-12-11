@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 } from "uuid";
+import { useViewportView } from "../../hooks/useViewportView";
 import {
   BookmarkIcon,
   BuggerIcon,
@@ -11,8 +12,14 @@ import {
   SearchIcon,
 } from "../Icon";
 
-const Home = () => {
+const LeftSideBar = () => {
   const [open, setOpen] = useState(true);
+  const { width } = useViewportView();
+  useEffect(() => {
+    if (width < 1024) {
+      setOpen(false);
+    }
+  }, [width]);
   const menus = [
     {
       name: "Home",
@@ -81,4 +88,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default LeftSideBar;

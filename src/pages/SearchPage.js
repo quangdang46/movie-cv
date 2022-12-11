@@ -9,7 +9,7 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
 import { LeftSideBar } from "../components/SideBar";
 const SearchPage = () => {
-  const { isMobile } = useViewportView();
+  const { isMobile, width } = useViewportView();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query");
   const page = searchParams.get("page") || 1;
@@ -18,7 +18,6 @@ const SearchPage = () => {
   const [openSearchFilter, setOpenSearchFilter] = useState(true);
   return (
     <>
-      <div className=""></div>
       <div className="flex min-h-screen flex-col md:flex-row">
         {isMobile && (
           <SimpleBreadcrumbs
