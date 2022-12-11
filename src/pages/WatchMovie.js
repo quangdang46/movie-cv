@@ -29,7 +29,9 @@ const WatchMovie = () => {
       <Header isSearch={false}></Header>
       <div className="flex flex-col md:flex-row pl-4 pr-4 pb-24 lg:pl-16 lg:pr-16 mt-10">
         <div className="flex-grow px-[2vw] md:pt-11 pt-5">
-          {!isMobile && <SimpleBreadcrumbs></SimpleBreadcrumbs>}
+          {!isMobile && (
+            <SimpleBreadcrumbs></SimpleBreadcrumbs>
+          )}
           <div className="relative h-0 pb-[56.25%] mt-5">
             {!detail && (
               <Skeleton className="absolute top-0 left-0 w-full h-full rounded-sm" />

@@ -25,7 +25,7 @@ const SimpleBreadcrumbs = ({ className = "", textLight = false }) => {
                 textLight ? "text-white text-shadow-sm hover:text-cyan-100" : ""
               }`}
             >
-              <HomeIcon className={"w-4 h-4 mr-2"}></HomeIcon>
+              <HomeIcon></HomeIcon>
               <span>Home</span>
             </div>
           </RouterLink>

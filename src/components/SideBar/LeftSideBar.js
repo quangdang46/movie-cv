@@ -14,7 +14,11 @@ import {
 const Home = () => {
   const [open, setOpen] = useState(true);
   const menus = [
-    { name: "Home", link: "/", icon: <HomeIcon></HomeIcon> },
+    {
+      name: "Home",
+      link: "/",
+      icon: <HomeIcon className="!w-6 !h-6 mr-0"></HomeIcon>,
+    },
     { name: "Explore", link: "/explore", icon: <ExploreIcon></ExploreIcon> },
     { name: "Search", link: "/search", icon: <SearchIcon></SearchIcon> },
     { name: "Bookmark", link: "/", icon: <BookmarkIcon></BookmarkIcon> },
@@ -33,7 +37,7 @@ const Home = () => {
   return (
     <section className="flex gap-6">
       <div
-        className={`bg-[#0e0e0e] min-h-screen ${
+        className={`bg-[#141414] min-h-screen ${
           open ? "w-60" : "w-16"
         } duration-500 text-gray-100 px-4`}
       >
