@@ -5,22 +5,27 @@ const movies = [
   {
     id: 1,
     title: "Popular Movies",
-    type: "POPULAR",
+    type: "popular",
   },
   {
     id: 2,
     title: "Up comming",
-    type: "UPCOMING",
+    type: "upcoming",
   },
   {
     id: 3,
     title: "Top Rated",
-    type: "TOPRATED",
+    type: "top_rated",
   },
   {
     id: 4,
     title: "Now Playing",
-    type: "NOWPLAYING",
+    type: "now_playing",
+  },
+  {
+    id: 5,
+    title: "Latest",
+    type: "latest",
   },
 ];
 const HomePage = () => {

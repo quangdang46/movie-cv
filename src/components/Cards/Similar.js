@@ -1,23 +1,14 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { fetchMovieMeta } from "../../service/movieService";
 import MovieCard from "./MovieCard";
 import SwiperCore, { Navigation } from "swiper";
 import { useViewportView } from "../../hooks/useViewportView";
-const Similar = ({ id }) => {
+import { useParams } from "react-router-dom";
+const Similar = ({ similar }) => {
   SwiperCore.use([Navigation]);
-  const [movie, setMovie] = useState([]);
+  const { id } = useParams();
   const { width } = useViewportView();
 
-  useEffect(() => {
-    const fetchMovie = async () => {
-      const { data } = await fetchMovieMeta(id, "similar");
-      setMovie(data.results);
-    };
-    fetchMovie();
-  }, [id]);
   let item = 1;
 
   if (width >= 1280) {
@@ -37,7 +28,7 @@ const Similar = ({ id }) => {
         spaceBetween={20}
         slidesPerView={item}
       >
-        {movie
+        {similar
           ?.filter((p) => p.id !== id)
           .map((item) => (
             <SwiperSlide key={item.id}>

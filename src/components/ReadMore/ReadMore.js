@@ -3,6 +3,7 @@ import { useState } from "react";
 
 const ReadMore = ({ children, className = "", limitTextLength, ...others }) => {
   const [isReadingMore, setIsReadingMore] = useState(false);
+  if (!children) return null;
   const content = isReadingMore ? children : children.slice(0, limitTextLength);
   return (
     <span {...others} className={`${className} inline-block`}>

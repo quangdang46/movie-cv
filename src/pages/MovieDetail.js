@@ -4,31 +4,34 @@ import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
 import { Button } from "../components/Button";
 import { v4 } from "uuid";
 import StarRatings from "react-star-ratings";
-import useGetMovie from "../hooks/useGetMovie";
 import { IMAGE_URL } from "../api/configApi";
 import { CastList, Similar } from "../components/Cards";
 import Label from "../components/Label/Label";
 import { Image } from "../components/Image";
+import "./styles.scss";
+import ReadMore from "../components/ReadMore/ReadMore";
+import { useQuery } from "@tanstack/react-query";
+import { getMovieFullDetail } from "../service/movieService";
+import { Skeleton } from "../components/Skeleton";
 const MovieDetail = () => {
   const { id } = useParams();
-  const {
-    backdropPath,
-    title,
-    voteAverage,
-    overview,
-    releaseDate,
-    runtime,
-    tagline,
-    genres,
-    posterPath,
-    voteCount,
-  } = useGetMovie({ id });
+  const { data, isError, error } = useQuery(["movieDetail", id], () =>
+    getMovieFullDetail(id)
+  );
+  if (isError) {
+    return <div>{error.message}</div>;
+  }
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+  const { detail, credits, reviews, similar, videos } = data;
+
   return (
     <div
       style={{
-        backgroundImage: backdropPath
-          ? `url(` + IMAGE_URL + "/original" + backdropPath + `)`
-          : `url(` + IMAGE_URL + "/original" + posterPath + `)`,
+        backgroundImage: detail.backdrop_path
+          ? `url(` + IMAGE_URL + "/original" + detail.backdrop_path + `)`
+          : `url(` + IMAGE_URL + "/original" + detail.poster_path + `)`,
       }}
       className="bg-cover bg-center bg-no-repeat bg-fixed min-h-screen text-white "
     >
@@ -36,64 +39,146 @@ const MovieDetail = () => {
       <div className="absolute z-50 inset-0 py-10 2xl:max-w-screen-2xl 2xl:mx-auto px-2 sm:px-10 2xl:px-0">
         <div className="2xl:flex gap-x-5 items-stretch">
           <div className="hidden 2xl:block 2xl:shrink-0 w-full h-[600px] 2xl:h-auto 2xl:max-w-[400px] rounded-lg">
-            <Image
-              lazy_src={`${IMAGE_URL}/w500${posterPath || backdropPath}`}
-              className="w-full h-full object-cover rounded-lg"
-            ></Image>
+            {!detail && (
+              <Skeleton className="w-full h-ful rounded-lg"></Skeleton>
+            )}
+            {detail && (
+              <Image
+                lazy_src={`${IMAGE_URL}/w500${
+                  detail.poster_path || detail.backdrop_path
+                }`}
+                className="w-full h-full object-cover rounded-lg"
+              ></Image>
+            )}
           </div>
           <div className="">
             <SimpleBreadcrumbs></SimpleBreadcrumbs>
             <div className="mt-5 flex justify-between text-center 2xl:text-start">
               <div style={{ width: "-webkit-fill-available" }}>
-                <p className="text-2xl sm:text-5xl md:text-8xl font-bold text-shadow-lg">
-                  {title}
-                  <span className="text-xl sm:text-3xl md:text-5xl text-shadow-lg overflow-hidden">
-                    {`(${new Date(releaseDate).getFullYear()})`}
-                  </span>
-                </p>
+                {!detail && (
+                  <Skeleton className="w-[600px] h-[200px]">
+                    <Skeleton className="w-[200px] h-[300px]"></Skeleton>
+                  </Skeleton>
+                )}
+                {detail && (
+                  <p className="text-2xl sm:text-5xl md:text-8xl font-bold text-shadow-lg">
+                    {detail.title}
+                    <span className="text-xl sm:text-3xl md:text-5xl text-shadow-lg overflow-hidden">
+                      {`(${new Date(detail.release_date).getFullYear()})`}
+                    </span>
+                  </p>
+                )}
                 <div className="block w-auto h-[300px] sm:h-[500px] md:h-[700px] xl:h-[900px] 2xl:h-auto 2xl:hidden rounded-lg p-3 sm:p-5 lg:p-10">
-                  <Image
-                    lazy_src={`${IMAGE_URL}/w500${posterPath || backdropPath}`}
-                    className="w-full h-full object-cover rounded-lg"
-                  ></Image>
+                  {!detail && (
+                    <Skeleton className="w-full h-ful rounded-lg"></Skeleton>
+                  )}
+                  {detail && (
+                    <Image
+                      lazy_src={`${IMAGE_URL}/w500${
+                        detail.poster_path || detail.backdrop_path
+                      }`}
+                      className="w-full h-full object-cover rounded-lg"
+                    ></Image>
+                  )}
                 </div>
-                <p className="mt-6 text-2xl line-clamp-1 sm:line-clamp-none text-shadow-lg">
-                  {tagline || "No tagline"}
-                </p>
-                <p className="mt-4 text-2xl line-clamp-1 sm:line-clamp-none text-shadow-lg">
-                  {`0${(runtime / 60) ^ 0}`.slice(-2)}h{" "}
-                  {`0${runtime % 60}`.slice(-2)}m
-                </p>
+                {!detail && (
+                  <Skeleton className="mt-6 w-[200px] h-[300px]"></Skeleton>
+                )}
+                {detail && (
+                  <ReadMore
+                    limitTextLength={200}
+                    className="mt-6 text-2xl text-shadow-lg"
+                  >
+                    Tagline: {detail.tagline || "No tagline"}
+                  </ReadMore>
+                )}
+                {!detail && (
+                  <Skeleton className="mt-4 w-[300px] h-[100px]"></Skeleton>
+                )}
+                {detail && (
+                  <p className="mt-4 text-2xl line-clamp-1 sm:line-clamp-none text-shadow-lg">
+                    Runtime: {`0${(detail.runtime / 60) ^ 0}`.slice(-2)}h{" "}
+                    {`0${detail.runtime % 60}`.slice(-2)}m
+                  </p>
+                )}
               </div>
-              <div className="hidden 2xl:flex flex-col gap-y-2 justify-center text-yellow-500 bg-slate-600 px-5 rounded-lg text-shadow w-auto">
-                <div className="flex items-center gap-x-4">
-                  <span className="text-7xl font-bold">{voteAverage}</span>
-                  <div className="flex flex-col">
-                    <span className="text-4xl">/10</span>
-                    <span className="text-lg mt-1">{voteCount} votes</span>
+              <div className="hidden 2xl:flex flex-col gap-y-2 justify-center text-orange-500 px-5 text-shadow w-auto box">
+                {!detail && (
+                  <Skeleton className="flex items-center gap-x-4">
+                    <Skeleton className="w-20 h-20"></Skeleton>
+                    <Skeleton className="flex flex-col">
+                      <Skeleton className="w-20 h-10"></Skeleton>
+                      <Skeleton className="w-20 h-5"></Skeleton>
+                    </Skeleton>
+                  </Skeleton>
+                )}
+                {detail && (
+                  <div className="flex items-center gap-x-4">
+                    <span className="text-7xl font-bold">
+                      {detail.vote_average}
+                    </span>
+                    <div className="flex flex-col">
+                      <span className="text-4xl">/10</span>
+                      <span className="text-lg mt-1">
+                        {detail.vote_count} votes
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-center gap-x-2">
-                  <span className="text-lg flex-shrink-0">Rated this</span>
-                  <div className="flex-1">
-                    <StarRatings
-                      rating={voteAverage || 10}
-                      starRatedColor="#e74c3c"
-                      numberOfStars={10}
-                      name="rating"
-                      starDimension="20px"
-                      starSpacing="2px"
-                    />
+                )}
+                {!detail && (
+                  <Skeleton className="flex items-center gap-x-2">
+                    <Skeleton className="w-20 h-5"></Skeleton>
+                    <Skeleton className="w-20 h-5"></Skeleton>
+                  </Skeleton>
+                )}
+                {detail && (
+                  <div className="flex items-center gap-x-2">
+                    <span className="text-lg flex-shrink-0">Rated this</span>
+                    <div className="flex-1">
+                      <StarRatings
+                        rating={detail.vote_average || 10}
+                        starRatedColor="#e74c3c"
+                        numberOfStars={10}
+                        name="rating"
+                        starDimension="20px"
+                        starSpacing="2px"
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
-            <p className="mt-6 text-lg leading-8 line-clamp-4 sm:line-clamp-4 md:line-clamp-none">
-              {overview}
-            </p>
+            {!detail && <Skeleton className="mt-6 w-full h-[300px]"></Skeleton>}
+            {detail && (
+              <ReadMore
+                limitTextLength={300}
+                className="mt-6 text-lg leading-8"
+              >
+                {"Story: " + detail.overview}
+              </ReadMore>
+            )}
+            {!detail && (
+              <Skeleton className="mt-6 w-[200px] h-[300px]"></Skeleton>
+            )}
+            {detail && (
+              <p className="mt-6 text-lg text-shadow-lg">
+                Spoken language:{" "}
+                {detail.spoken_languages.map((lang) => lang.name).join(", ")}
+              </p>
+            )}
             <div className="flex items-center gap-x-5 mt-5 flex-wrap justify-center 2xl:justify-start">
-              {genres &&
-                genres.map((genre, index) => (
+              {!detail &&
+                Array(3)
+                  .fill(0)
+                  .map((_, index) => (
+                    <Skeleton
+                      key={v4()}
+                      className="mt-6 w-[200px] h-[300px]"
+                    ></Skeleton>
+                  ))}
+              {detail &&
+                detail.genres.length > 0 &&
+                detail.genres.map((genre, index) => (
                   <span
                     key={v4()}
                     className="m-1 py-1 px-3 text-lg font-bold border-primary text-secondary border rounded"
@@ -102,31 +187,60 @@ const MovieDetail = () => {
                   </span>
                 ))}
             </div>
-            <div className="flex 2xl:hidden items-center justify-center gap-x-3 mt-2">
-              <StarRatings
-                rating={voteAverage || 10}
-                starRatedColor="#e74c3c"
-                numberOfStars={10}
-                name="rating"
-                starDimension="20px"
-                starSpacing="2px"
-              />
-              <div className="leading-normal text-shadow-lg">{`(${
-                voteCount || 0
-              } vote)`}</div>
-            </div>
-            <div className="mt-4">
-              <Button content={"Watch now"} isWatching={true} id={id}></Button>
-            </div>
+            {!detail && (
+              <Skeleton className="mt-6 w-[500px] h-[300px]"></Skeleton>
+            )}
+            {detail && (
+              <div className="flex 2xl:hidden items-center justify-center gap-x-3 mt-2">
+                <StarRatings
+                  rating={detail.vote_average || 10}
+                  starRatedColor="#e74c3c"
+                  numberOfStars={10}
+                  name="rating"
+                  starDimension="20px"
+                  starSpacing="2px"
+                />
+                <div className="leading-normal text-shadow-lg">{`(${
+                  detail.vote_count || 0
+                } vote)`}</div>
+              </div>
+            )}
+            {detail && (
+              <div className="mt-4">
+                <Button
+                  content={"Watch now"}
+                  isWatching={true}
+                  id={id}
+                ></Button>
+              </div>
+            )}
           </div>
         </div>
         <div className="mt-10">
           <Label title={"Cast"} isLink={false}></Label>
-          <CastList id={id} className={"mt-5"}></CastList>
+          {!detail &&
+            Array(10)
+              .fill(0)
+              .map((_, index) => (
+                <Skeleton
+                  key={v4()}
+                  className="mt-6 w-[200px] h-[300px]"
+                ></Skeleton>
+              ))}
+          {detail && <CastList credits={credits} className={"mt-5"}></CastList>}
         </div>
         <div className="my-10">
           <Label title={"Similar movies"} isLink={false} id={id}></Label>
-          <Similar id={id}></Similar>
+          {!detail &&
+            Array(10)
+              .fill(0)
+              .map((_, index) => (
+                <Skeleton
+                  key={v4()}
+                  className="mt-6 w-[200px] h-[300px]"
+                ></Skeleton>
+              ))}
+          {detail && <Similar similar={similar}></Similar>}
         </div>
       </div>
     </div>

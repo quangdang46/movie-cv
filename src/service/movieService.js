@@ -1,23 +1,85 @@
 import { API_KEY } from "../api/configApi";
 import axios from "../configAxios/axios";
 const fetchMovies = async (type, page) => {
-  return await axios.get(
+  const response = await axios.get(
     `/movie/${type}?api_key=${API_KEY}&language=en-US` +
       (page ? `&page=${page}` : "")
   );
+  return response.data;
 };
 
-const fetchGenreMovie = async () => {
-  return await axios.get(`/genre/movie/list?api_key=${API_KEY}&language=en-US`);
+const getListMovie = async (type, page) => {
+  const response = await Promise.all([
+    axios.get(
+      `/movie/${type}?api_key=${API_KEY}&language=en-US` +
+        (page ? `&page=${page}` : "")
+    ),
+    // axios.get(`/genre/movie/list?api_key=${API_KEY}&language=en-US`),
+  ]);
+  const movieInfo = response.reduce((final, current, index) => {
+    switch (index) {
+      case 0:
+        const { page, results, total_pages, total_results } = current.data;
+        final.detail = { page, results, total_pages, total_results };
+        break;
+      // case 1:
+      //   final.genreList = current.data.genres;
+      //   break;
+      default:
+        break;
+    }
+    return final;
+  }, {});
+  return movieInfo;
 };
 
-const fetchMovieById = async (id) => {
-  return await axios.get(`/movie/${id}?api_key=${API_KEY}&language=en-US`);
-};
-const fetchMovieMeta = async (movieId, type) => {
-  return await axios.get(
-    `/movie/${movieId}/${type}?api_key=${API_KEY}&language=en-US`
-  );
+const getMovieFullDetail = async (movieId) => {
+  const response = await Promise.all([
+    axios.get(`/movie/${movieId}?api_key=${API_KEY}&language=en-US`),
+    axios.get(`/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`),
+    axios.get(`/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US`),
+    axios.get(`/movie/${movieId}/similar?api_key=${API_KEY}&language=en-US`),
+    axios.get(`/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`),
+  ]);
+
+  const movieInfo = response.reduce((final, current, index) => {
+    switch (index) {
+      case 0:
+        final.detail = { ...current.data, media_type: "movie" };
+        break;
+
+      case 1:
+        final.credits = current.data.cast;
+        break;
+
+      case 2:
+        final.reviews = current.data.results.filter(
+          (item) => item.author !== "MSB"
+        );
+        break;
+      case 3:
+        final.similar = current.data.results.map((item) => ({
+          ...item,
+          media_type: "movie",
+        }));
+        break;
+
+      case 4:
+        final.videos = current.data.results
+          .filter((item) => item.site === "YouTube")
+          .reduce((acc, current) => {
+            if (current.type === "Trailer") return [current, ...acc];
+            else return [...acc, current];
+          }, []);
+        break;
+      default:
+        break;
+    }
+
+    return final;
+  }, {});
+
+  return movieInfo;
 };
 
 const getWatchMovie = async (id) => {
@@ -67,9 +129,8 @@ const getSearchKeyword = async (query) => {
 export {
   getSearchResult,
   fetchMovies,
-  fetchGenreMovie,
-  fetchMovieById,
-  fetchMovieMeta,
   getWatchMovie,
   getSearchKeyword,
+  getMovieFullDetail,
+  getListMovie,
 };

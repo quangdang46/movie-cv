@@ -56,7 +56,7 @@ function App() {
         </Route>
         <Route path="/movies/:id" element={<MovieDetail></MovieDetail>}></Route>
         <Route path="/watch/:id" element={<WatchMovie></WatchMovie>}></Route>
-        {/* <Route path="/explore" element={<Explore></Explore>}></Route> */}
+        <Route path="/explore" element={<Explore></Explore>}></Route>
         <Route path="/account" element={<Account></Account>}></Route>
         <Route path="/search" element={<SearchPage></SearchPage>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
