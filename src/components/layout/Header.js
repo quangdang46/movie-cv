@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BasicMenu } from "../BasicMenu";
 import { RingIcon, SearchIcon } from "../Icon";
-import { Image } from "../Image";
+import { Image } from "../Lazy";
 const Header = ({ isSearch = true }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();

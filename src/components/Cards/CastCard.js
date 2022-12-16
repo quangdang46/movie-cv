@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "../Image";
+import { Image } from "../Lazy";
 
 const CastCard = ({ data }) => {
   const { name, character, profile_path } = data;

@@ -4,7 +4,7 @@ import ReactPaginate from "react-paginate";
 import { useNavigate } from "react-router-dom";
 import { getSearchResult } from "../../service/movieService";
 import FilmItem from "../Cards/FilmItem";
-import Image from "../Image/Image";
+import Image from "../Lazy/Image";
 import Skeleton from "../Skeleton/Skeleton";
 
 const SearchResult = ({ currentTab, query, page }) => {

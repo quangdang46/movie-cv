@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { IMAGE_URL } from "../../api/configApi";
 import { InfoIcon, PlayIcon } from "../Icon";
-import { Image } from "../Image";
+import { Image } from "../Lazy";
 // banner
 const MainBanner = ({ randomMovies }) => {
   const [showModal, setShowModal] = useState(false);

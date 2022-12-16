@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IMAGE_URL } from "../../api/configApi";
-import { Image } from "../Image";
+import { Image } from "../Lazy";
 const Thumbnail = ({ movie }) => {
   // const [currentMovie, setCurrentMovie] = useState(null);
   // const [showModal, setShowModal] = useState(null);
@@ -12,7 +12,7 @@ const Thumbnail = ({ movie }) => {
       >
         <Image
           lazy_src={`${IMAGE_URL}/w500${
-            movie.backdrop_path || movie.poster_path
+            movie.poster_path || movie.backdrop_path
           }`}
           className="rounded-sm object-cover md:rounded w-full h-full pointer-events-none"
         ></Image>

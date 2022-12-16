@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IMAGE_URL } from "../../api/configApi";
 import { BulletIcon, StarIcon } from "../Icon";
-import Image from "../Image/Image";
+import Image from "../Lazy/Image";
 import { Skeleton } from "../Skeleton";
 
 const RightSideBar = ({

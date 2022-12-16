@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { IMAGE_URL } from "../../api/configApi";
 import { StarIcon } from "../Icon";
-import { Image } from "../Image";
+import { Image } from "../Lazy";
 
 const FilmItem = ({ item }) => {
   return (

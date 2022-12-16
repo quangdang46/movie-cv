@@ -5,7 +5,7 @@ import { IMAGE_URL } from "../../api/configApi";
 import { getMovieFullDetail } from "../../service/movieService";
 import { Button } from "../Button";
 import { StarIcon } from "../Icon";
-import { Image } from "../Image";
+import { Image } from "../Lazy";
 import { Skeleton } from "../Skeleton";
 
 const MovieCard = ({ id }) => {

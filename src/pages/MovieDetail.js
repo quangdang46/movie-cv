@@ -5,9 +5,9 @@ import { Button } from "../components/Button";
 import { v4 } from "uuid";
 import StarRatings from "react-star-ratings";
 import { IMAGE_URL } from "../api/configApi";
-import { CastList, Similar } from "../components/Cards";
+import { CastList, MediaVideo, Similar } from "../components/Cards";
 import Label from "../components/Label/Label";
-import { Image } from "../components/Image";
+import { Image } from "../components/Lazy";
 import "./styles.scss";
 import ReadMore from "../components/ReadMore/ReadMore";
 import { useQuery } from "@tanstack/react-query";
@@ -25,7 +25,7 @@ const MovieDetail = () => {
     return <div>Loading...</div>;
   }
   const { detail, credits, reviews, similar, videos } = data;
-
+  console.log(videos);
   return (
     <div
       style={{
@@ -229,8 +229,8 @@ const MovieDetail = () => {
               ))}
           {detail && <CastList credits={credits} className={"mt-5"}></CastList>}
         </div>
-        <div className="my-10">
-          <Label title={"Similar movies"} isLink={false} id={id}></Label>
+        <div className="mt-10">
+          <Label title={"Similar movies"} isLink={false}></Label>
           {!detail &&
             Array(10)
               .fill(0)
@@ -241,6 +241,10 @@ const MovieDetail = () => {
                 ></Skeleton>
               ))}
           {detail && <Similar similar={similar}></Similar>}
+        </div>
+        <div className="mt-10">
+          <Label title={"Video"} isLink={false}></Label>
+          {detail && <MediaVideo videos={videos}></MediaVideo>}
         </div>
       </div>
     </div>
