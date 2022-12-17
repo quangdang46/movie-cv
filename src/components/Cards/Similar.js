@@ -21,7 +21,7 @@ const Similar = ({ similar }) => {
     item = 2;
   }
   return (
-    <div className="mt-5">
+    <div className="similar">
       <Swiper
         navigation
         grabCursor={true}

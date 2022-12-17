@@ -27,9 +27,7 @@ const SearchBox = ({ autoFocus = false }) => {
 
     timeoutRef.current = setTimeout(async () => {
       const keywords = await getSearchKeyword(searchInput.trim());
-      console.log(keywords);
       setSuggestions(keywords);
-
       if (isInitial) {
         isInitial = false;
         setSuggestions([]);
@@ -42,7 +40,6 @@ const SearchBox = ({ autoFocus = false }) => {
   const searchSubmitHandler = (e) => {
     e.preventDefault();
     if (!searchInput.trim()) return;
-    console.log(searchInput);
     navigate(`/search?query=${encodeURIComponent(searchInput.trim())}`);
     clearTimeout(timeoutRef.current);
     setSuggestions([]);

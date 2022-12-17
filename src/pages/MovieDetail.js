@@ -5,7 +5,12 @@ import { Button } from "../components/Button";
 import { v4 } from "uuid";
 import StarRatings from "react-star-ratings";
 import { IMAGE_URL } from "../api/configApi";
-import { CastList, MediaVideo, Similar } from "../components/Cards";
+import {
+  CastList,
+  InfiniteSlide,
+  MediaMeta,
+  Similar,
+} from "../components/Cards";
 import Label from "../components/Label/Label";
 import { Image } from "../components/Lazy";
 import "./styles.scss";
@@ -24,8 +29,7 @@ const MovieDetail = () => {
   if (!data) {
     return <div>Loading...</div>;
   }
-  const { detail, credits, reviews, similar, videos } = data;
-  console.log(videos);
+  const { detail, credits, reviews, similar, videos, posters } = data;
   return (
     <div
       style={{
@@ -244,7 +248,11 @@ const MovieDetail = () => {
         </div>
         <div className="mt-10">
           <Label title={"Video"} isLink={false}></Label>
-          {detail && <MediaVideo videos={videos}></MediaVideo>}
+          {detail && <MediaMeta meta={videos}></MediaMeta>}
+        </div>
+        <div className="mt-10">
+          <Label title={"Poster"} isLink={false}></Label>
+          {detail && <InfiniteSlide meta={posters}></InfiniteSlide>}
         </div>
       </div>
     </div>

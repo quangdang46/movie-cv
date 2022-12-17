@@ -14,7 +14,6 @@ const getListMovie = async (type, page) => {
       `/movie/${type}?api_key=${API_KEY}&language=en-US` +
         (page ? `&page=${page}` : "")
     ),
-    // axios.get(`/genre/movie/list?api_key=${API_KEY}&language=en-US`),
   ]);
   const movieInfo = response.reduce((final, current, index) => {
     switch (index) {
@@ -22,9 +21,6 @@ const getListMovie = async (type, page) => {
         const { page, results, total_pages, total_results } = current.data;
         final.detail = { page, results, total_pages, total_results };
         break;
-      // case 1:
-      //   final.genreList = current.data.genres;
-      //   break;
       default:
         break;
     }
@@ -40,6 +36,8 @@ const getMovieFullDetail = async (movieId) => {
     axios.get(`/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US`),
     axios.get(`/movie/${movieId}/similar?api_key=${API_KEY}&language=en-US`),
     axios.get(`/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`),
+    // https://api.themoviedb.org/3/movie/550/images?api_key=THE_KEY
+    axios.get(`/movie/${movieId}/images?api_key=${API_KEY}`),
   ]);
 
   const movieInfo = response.reduce((final, current, index) => {
@@ -70,6 +68,14 @@ const getMovieFullDetail = async (movieId) => {
           .reduce((acc, current) => {
             if (current.type === "Trailer") return [current, ...acc];
             else return [...acc, current];
+          }, []);
+        break;
+      case 5:
+        final.posters = current.data.posters
+          .slice(0, 20)
+          .filter((item) => (item.type = "poster"))
+          .reduce((acc, current) => {
+            return [...acc, current];
           }, []);
         break;
       default:

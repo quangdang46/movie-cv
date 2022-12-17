@@ -3,9 +3,9 @@ import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { youtubePath } from "../../api/configApi";
 import { Iframe } from "../Lazy";
-const MediaVideo = ({ videos }) => {
+const MediaMeta = ({ meta }) => {
   return (
-    <div>
+    <div className="meta">
       <Swiper
         spaceBetween={10}
         grabCursor={true}
@@ -14,13 +14,13 @@ const MediaVideo = ({ videos }) => {
         modules={[Navigation, Pagination]}
         style={{ width: "100%", height: "max-content" }}
       >
-        {videos &&
-          videos.length > 0 &&
-          videos.map((video, index) => (
-            <SwiperSlide key={video.id}>
+        {meta &&
+          meta.length > 0 &&
+          meta.map((item, index) => (
+            <SwiperSlide key={item.id}>
               <Iframe
-                title={video.name}
-                lazy_src={youtubePath(video.key)}
+                title={item.name}
+                lazy_src={youtubePath(item.key)}
               ></Iframe>
             </SwiperSlide>
           ))}
@@ -29,4 +29,4 @@ const MediaVideo = ({ videos }) => {
   );
 };
 
-export default MediaVideo;
+export default MediaMeta;

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.scss";
 import "swiper/scss";
 import "swiper/scss/navigation";
+import "swiper/scss/pagination";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";

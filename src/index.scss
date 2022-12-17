@@ -4,7 +4,6 @@
 
 @layer base {
   body {
-    // @apply font-montserrat text-sm bg-white dark:bg-zinc-900;
     @apply bg-[#141414] text-white scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-600;
   }
   header {
@@ -36,5 +35,64 @@
 @keyframes shine {
   to {
     background-position-x: -200%;
+  }
+}
+.meta {
+  @apply mt-5;
+  .swiper-slide {
+    @apply w-full opacity-60 pb-12;
+  }
+  .swiper-slide-active {
+    @apply opacity-100;
+  }
+  .swiper-pagination-bullet {
+    @apply bg-primary;
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    // @apply text-primary;
+    opacity: 1;
+    transition: 0.5s ease-in-out;
+    &:after {
+      @apply xs:text-2xl md:text-4xl;
+    }
+  }
+  .swiper-button-disabled {
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+  }
+  .swiper {
+    @apply xs:px-6 md:px-16;
+  }
+}
+.similar {
+  @apply mt-5;
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+}
+.image-slide {
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+  .swiper-pagination-bullet {
+    @apply bg-primary;
   }
 }
