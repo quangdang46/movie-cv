@@ -13,7 +13,6 @@ import {
 } from "../components/Cards";
 import Label from "../components/Label/Label";
 import { Image } from "../components/Lazy";
-import "./styles.scss";
 import ReadMore from "../components/ReadMore/ReadMore";
 import { useQuery } from "@tanstack/react-query";
 import { getMovieFullDetail } from "../service/movieService";
@@ -233,6 +232,15 @@ const MovieDetail = () => {
               ))}
           {detail && <CastList credits={credits} className={"mt-5"}></CastList>}
         </div>
+
+        <div className="mt-10">
+          <Label title={"Video"} isLink={false}></Label>
+          {detail && <MediaMeta meta={videos}></MediaMeta>}
+        </div>
+        <div className="mt-10">
+          <Label title={"Poster"} isLink={false}></Label>
+          {detail && <InfiniteSlide meta={posters}></InfiniteSlide>}
+        </div>
         <div className="mt-10">
           <Label title={"Similar movies"} isLink={false}></Label>
           {!detail &&
@@ -245,14 +253,6 @@ const MovieDetail = () => {
                 ></Skeleton>
               ))}
           {detail && <Similar similar={similar}></Similar>}
-        </div>
-        <div className="mt-10">
-          <Label title={"Video"} isLink={false}></Label>
-          {detail && <MediaMeta meta={videos}></MediaMeta>}
-        </div>
-        <div className="mt-10">
-          <Label title={"Poster"} isLink={false}></Label>
-          {detail && <InfiniteSlide meta={posters}></InfiniteSlide>}
         </div>
       </div>
     </div>

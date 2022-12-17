@@ -30,7 +30,7 @@ const InfiniteSlide = ({ meta }) => {
                     ? `${IMAGE_URL}/w500${item.file_path}`
                     : "https://images.unsplash.com/photo-1671127310220-509dcf216e20?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                 }
-                className="w-full h-full object-cover block"
+                className="w-full h-full object-cover block rounded-lg"
               ></Image>
             </SwiperSlide>
           ))}

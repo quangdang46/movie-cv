@@ -72,7 +72,7 @@ const getMovieFullDetail = async (movieId) => {
         break;
       case 5:
         final.posters = current.data.posters
-          .slice(0, 20)
+          .slice(0, 12)
           .filter((item) => (item.type = "poster"))
           .reduce((acc, current) => {
             return [...acc, current];
