@@ -29,6 +29,8 @@ const MovieDetail = () => {
     return <div>Loading...</div>;
   }
   const { detail, credits, reviews, similar, videos, posters } = data;
+  console.log("reviews");
+  console.log(reviews);
   return (
     <div
       style={{
@@ -254,6 +256,23 @@ const MovieDetail = () => {
               ))}
           {detail && <Similar similar={similar}></Similar>}
         </div>
+      {/* 
+      <div className="mt-10"> 
+        <Label title={"Review"} isLink={false}></Label>
+        {!detail &&
+          Array(10)
+            .fill(0)
+            .map((_, index) => (
+              <Skeleton
+                key={v4()}
+                className="mt-6 w-[200px] h-[300px]"
+              ></Skeleton>
+            ))}
+        {detail && <Review reviews={reviews}></Review>}
+      </div>
+      
+
+       */}
       </div>
     </div>
   );
