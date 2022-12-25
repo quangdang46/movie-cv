@@ -17,6 +17,7 @@ import ReadMore from "../components/ReadMore/ReadMore";
 import { useQuery } from "@tanstack/react-query";
 import { getMovieFullDetail } from "../service/movieService";
 import { Skeleton } from "../components/Skeleton";
+import { ReviewBox } from "../components/ReviewBox";
 const MovieDetail = () => {
   const { id } = useParams();
   const { data, isError, error } = useQuery(["movieDetail", id], () =>
@@ -256,23 +257,20 @@ const MovieDetail = () => {
               ))}
           {detail && <Similar similar={similar}></Similar>}
         </div>
-      {/* 
-      <div className="mt-10"> 
-        <Label title={"Review"} isLink={false}></Label>
-        {!detail &&
-          Array(10)
-            .fill(0)
-            .map((_, index) => (
-              <Skeleton
-                key={v4()}
-                className="mt-6 w-[200px] h-[300px]"
-              ></Skeleton>
-            ))}
-        {detail && <Review reviews={reviews}></Review>}
-      </div>
-      
 
-       */}
+        <div className="mt-10">
+          <Label title={"Review"} isLink={false}></Label>
+          {!detail &&
+            Array(10)
+              .fill(0)
+              .map((_, index) => (
+                <Skeleton
+                  key={v4()}
+                  className="mt-6 w-[200px] h-[300px]"
+                ></Skeleton>
+              ))}
+          {detail && <ReviewBox reviews={reviews}></ReviewBox>}
+        </div>
       </div>
     </div>
   );
