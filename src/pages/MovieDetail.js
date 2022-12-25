@@ -30,8 +30,7 @@ const MovieDetail = () => {
     return <div>Loading...</div>;
   }
   const { detail, credits, reviews, similar, videos, posters } = data;
-  console.log("reviews");
-  console.log(reviews);
+
   return (
     <div
       style={{
