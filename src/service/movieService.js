@@ -51,9 +51,10 @@ const getMovieFullDetail = async (movieId) => {
         break;
 
       case 2:
-        final.reviews = current.data.results.filter(
-          (item) => item.author !== "MSB"
-        );
+        // final.reviews = current.data.results.filter(
+        //   (item) => item.author !== "MSB"
+        // );
+        final.reviews = current.data.results;
         break;
       case 3:
         final.similar = current.data.results.map((item) => ({

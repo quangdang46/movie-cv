@@ -14,7 +14,8 @@ const Review = ({ review }) => {
           lazy_src={
             review?.author_details?.avatar_path &&
             review?.author_details?.avatar_path?.includes("https")
-              ? "https://images.unsplash.com/photo-1671127310220-509dcf216e20?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+              ? "https://source.unsplash.com/random"
+              // ? "https://images.unsplash.com/photo-1671127310220-509dcf216e20?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
               : `${IMAGE_URL}/w500${review?.author_details?.avatar_path}`
           }
           className="w-full h-full object-cover block rounded-full"

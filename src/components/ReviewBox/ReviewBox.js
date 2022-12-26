@@ -36,7 +36,7 @@ const ReviewBox = ({ reviews }) => {
   return (
     <div>
       <div className="flex gap-4 justify-end mb-24 items-center">
-        <p>Sort by time comment:</p>
+        <p>Sort by rating:</p>
         <Dropdown options={options} onChange={handleChange} />
       </div>
       <div

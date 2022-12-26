@@ -4,12 +4,21 @@ import { Pagination, Navigation } from "swiper";
 import { Image } from "../Lazy";
 import { IMAGE_URL } from "../../api/configApi";
 import { v4 } from "uuid";
+import { useViewportView } from "../../hooks/useViewportView";
 
 const InfiniteSlide = ({ meta }) => {
+  const { width } = useViewportView();
+  let item = 1;
+  if (width >= 1280) {
+    item = 3;
+  } else if (width >= 1024) {
+    item = 2;
+  }
+
   return (
     <div className="mt-5 image-slide">
       <Swiper
-        slidesPerView={3}
+        slidesPerView={item}
         spaceBetween={10}
         slidesPerGroup={3}
         loop={true}
