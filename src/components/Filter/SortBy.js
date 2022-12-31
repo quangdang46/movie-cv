@@ -84,7 +84,7 @@ const SortBy = () => {
             {!openSort && <ChevronUpIcon />}
           </button>
         </div>
-        {openSort && (
+        {/* {openSort && (
           <div className="py-3 border-t border-dark-darken">
             <p className="text-lg mb-2 mt-8 text-white/80">Release Dates</p>
             <div className="flex flex-col gap-3">
@@ -118,7 +118,7 @@ const SortBy = () => {
               className="flex gap-3 flex-wrap max-h-[200px] overflow-y-auto"
             >
               {data.movieGenres.map((genre) => (
-                <li key={genre.id}>
+                <div key={genre.id}>
                   <button
                     onClick={() => chooseGenre(String(genre.id))}
                     className={`px-4 py-1 border border-[#989898] rounded-full hover:brightness-75 transition duration-300 inline-block ${
@@ -128,7 +128,7 @@ const SortBy = () => {
                   >
                     {genre.name}
                   </button>
-                </li>
+                </div>
               ))}
             </div>
 
@@ -184,7 +184,7 @@ const SortBy = () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );
