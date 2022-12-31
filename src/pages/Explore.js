@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { SearchBox } from "../components/SearchBox";
+import { v4 } from "uuid";
+import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
+import SortBy from "../components/Filter/SortBy";
+import { ChevronUpIcon } from "../components/Icon";
+import { Image } from "../components/Lazy";
+import { LeftSideBar } from "../components/SideBar";
 import { useViewportView } from "../hooks/useViewportView";
 
 const Explore = () => {
@@ -89,63 +94,41 @@ const Explore = () => {
             isShowScrollUpBtn ? "opacity-100" : "opacity-0"
           }`}
         >
-          {/* <BsFillArrowUpCircleFill
+          <ChevronUpIcon
             size={35}
             className="text-primary hover:brightness-75 transition duration-300"
-          /> */}
+          />
         </button>
       )}
-
-      <div className="flex flex-col-reverse md:flex-row">
-        <div className="flex-grow px-[2vw] pt-6">
-          {!isMobile && (
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-white text-3xl font-medium uppercase ">
-                Find films that best fit you
-              </h2>
-              <div className="relative max-w-[350px] w-full -mt-24 -mr-7">
-                <SearchBox />
-              </div>
-            </div>
-          )}
-
-          <div className="inline-flex gap-[40px] pb-[14px] border-b border-gray-darken relative mb-6">
-            <button
-              onClick={() => {
-                setCurrentTab("tv");
-                localStorage.setItem("currentTab", "tv");
-                setSearchParams({});
-              }}
-              className={`${
-                currentTab === "tv" &&
-                "text-white font-medium after:absolute after:bottom-0 after:left-[13%] after:bg-white after:h-[3px] after:w-5"
-              } transition duration-300 hover:text-white`}
-            >
-              TV Show
-            </button>
-            <button
-              onClick={() => {
-                setCurrentTab("movie");
-                localStorage.setItem("currentTab", "movie");
-                setSearchParams({});
-              }}
-              className={`${
-                currentTab === "movie" &&
-                "text-white font-medium after:absolute after:bottom-0 after:right-[9%] after:bg-white after:h-[3px] after:w-5"
-              } transition duration-300 hover:text-white`}
-            >
-              Movie
-            </button>
-          </div>
-          {/* <ExploreResult currentTab={currentTab} config={config} /> */}
-        </div>
-        <div className="shrink-0 md:max-w-[310px] w-full md:py-12 pt-4 px-3">
-          {/* <ExploreFilter currentTab={currentTab} /> */}
-        </div>
+      <div className="flex min-h-screen flex-col md:flex-row">
         {isMobile && (
-          <h2 className="text-white text-3xl font-medium uppercase ml-3 mt-3">
-            Find films that best fit you
-          </h2>
+          <SimpleBreadcrumbs
+            className={"block rounded-none border-none bg-dark-lighten"}
+            textLight={true}
+          ></SimpleBreadcrumbs>
+        )}
+        {!isMobile && <LeftSideBar></LeftSideBar>}
+        {isMobile && (
+          <div className="m-4">
+            <SortBy></SortBy>
+          </div>
+        )}
+        <div className="flex-grow">
+          <div className="grid grid-cols-sm md:grid-cols-lg gap-x-3 md:gap-x-8 gap-y-10">
+            {Array(100)
+              .fill(0)
+              .map((i, _) => (
+                <Image
+                  lazy_src="https://source.unsplash.com/random"
+                  key={v4()}
+                ></Image>
+              ))}
+          </div>
+        </div>
+        {!isMobile && (
+          <div className="shrink-0 md:max-w-[310px] w-full md:pt-20 pt-4 px-3">
+            <SortBy></SortBy>
+          </div>
         )}
       </div>
     </>

@@ -40,7 +40,6 @@ const SearchResult = ({ currentTab, query, page }) => {
           <p className="text-white text-3xl mt-5">There is no such films</p>
         </div>
       )}
-      {/* grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 xl:grid-cols-5 */}
       <ul className="grid grid-cols-sm md:grid-cols-lg gap-x-3 md:gap-x-8 gap-y-10">
         {data &&
           data.results.map((item) => (

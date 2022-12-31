@@ -117,7 +117,6 @@ const SearchPage = () => {
         {!isMobile && (
           <div className="shrink-0 md:max-w-[310px] w-full md:pt-32 pt-4 px-3">
             <div
-              // @ts-ignore
               ref={parent}
               className="bg-dark-lighten rounded-md shadow-md px-4 pt-3"
             >
