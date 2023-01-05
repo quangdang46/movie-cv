@@ -2,20 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { v4 } from "uuid";
 import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
-import SortBy from "../components/Filter/SortBy";
+import { Filter, Sort } from "../components/Explore";
 import { ChevronUpIcon } from "../components/Icon";
 import { Image } from "../components/Lazy";
 import { LeftSideBar } from "../components/SideBar";
 import { useViewportView } from "../hooks/useViewportView";
 
 const Explore = () => {
-  const [currentTab, setCurrentTab] = useState(
-    localStorage.getItem("currentTab") || "tv"
-  );
   const { isMobile } = useViewportView();
-
   const [isShowScrollUpBtn, setIsShowScrollUpBtn] = useState(false);
-
   useEffect(() => {
     const checkIfShowScrollUpBtn = () => {
       const scrollOffset = document.documentElement.scrollTop;
@@ -110,7 +105,8 @@ const Explore = () => {
         {!isMobile && <LeftSideBar></LeftSideBar>}
         {isMobile && (
           <div className="m-4">
-            <SortBy></SortBy>
+            <Sort></Sort>
+            <Filter></Filter>
           </div>
         )}
         <div className="flex-grow">
@@ -127,7 +123,8 @@ const Explore = () => {
         </div>
         {!isMobile && (
           <div className="shrink-0 md:max-w-[310px] w-full md:pt-20 pt-4 px-3">
-            <SortBy></SortBy>
+            <Sort></Sort>
+            <Filter></Filter>
           </div>
         )}
       </div>
