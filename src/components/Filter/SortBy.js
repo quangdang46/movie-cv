@@ -1,16 +1,25 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import ChevronDownIcon from "../Icon/ChevronDownIcon";
 import ChevronUpIcon from "../Icon/ChevronUpIcon";
 import "./style.css";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useEffect } from "react";
-
+import { useQuery } from "@tanstack/react-query";
+import { getGenres } from "../../service/movieService";
+const MAX_RUNTIME = 200;
+const GAP = 20;
 const SortBy = () => {
+  const { isLoading, data, isError, error } = useQuery(["genres"], getGenres);
+  console.log(data);
   const [parent] = useAutoAnimate();
   const [openSort, setOpenSort] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [minRuntime, setMinRuntime] = useState(0);
+  const sliderRangeRef = useRef(null);
+  const timeoutRef = useRef(null);
 
+  const [maxRuntime, setMaxRuntime] = useState(200);
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const sort_by = searchParams.get("sort_by");
@@ -22,7 +31,24 @@ const SortBy = () => {
       });
     }
   }, [setSearchParams]);
+  useEffect(() => {
+    updateMinRangeBar(Number(searchParams.get("minRuntime")) ?? 0);
+    updateMaxRangeBar(Number(searchParams.get("maxRuntime")) || 200);
 
+    // eslint-disable-next-line
+  }, [location.search]);
+
+  const updateMinRangeBar = (value) => {
+    setMinRuntime(value);
+    const leftOffet = (value / MAX_RUNTIME) * 100;
+    sliderRangeRef.current.style.left = leftOffet + "%";
+  };
+
+  const updateMaxRangeBar = (value) => {
+    setMaxRuntime(value);
+    const rightOffet = 100 - (value / MAX_RUNTIME) * 100;
+    sliderRangeRef.current.style.right = rightOffet + "%";
+  };
   const options = [
     { value: "popularity.desc", label: "Popularity Descending" },
     { value: "popularity.asc", label: "Popularity Ascending" },
@@ -41,6 +67,52 @@ const SortBy = () => {
       return clone;
     });
   };
+
+  const handleDragSliderRange = (e) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+    if (e.target.name === "min-range") {
+      updateMinRangeBar(
+        maxRuntime - Number(e.target.value) < GAP
+          ? maxRuntime - GAP
+          : Number(e.target.value)
+      );
+
+      timeoutRef.current = setTimeout(() => {
+        setSearchParams({
+          // ...currentSearchParams,
+          minRuntime: e.target.value,
+        });
+      }, 500);
+    } else {
+      updateMaxRangeBar(
+        Number(e.target.value) - minRuntime < GAP
+          ? minRuntime + GAP
+          : Number(e.target.value)
+      );
+
+      timeoutRef.current = setTimeout(() => {
+        setSearchParams({
+          // ...currentSearchParams,
+          maxRuntime: e.target.value,
+        });
+      }, 500);
+    }
+  };
+  const handleFilterDate = (e) => {
+    if (e.target.name === "from") {
+      setSearchParams({
+        // ...currentSearchParams,
+        from: e.target.value,
+      });
+    } else {
+      setSearchParams({
+        // ...currentSearchParams,
+        to: e.target.value,
+      });
+    }
+  };
+  const chooseGenre = (genreId) => {};
   const sortType = searchParams.get("sort_by") || "popularity.desc";
   return (
     <>
@@ -84,7 +156,7 @@ const SortBy = () => {
             {!openSort && <ChevronUpIcon />}
           </button>
         </div>
-        {/* {openSort && (
+        {openSort && (
           <div className="py-3 border-t border-dark-darken">
             <p className="text-lg mb-2 mt-8 text-white/80">Release Dates</p>
             <div className="flex flex-col gap-3">
@@ -114,7 +186,6 @@ const SortBy = () => {
 
             <p className="text-lg mb-4 text-white/80">Genres</p>
             <div
-              // @ts-ignore
               className="flex gap-3 flex-wrap max-h-[200px] overflow-y-auto"
             >
               {data.movieGenres.map((genre) => (
@@ -122,7 +193,7 @@ const SortBy = () => {
                   <button
                     onClick={() => chooseGenre(String(genre.id))}
                     className={`px-4 py-1 border border-[#989898] rounded-full hover:brightness-75 transition duration-300 inline-block ${
-                      searchParam.getAll("genre").includes(String(genre.id)) &&
+                      // searchParam.getAll("genre").includes(String(genre.id)) &&
                       "bg-primary text-white"
                     }`}
                   >
@@ -184,7 +255,7 @@ const SortBy = () => {
               </div>
             </div>
           </div>
-        )} */}
+        )}
       </div>
     </>
   );

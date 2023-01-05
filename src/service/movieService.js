@@ -7,6 +7,21 @@ const fetchMovies = async (type, page) => {
   );
   return response.data;
 };
+const getGenres = async () => {
+  // https://api.themoviedb.org/3/genre/movie/list?api_key=a8ee03e8420a8c4b12cd8edf16b4a3aa&language=en-US
+  // /genre/movie/list?api_key=${API_KEY}&language=en-US
+  const movieGenres = (
+    await axios.get(`/genre/movie/list?api_key=${API_KEY}&language=en-US`)
+  ).data.genres;
+  const tvGenres = (
+    await axios.get(`/genre/tv/list?api_key=${API_KEY}&language=en-US`)
+  ).data.genres;
+
+  return {
+    movieGenres,
+    tvGenres,
+  };
+};
 
 const getListMovie = async (type, page) => {
   const response = await Promise.all([
@@ -140,4 +155,5 @@ export {
   getSearchKeyword,
   getMovieFullDetail,
   getListMovie,
+  getGenres,
 };
