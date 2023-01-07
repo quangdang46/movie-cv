@@ -1,85 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { v4 } from "uuid";
 import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
-import { Filter, Sort } from "../components/Explore";
+import { ExploreResults, Filter, Sort } from "../components/Explore";
 import { ChevronUpIcon } from "../components/Icon";
-import { Image } from "../components/Lazy";
 import { LeftSideBar } from "../components/SideBar";
+import { useScrollUp } from "../hooks/useScrolUp";
 import { useViewportView } from "../hooks/useViewportView";
 
 const Explore = () => {
   const { isMobile } = useViewportView();
-  const [isShowScrollUpBtn, setIsShowScrollUpBtn] = useState(false);
-  useEffect(() => {
-    const checkIfShowScrollUpBtn = () => {
-      const scrollOffset = document.documentElement.scrollTop;
-      if (scrollOffset > 1000) {
-        setIsShowScrollUpBtn(true);
-      } else {
-        setIsShowScrollUpBtn(false);
-      }
-    };
-
-    window.addEventListener("scroll", checkIfShowScrollUpBtn);
-
-    return () => window.removeEventListener("scroll", checkIfShowScrollUpBtn);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  const { isShowScrollUpBtn, scrollToTop } = useScrollUp();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  // const initialConfig = {} as { [key: string]: string };
-
-  // queryParams.forEach((value, key) => (initialConfig[key] = value));
 
   const [config, setConfig] = useState({});
 
   useEffect(() => {
-    // const changeConfig = (key: string, value: string) => {
-    //   const clone = JSON.parse(JSON.stringify(config));
-    //   clone[key] = value;
-    //   setConfig(clone);
-    // };
-
-    // setConfig((prevConfig) => ({
-    //   ...prevConfig,
-    //   sort_by: sortType,
-    //   with_genres: genreType.toString(),
-    // }));
-
-    const changeConfig = (key, value) => {
-      setConfig((prevConfig) => ({
-        ...prevConfig,
-        [key]: value,
-      }));
-    };
-
     const sortType = searchParams.get("sort_by") || "popularity.desc";
-    changeConfig("sort_by", sortType);
+    const fromDate = searchParams.get("from") || "1999-01-01";
+    const toDate = searchParams.get("to") || "2022-04-06";
+    const genres = searchParams.getAll("genre") || [];
+    const minRuntime = searchParams.get("minRuntime") || 0;
+    const maxRuntime = searchParams.get("maxRuntime") || 400;
+    const voting = searchParams.get("vote") || 250;
+    const keywords = searchParams.get("keywords") || "";
 
-    const genreType = searchParams.getAll("genre") || [];
-    changeConfig("with_genres", genreType.toString());
-
-    const minRuntime = Number(searchParams.get("minRuntime")) || 0;
-    const maxRuntime = Number(searchParams.get("maxRuntime")) || 200;
-    changeConfig("with_runtime.gte", minRuntime);
-    changeConfig("with_runtime.lte", maxRuntime);
-
-    const releaseFrom = searchParams.get("from") || "2002-11-04";
-    const releaseTo = searchParams.get("to") || "2022-07-28";
-    changeConfig("primary_release_date.gte", releaseFrom);
-    changeConfig("primary_release_date.lte", releaseTo);
-    changeConfig("air_date.gte", releaseFrom);
-    changeConfig("air_date.lte", releaseTo);
-
-    // eslint-disable-next-line
-  }, [location.search]);
+    setConfig({
+      sort_by: sortType,
+      "primary_release_date.gte": fromDate,
+      "primary_release_date.lte": toDate,
+      with_genres: genres.toString(),
+      "with_runtime.gte": Number(minRuntime),
+      "with_runtime.lte": Number(maxRuntime),
+      "vote_count.gte": Number(voting),
+      with_keywords: keywords,
+    });
+  }, [searchParams]);
   return (
     <>
       {isShowScrollUpBtn && (
@@ -89,10 +45,9 @@ const Explore = () => {
             isShowScrollUpBtn ? "opacity-100" : "opacity-0"
           }`}
         >
-          <ChevronUpIcon
-            size={35}
-            className="text-primary hover:brightness-75 transition duration-300"
-          />
+          <div className="w-[35px] h-[35px] rounded-full flex items-center justify-center bg-slate-700">
+            <ChevronUpIcon />
+          </div>
         </button>
       )}
       <div className="flex min-h-screen flex-col md:flex-row">
@@ -104,25 +59,16 @@ const Explore = () => {
         )}
         {!isMobile && <LeftSideBar></LeftSideBar>}
         {isMobile && (
-          <div className="m-4">
+          <div className="mt-3 xs:m-4">
             <Sort></Sort>
             <Filter></Filter>
           </div>
         )}
         <div className="flex-grow">
-          <div className="grid grid-cols-sm md:grid-cols-lg gap-x-3 md:gap-x-8 gap-y-10">
-            {Array(100)
-              .fill(0)
-              .map((i, _) => (
-                <Image
-                  lazy_src="https://source.unsplash.com/random"
-                  key={v4()}
-                ></Image>
-              ))}
-          </div>
+          <ExploreResults config={config}></ExploreResults>
         </div>
         {!isMobile && (
-          <div className="shrink-0 md:max-w-[310px] w-full md:pt-20 pt-4 px-3">
+          <div className="shrink-0 md:max-w-[310px] w-full pt-4 px-3">
             <Sort></Sort>
             <Filter></Filter>
           </div>

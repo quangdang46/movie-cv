@@ -144,3 +144,6 @@
   width: 75px;
   margin-bottom: 0.25em;
 }
+.tw-slider-range::-webkit-slider-thumb {
+  @apply appearance-none h-4 w-4 rounded-full bg-dark-lighten-2 pointer-events-auto;
+}

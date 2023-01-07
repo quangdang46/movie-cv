@@ -6,7 +6,6 @@ import ReadMore from "../ReadMore/ReadMore";
 import parse from "html-react-parser";
 
 const Review = ({ review }) => {
-  console.log(review);
   return (
     <div className="flex items-center gap-7 mb-5">
       <div className="w-[60px] h-[60px] rounded-full flex-shrink-0 mb-auto">

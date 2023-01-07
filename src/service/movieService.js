@@ -148,6 +148,28 @@ const getSearchKeyword = async (query) => {
     .map((item) => item.name)
     .filter((_, index) => index < 5);
 };
+const getExploreMovie = async (page, config = {}) => {
+  const data = (
+    await axios.get(`/discover/movie?api_key=${API_KEY}&language=en-US`, {
+      params: {
+        ...config,
+        page,
+      },
+    })
+  ).data;
+  const adjustedItems = data.results
+    .filter((item) => item.poster_path)
+    .map((item) => ({
+      ...item,
+      media_type: "movie",
+    }));
+
+  return {
+    ...data,
+    results: adjustedItems,
+  };
+};
+
 export {
   getSearchResult,
   fetchMovies,
@@ -156,4 +178,5 @@ export {
   getMovieFullDetail,
   getListMovie,
   getGenres,
+  getExploreMovie,
 };

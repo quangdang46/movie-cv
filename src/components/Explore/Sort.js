@@ -10,7 +10,7 @@ const Sort = () => {
   const [parent] = useAutoAnimate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [openSort, setOpenSort] = useState(true);
-
+  const [title, setTitle] = useState("Popularity Descending");
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const sort_by = searchParams.get("sort_by");
@@ -25,13 +25,18 @@ const Sort = () => {
 
   const options = [
     { value: "popularity.desc", label: "Popularity Descending" },
-    { value: "popularity.asc", label: "Popularity Ascending" },
+    {
+      value: "popularity.asc",
+      label: "Popularity Ascending",
+    },
     { value: "vote_average.desc", label: "Rating Descending" },
-    { value: "vote_average.asc", label: "Rating Ascending" },
-    { value: "release_date.desc", label: "Release Date Descending" },
+    { value: "primary_release_date.asc", label: "Rating Ascending" },
+    { value: "primary_release_date.desc", label: "Release Date Descending" },
     { value: "release_date.asc", label: "Release Date Ascending" },
-    { value: "title.desc", label: "Title(A-Z)" },
-    { value: "title.asc", label: "Title(Z-A)" },
+    { value: "original_title.desc", label: "Title(A-Z)" },
+    { value: "original_title.asc", label: "Title(Z-A)" },
+    { value: "revenue.asc", label: "Revenue Ascending" },
+    { value: "revenue.desc", label: "Revenue Descending" },
   ];
 
   const chooseSort = (option) => {
@@ -40,9 +45,9 @@ const Sort = () => {
       clone.set("sort_by", option.target.value);
       return clone;
     });
+    setTitle(option.target.label);
   };
 
-  const sortType = searchParams.get("sort_by") || "popularity.desc";
   return (
     <>
       <div
@@ -60,10 +65,7 @@ const Sort = () => {
           <div className="py-3 border-t border-dark-darken">
             <p className="text-lg mb-2 text-white/80">Sort results by </p>
             <div className="select-container">
-              <select
-                value={options.find((option) => option.value === sortType)}
-                onChange={chooseSort}
-              >
+              <select value={title} onChange={chooseSort}>
                 {options.map((option) => (
                   <option value={option.value} key={option.value}>
                     {option.label}
