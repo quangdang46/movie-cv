@@ -5,11 +5,12 @@ import {
   Account,
   Explore,
   HomePage,
-  Login,
+  SignIn,
   MovieDetail,
   PageNotFound,
   SearchPage,
   WatchMovie,
+  SignUp,
 } from "./pages";
 import ViewAllPage from "./pages/ViewAllPage";
 const routes = [
@@ -59,7 +60,8 @@ function App() {
         <Route path="/explore" element={<Explore></Explore>}></Route>
         <Route path="/account" element={<Account></Account>}></Route>
         <Route path="/search" element={<SearchPage></SearchPage>}></Route>
-        <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/signin" element={<SignIn></SignIn>}></Route>
+        <Route path="/signup" element={<SignUp></SignUp>}></Route>
         <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
     </div>

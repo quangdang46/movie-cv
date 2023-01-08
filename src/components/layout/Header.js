@@ -25,7 +25,8 @@ const Header = ({ isSearch = true }) => {
     { name: "Home", link: "/" },
     { name: "TV Shows", link: "/tv" },
     { name: "Movies", link: "/movies" },
-    { name: "My List", link: "/mylist" },
+    { name: "Explore", link: "/explore" },
+    { name: "Search", link: "/search" },
   ];
   return (
     <header className={`${isScrolled && "bg-[#141414]"}`}>

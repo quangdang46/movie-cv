@@ -1,6 +1,6 @@
 import { Modal } from "@mui/material";
 import React, { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+// import toast, { Toaster } from "react-hot-toast";
 import ReactPlayer from "react-player/lazy";
 import {
   CheckIcon,
@@ -33,7 +33,7 @@ const CustomModal = () => {
   const handleClose = () => {
     setShowModal(false);
     setMovie(null);
-    toast.dismiss();
+    // toast.dismiss();
   };
   const handleList = () => {};
   return (
@@ -43,7 +43,7 @@ const CustomModal = () => {
       className="fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide"
     >
       <>
-        <Toaster position="bottom-center" />
+        {/* <Toaster position="bottom-center" /> */}
         <button
           className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10 absolute right-5 top-5 !z-40 border-none bg-[#181818] hover:bg-[#181818]"
           onClick={handleClose}
