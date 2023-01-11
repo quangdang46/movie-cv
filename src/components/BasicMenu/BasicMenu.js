@@ -1,48 +1,41 @@
 import React from "react";
-import { Button, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
+import { links } from "../../shared/routeLink";
+import { v4 } from "uuid";
+import { Link } from "react-router-dom";
 
 const BasicMenu = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-    setOpen(false);
+    setOpen(!open);
   };
 
   return (
     <div className="md:!hidden">
-      <Button
-        id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
+      <button
+        className="items-center rounded text-white inline-flex text-sm font-medium justify-center leading-6 text-center capitalize"
         onClick={handleClick}
-        className="!capitalize !text-white"
       >
         Browse
-      </Button>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        className="md:hidden"
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
-      >
-        <MenuItem onClick={handleClose}>Home</MenuItem>
-        <MenuItem onClick={handleClose}>TV Shows</MenuItem>
-        <MenuItem onClick={handleClose}>Movies</MenuItem>
-        <MenuItem onClick={handleClose}>New & Popular</MenuItem>
-        <MenuItem onClick={handleClose}>My List</MenuItem>
-      </Menu>
+      </button>
+      {open && (
+        <div className="relative">
+          <ul className="m-0 p-0 absolute pt-2 pb-2 outline-none list-none flex flex-col bg-white rounded transition-all font-medium">
+            {links
+              .filter(({ link }) => link !== window.location.pathname)
+              .map(({ name, link }, _) => (
+                <Link
+                  to={link}
+                  key={v4()}
+                  className="text-base px-4 py-2 font-sans capitalize min-w-max text-slate-800 hover:bg-[rgba(0,0,0,0.04)]"
+                >
+                  {name}
+                </Link>
+              ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

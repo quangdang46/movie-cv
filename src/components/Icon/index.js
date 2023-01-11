@@ -24,3 +24,4 @@ export { default as LogIcon } from "./LogIcon";
 export { default as BuggerIcon } from "./BuggerIcon";
 export { default as ExploreIcon } from "./ExploreIcon";
 export { default as ChevronUpIcon } from "./ChevronUpIcon";
+export { default as UserIcon } from "./UserIcon";

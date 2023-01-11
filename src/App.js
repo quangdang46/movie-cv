@@ -1,6 +1,11 @@
+import { onAuthStateChanged } from "firebase/auth";
+import { doc, onSnapshot } from "firebase/firestore";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { v4 } from "uuid";
 import DashBoard from "./components/Dashboard/DashBoard";
+import { auth, db } from "./fire-base/firebase-config";
 import {
   Account,
   Explore,
@@ -13,6 +18,7 @@ import {
   SignUp,
 } from "./pages";
 import ViewAllPage from "./pages/ViewAllPage";
+import { currentUser } from "./redux/userSlice";
 const routes = [
   {
     path: "/popular",
@@ -33,6 +39,19 @@ const routes = [
 ];
 
 function App() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        onSnapshot(doc(db, "users", user.uid), (doc) => {
+          dispatch(currentUser(doc.data()));
+        });
+      } else {
+        dispatch(currentUser(null));
+      }
+    });
+  }, []);
   return (
     <div className="">
       <Routes>
