@@ -2,8 +2,10 @@ import { Modal } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import ReactPlayer from "react-player/lazy";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { youtubePath } from "../../api/configApi";
+import { openModal } from "../../redux/modalSlice";
 import { getMovieFullDetail } from "../../service/movieService";
 import {
   CheckIcon,
@@ -18,12 +20,13 @@ import ReadMore from "../ReadMore/ReadMore";
 const CustomModal = () => {
   //
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(true);
+  const showModal = useSelector((state) => state.modal.showModal);
+  const dispatch = useDispatch();
   const [muted, setMuted] = useState(false);
   const [addedToList, setAddedToList] = useState(false);
 
   const handleClose = () => {
-    setShowModal(false);
+    dispatch(openModal(false));
   };
   // get movieTrailer from localstorage
   const movieTrailer = localStorage.getItem("movieTrailer");
@@ -40,6 +43,7 @@ const CustomModal = () => {
     return <div>Loading...</div>;
   }
   const { detail, videos } = data;
+  console.log(detail);
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
     return date
@@ -104,7 +108,7 @@ const CustomModal = () => {
             </button>
           </div>
         </div>
-        <div className="flex space-x-16 rounded-b-md bg-[#181818] px-10 py-8">
+        <div className="flex space-x-16 rounded-b-md bg-[#181818] p-8">
           <div className="space-y-6 text-lg">
             <div className="flex items-center space-x-2 text-sm">
               <p className="font-semibold text-green-400">
@@ -118,7 +122,7 @@ const CustomModal = () => {
                 HD
               </div>
             </div>
-            <div className="flex flex-col gap-x-10 gap-y-4 font-light md:flex-row">
+            <div className="flex flex-col gap-x-8 gap-y-4 font-light md:flex-row">
               <ReadMore limitTextLength={200} className="w-5/6">
                 {detail?.overview}
               </ReadMore>

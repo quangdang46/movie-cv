@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { fetchMovies } from "../../service/movieService";
 import Header from "../layout/Header";
 import { MainBanner } from "../MainBanner";
 import { CustomModal } from "../Modal";
 const DashBoard = () => {
-  const [showModal, setShowModal] = useState(true);
+  const showModal = useSelector((state) => state.modal.showModal);
+  console.log(showModal);
   const { data, isError, error } = useQuery(["movieList"], () =>
     fetchMovies("top_rated", 2)
   );

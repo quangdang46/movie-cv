@@ -6,6 +6,7 @@ import { auth } from "../fire-base/firebase-config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { LoadingSpinner } from "../components/Loading";
 const schema = yup.object({
   email: yup
     .string()
@@ -21,8 +22,9 @@ const SignIn = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { isValid, isSubmitting, errors },
   } = useForm({
+    mode: "onChange",
     resolver: yupResolver(schema),
   });
 
@@ -93,10 +95,10 @@ const SignIn = () => {
             </div>
             <div className="mt-8 flex flex-col gap-y-4">
               <button
-                className="cursor-pointer active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01]  ease-in-out transform py-4 bg-violet-500 rounded-xl text-white font-bold text-lg"
+                className="cursor-pointer active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01]  ease-in-out transform py-4 bg-violet-500 rounded-xl text-white font-bold text-lg flex items-center justify-center"
                 type="submit"
               >
-                Sign in
+                {isSubmitting ? <LoadingSpinner></LoadingSpinner> : "Sign in"}
               </button>
             </div>
             <div className="mt-8 flex justify-center items-center">

@@ -1,37 +1,66 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+const PageNotFoundStyles = styled.div`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: ${(props) => props.theme.black};
+  color: white;
+  .page-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .logo {
+    display: inline-block;
+    margin-bottom: 40px;
+  }
+  .heading {
+    font-size: 60px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .description {
+    max-width: 800px;
+    margin: 0 auto 40px;
+  }
+  .back {
+    display: inline-block;
+    padding: 15px 30px;
+    color: white;
+    background-image: linear-gradient(
+      to right top,
+      ${(props) => props.theme.primary},
+      ${(props) => props.theme.secondary}
+    );
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  .image {
+    max-width: 250px;
+    margin: 0 auto 40px;
+  }
+`;
 const PageNotFound = () => {
+  const navigate = useNavigate();
   return (
-    <div
-      className="
-    flex
-    items-center
-    justify-center
-    w-screen
-    h-screen
-    bg-gradient-to-r
-    from-indigo-600
-    to-blue-400
-  "
-    >
-      <div className="px-40 py-20 bg-white rounded-md shadow-xl">
-        <div className="flex flex-col items-center">
-          <h1 className="font-bold text-blue-600 text-9xl">404</h1>
-          <h6 className="mb-2 text-2xl font-bold text-center text-gray-800 md:text-3xl">
-            <span className="text-red-500">Oops!</span> Page not found
-          </h6>
-          <p className="mb-8 text-center text-gray-500 md:text-lg">
-            The page you're looking for doesn't exist.
-          </p>
-          <a
-            href="/"
-            className="px-6 py-2 text-sm font-semibold text-blue-800 bg-blue-100"
-          >
-            Go home
-          </a>
-        </div>
+    <PageNotFoundStyles>
+      <div className="page-content">
+        <img src="/404.png" alt="notfound" className="image" />
+        <h1 className="heading">404 - Looks like you're lost.</h1>
+        <p className="description">
+          Maybe this page used to exist or you just spelled something wrong.
+          Chances are your spelled something wrong, so can you double check the
+          URL?
+        </p>
+        <button onClick={() => navigate("/")} className="back">
+          Go back
+        </button>
       </div>
-    </div>
+    </PageNotFoundStyles>
   );
 };
 
