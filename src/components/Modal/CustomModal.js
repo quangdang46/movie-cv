@@ -1,7 +1,10 @@
 import { Modal } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-// import toast, { Toaster } from "react-hot-toast";
 import ReactPlayer from "react-player/lazy";
+import { useNavigate } from "react-router-dom";
+import { youtubePath } from "../../api/configApi";
+import { getMovieFullDetail } from "../../service/movieService";
 import {
   CheckIcon,
   LikeIcon,
@@ -11,31 +14,46 @@ import {
   VolumeUp,
   XIcon,
 } from "../Icon";
+import ReadMore from "../ReadMore/ReadMore";
 const CustomModal = () => {
-  const [movie, setMovie] = useState([]);
-  const [trailer, setTrailer] = useState("");
   //
-  const [showModal, setShowModal] = useState(false);
-  const [muted, setMuted] = useState(true);
-  const [genres, setGenres] = useState([]);
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(true);
+  const [muted, setMuted] = useState(false);
   const [addedToList, setAddedToList] = useState(false);
-  const [movies, setMovies] = useState([]);
 
-  const toastStyle = {
-    background: "white",
-    color: "black",
-    fontWeight: "bold",
-    fontSize: "16px",
-    padding: "15px",
-    borderRadius: "9999px",
-    maxWidth: "1000px",
-  };
   const handleClose = () => {
     setShowModal(false);
-    setMovie(null);
-    // toast.dismiss();
+  };
+  // get movieTrailer from localstorage
+  const movieTrailer = localStorage.getItem("movieTrailer");
+  if (!movieTrailer) {
+    handleClose();
+  }
+  const { data, isError, error } = useQuery(["movieDetail", movieTrailer], () =>
+    getMovieFullDetail(movieTrailer)
+  );
+  if (isError) {
+    return <div>{error.message}</div>;
+  }
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+  const { detail, videos } = data;
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr);
+    return date
+      .toLocaleDateString("en-US", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      })
+      .replace(/[/]/g, "-");
   };
   const handleList = () => {};
+  const handleClickPlay = () => {
+    navigate(`/movies/${detail.id}`);
+  };
   return (
     <Modal
       open={showModal}
@@ -43,9 +61,8 @@ const CustomModal = () => {
       className="fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide"
     >
       <>
-        {/* <Toaster position="bottom-center" /> */}
         <button
-          className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10 absolute right-5 top-5 !z-40 border-none bg-[#181818] hover:bg-[#181818]"
+          className="absolute right-5 top-5 !z-40 flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10"
           onClick={handleClose}
         >
           <XIcon></XIcon>
@@ -53,28 +70,36 @@ const CustomModal = () => {
 
         <div className="relative pt-[56.25%]">
           <ReactPlayer
-            // url={`https://www.youtube.com/watch?v=${trailer}`}
-            url="https://www.youtube.com/watch?v=ZlAU_w7-Xp8"
+            url={youtubePath(videos[0].key)}
             width="100%"
             height="100%"
             style={{ position: "absolute", top: "0", left: "0" }}
-            playing
+            playing={true}
             muted={muted}
           />
           <div className="absolute bottom-10 flex w-full items-center justify-between px-10">
             <div className="flex space-x-2">
-              <button className="flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-[#e6e6e6]">
+              <button
+                className="flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-[#e6e6e6]"
+                onClick={handleClickPlay}
+              >
                 <PlayIcon></PlayIcon>
                 <span>Play</span>
               </button>
-              <button className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10" onClick={handleList}>
+              <button
+                className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10"
+                onClick={handleList}
+              >
                 {addedToList ? <CheckIcon></CheckIcon> : <PlusIcon></PlusIcon>}
               </button>
               <button className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10">
                 <LikeIcon></LikeIcon>
               </button>
             </div>
-            <button className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10" onClick={() => setMuted(!muted)}>
+            <button
+              className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10"
+              onClick={() => setMuted(!muted)}
+            >
               {muted ? <VolumeOff></VolumeOff> : <VolumeUp></VolumeUp>}
             </button>
           </div>
@@ -83,31 +108,36 @@ const CustomModal = () => {
           <div className="space-y-6 text-lg">
             <div className="flex items-center space-x-2 text-sm">
               <p className="font-semibold text-green-400">
-                {movie?.vote_average * 10}% Match
+                {(detail?.vote_average * 10).toFixed(2)}% Match
               </p>
               <p className="font-light">
-                {movie?.release_date || movie?.first_air_date}
+                {formatDate(detail?.release_date) ||
+                  formatDate(detail?.first_air_date)}
               </p>
               <div className="flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs">
                 HD
               </div>
             </div>
             <div className="flex flex-col gap-x-10 gap-y-4 font-light md:flex-row">
-              <p className="w-5/6">{movie?.overview}</p>
+              <ReadMore limitTextLength={200} className="w-5/6">
+                {detail?.overview}
+              </ReadMore>
               <div className="flex flex-col space-y-3 text-sm">
                 <div>
                   <span className="text-[gray]">Genres:</span>{" "}
-                  {genres.map((genre) => genre.name).join(", ")}
+                  {detail.genres.map((genre) => genre.name).join(", ")}
                 </div>
 
                 <div>
                   <span className="text-[gray]">Original language:</span>{" "}
-                  {movie?.original_language}
+                  {detail?.original_language
+                    .toLowerCase()
+                    .replace(/\b(\w)/g, (s) => s.toUpperCase())}
                 </div>
 
                 <div>
                   <span className="text-[gray]">Total votes:</span>{" "}
-                  {movie?.vote_count}
+                  {detail?.vote_count}
                 </div>
               </div>
             </div>

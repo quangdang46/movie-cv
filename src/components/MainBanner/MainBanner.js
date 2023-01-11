@@ -6,14 +6,14 @@ import { InfoIcon, PlayIcon } from "../Icon";
 import { Image } from "../Lazy";
 // banner
 const MainBanner = ({ randomMovies }) => {
-  const [showModal, setShowModal] = useState(false);
-  const [currentMovie, setCurrentMovie] = useState(null);
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
     setMovie(randomMovies[Math.floor(Math.random() * randomMovies.length - 1)]);
   }, [randomMovies]);
-
+  if (movie && movie.id) {
+    localStorage.setItem("movieTrailer", movie?.id);
+  }
   return (
     <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
       <div className="absolute top-0 left-0 -z-10 h-[100vh] w-screen">
@@ -40,10 +40,7 @@ const MainBanner = ({ randomMovies }) => {
 
         <button
           className="flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl bg-[gray]/70"
-          onClick={() => {
-            setCurrentMovie(movie);
-            setShowModal(true);
-          }}
+          onClick={() => {}}
         >
           <InfoIcon></InfoIcon>
           <span>More Info</span>

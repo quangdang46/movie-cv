@@ -45,7 +45,11 @@ function App() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         onSnapshot(doc(db, "users", user.uid), (doc) => {
-          dispatch(currentUser(doc.data()));
+          dispatch(
+            currentUser({
+              ...doc.data(),
+            })
+          );
         });
       } else {
         dispatch(currentUser(null));

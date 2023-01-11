@@ -39,7 +39,6 @@ const Header = ({ isSearch = true }) => {
   // if (!user.payload) {
   //   return;
   // }
-  console.log(user);
 
   return (
     <header className={`${isScrolled && "bg-[#141414]"}`}>
@@ -54,16 +53,18 @@ const Header = ({ isSearch = true }) => {
         </Link>
         <BasicMenu></BasicMenu>
         <ul className="hidden space-x-4 md:flex">
-          {links.map(({ name, link }) => {
-            return (
-              <li
-                key={name}
-                className="cursor-pointer text-sm font-light text-[#e5e5e5] transition duration-[.4s] hover:text-[#b3b3b3]"
-              >
-                <Link to={link}>{name}</Link>
-              </li>
-            );
-          })}
+          {links
+            .filter(({ link }) => !window.location.pathname.includes(link))
+            .map(({ name, link }) => {
+              return (
+                <li
+                  key={name}
+                  className="cursor-pointer text-sm font-light text-[#e5e5e5] transition duration-[.4s] hover:text-[#b3b3b3]"
+                >
+                  <Link to={link}>{name}</Link>
+                </li>
+              );
+            })}
         </ul>
       </div>
       <div className="flex items-center space-x-4 text-sm font-light">

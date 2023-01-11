@@ -23,7 +23,7 @@ const BasicMenu = () => {
         <div className="relative">
           <ul className="m-0 p-0 absolute pt-2 pb-2 outline-none list-none flex flex-col bg-white rounded transition-all font-medium">
             {links
-              .filter(({ link }) => link !== window.location.pathname)
+              .filter(({ link }) => !window.location.pathname.includes(link))
               .map(({ name, link }, _) => (
                 <Link
                   to={link}

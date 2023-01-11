@@ -6,7 +6,7 @@ import Header from "../layout/Header";
 import { MainBanner } from "../MainBanner";
 import { CustomModal } from "../Modal";
 const DashBoard = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const { data, isError, error } = useQuery(["movieList"], () =>
     fetchMovies("top_rated", 2)
   );
@@ -20,6 +20,7 @@ const DashBoard = () => {
       </div>
     );
   }
+
   return (
     <div
       className={`relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh] ${
