@@ -8,7 +8,7 @@ import { useViewportView } from "../../hooks/useViewportView";
 import useClickOutSide from "../../hooks/useClickOutSide";
 import { auth } from "../../fire-base/firebase-config";
 import { signOut } from "firebase/auth";
-import { links } from "../../shared/routeLink";
+import { links } from "../../shared/const";
 const Header = ({ isSearch = true }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();

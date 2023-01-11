@@ -7,9 +7,7 @@ const Thumbnail = ({ movie }) => {
   // const [showModal, setShowModal] = useState(null);
   return (
     <Link to={`/movies/${movie.id}`}>
-      <div
-        className={`relative h-35 min-w-[180px] cursor-pointer transition duration-200 ease-out md:h-40 md:min-w-[260px] md:hover:scale-105`}
-      >
+      <div className="relative h-28 min-w-[180px] cursor-pointer transition duration-200 ease-out md:h-36 md:min-w-[260px] md:hover:scale-105">
         <Image
           lazy_src={`${IMAGE_URL}/w500${
             movie.poster_path || movie.backdrop_path

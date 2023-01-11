@@ -13,7 +13,10 @@ const MovieCard = ({ detail, showGenres = true }) => {
   return (
     <div className="flex flex-col dark:border-zinc-600 p-2 rounded-xl h-full bg-zinc-700 overflow-hidden hover:scale-105 hover:brightness-110 transition duration-300">
       {/* h-[500px] */}
-      <div className="h-auto" onClick={() => navigate(`/movies/${detail.id}`)}>
+      <div
+        className="h-[200px] lg:h-[300px] xl:h-auto"
+        onClick={() => navigate(`/movies/${detail.id}`)}
+      >
         <Image
           lazy_src={
             detail.poster_path

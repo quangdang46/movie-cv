@@ -47,7 +47,7 @@ const getListMovie = async (type, page) => {
     return final;
   }, {});
   const { detail, genres } = movieInfo;
-  const mappingMovies = detail.results.map((movie, index) => {
+  const mappingMovies = detail.results?.map((movie, index) => {
     const genresList = movie.genre_ids.map((id) => {
       return genres.find((item) => item.id === id);
     });

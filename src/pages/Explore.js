@@ -34,6 +34,7 @@ const Explore = () => {
       "with_runtime.lte": Number(maxRuntime),
       "vote_count.gte": Number(voting),
       with_keywords: keywords,
+      // query: keywords,
     });
   }, [searchParams]);
   return (

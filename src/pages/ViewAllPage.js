@@ -8,6 +8,7 @@ import { v4 } from "uuid";
 import { Skeleton } from "../components/Skeleton";
 import Header from "../components/layout/Header";
 import { useParams } from "react-router-dom";
+import { categories } from "../shared/const";
 const itemsPerPage = 20;
 const ViewAllPage = () => {
   // get slug
@@ -42,36 +43,41 @@ const ViewAllPage = () => {
     <>
       <Header></Header>
       <div className="mt-10 p-10">
-        <Label title={type} isLink={true}></Label>
-        {!detail && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4 xl:gap-5">
-            {Array(20)
-              .fill(0)
-              .map((item, index) => (
-                <Skeleton
-                  key={v4()}
-                  className="w-full h-64 sm:h-80 md:h-96 xl:h-112 block"
-                ></Skeleton>
-              ))}
-          </div>
-        )}
-        {detail && detail.results && detail.results.length > 0 && (
-          <List movies={detail.results}></List>
-        )}
+        <Label
+          title={categories.find((item) => item.type === type).title}
+          isLink={true}
+        ></Label>
         <div className="mt-10">
-          <ReactPaginate
-            previousLabel={"Previous"}
-            nextLabel={"Next"}
-            breakLabel={"..."}
-            breakClassName={"break-me"}
-            pageCount={pageCount > 500 ? 500 : pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={2}
-            onPageChange={handlePageClick}
-            containerClassName={"pagination"}
-            subContainerClassName={"pages pagination"}
-            className="pagination"
-          />
+          {!detail && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4 xl:gap-5">
+              {Array(20)
+                .fill(0)
+                .map((item, index) => (
+                  <Skeleton
+                    key={v4()}
+                    className="w-full h-64 sm:h-80 md:h-96 xl:h-112 block"
+                  ></Skeleton>
+                ))}
+            </div>
+          )}
+          {detail && detail.results && detail.results.length > 0 && (
+            <List movies={detail.results}></List>
+          )}
+          <div className="mt-10">
+            <ReactPaginate
+              previousLabel={"Previous"}
+              nextLabel={"Next"}
+              breakLabel={"..."}
+              breakClassName={"break-me"}
+              pageCount={pageCount > 500 ? 500 : pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={2}
+              onPageChange={handlePageClick}
+              containerClassName={"pagination"}
+              subContainerClassName={"pages pagination"}
+              className="pagination"
+            />
+          </div>
         </div>
       </div>
     </>

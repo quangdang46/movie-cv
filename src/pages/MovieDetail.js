@@ -173,7 +173,7 @@ const MovieDetail = () => {
                 {detail.spoken_languages.map((lang) => lang.name).join(", ")}
               </p>
             )}
-            <div className="flex items-center gap-x-5 mt-5 flex-wrap justify-center 2xl:justify-start">
+            <div className="flex items-center gap-2 md:gap-5 mt-5 flex-wrap justify-center 2xl:justify-start">
               {!detail &&
                 Array(3)
                   .fill(0)
