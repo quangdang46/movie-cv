@@ -1,15 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+import { openModal } from "../../redux/modalSlice";
 import { fetchMovies } from "../../service/movieService";
 import Header from "../layout/Header";
 import { MainBanner } from "../MainBanner";
 import { CustomModal } from "../Modal";
 const DashBoard = () => {
   const showModal = useSelector((state) => state.modal.showModal);
-  console.log(showModal);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(openModal(false));
+  }, []);
   const { data, isError, error } = useQuery(["movieList"], () =>
-    fetchMovies("top_rated", 2)
+    fetchMovies("top_rated", 1)
   );
   if (isError) {
     return <div>{error.message}</div>;

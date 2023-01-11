@@ -32,7 +32,7 @@ const Similar = ({ similar }) => {
           ?.filter((p) => p.id !== id)
           .map((item) => (
             <SwiperSlide key={item.id}>
-              <MovieCard movie={item} id={item.id}></MovieCard>
+              <MovieCard detail={item}></MovieCard>
             </SwiperSlide>
           ))}
       </Swiper>

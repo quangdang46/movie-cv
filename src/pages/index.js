@@ -7,3 +7,4 @@ export { default as SignUp } from "./SignUp";
 export { default as WatchMovie } from "./WatchMovie";
 export { default as Explore } from "./Explore";
 export { default as SearchPage } from "./SearchPage";
+export { default as ViewAllPage } from "./ViewAllPage";

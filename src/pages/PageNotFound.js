@@ -7,7 +7,7 @@ const PageNotFoundStyles = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: ${(props) => props.theme.black};
+  background-color: rgb(23, 23, 37);
   color: white;
   .page-content {
     max-width: 1000px;
@@ -43,6 +43,18 @@ const PageNotFoundStyles = styled.div`
     max-width: 250px;
     margin: 0 auto 40px;
   }
+  .btn-back {
+    display: inline-block;
+    padding: 15px 30px;
+    color: white;
+    background-image: linear-gradient(
+      to right top,
+      rgb(29, 192, 113),
+      rgb(164, 217, 108)
+    );
+    border-radius: 8px;
+    font-weight: 500;
+  }
 `;
 const PageNotFound = () => {
   const navigate = useNavigate();
@@ -56,7 +68,7 @@ const PageNotFound = () => {
           Chances are your spelled something wrong, so can you double check the
           URL?
         </p>
-        <button onClick={() => navigate("/")} className="back">
+        <button onClick={() => navigate("/")} className="btn-back">
           Go back
         </button>
       </div>

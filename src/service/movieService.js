@@ -29,6 +29,7 @@ const getListMovie = async (type, page) => {
       `/movie/${type}?api_key=${API_KEY}&language=en-US` +
         (page ? `&page=${page}` : "")
     ),
+    axios.get(`/genre/movie/list?api_key=${API_KEY}&language=en-US`),
   ]);
   const movieInfo = response.reduce((final, current, index) => {
     switch (index) {
@@ -36,12 +37,32 @@ const getListMovie = async (type, page) => {
         const { page, results, total_pages, total_results } = current.data;
         final.detail = { page, results, total_pages, total_results };
         break;
+      case 1:
+        const { genres } = current.data;
+        final.genres = genres;
+        break;
       default:
         break;
     }
     return final;
   }, {});
-  return movieInfo;
+  const { detail, genres } = movieInfo;
+  const mappingMovies = detail.results.map((movie, index) => {
+    const genresList = movie.genre_ids.map((id) => {
+      return genres.find((item) => item.id === id);
+    });
+    return {
+      ...movie,
+      genres: genresList,
+    };
+  });
+  return {
+    detail: {
+      ...detail,
+      results: mappingMovies,
+    },
+    genres,
+  };
 };
 
 const getMovieFullDetail = async (movieId) => {

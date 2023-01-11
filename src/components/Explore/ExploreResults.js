@@ -4,7 +4,7 @@ import { getExploreMovie } from "../../service/movieService";
 import { Image } from "../Lazy";
 import { v4 } from "uuid";
 import InfiniteScroll from "react-infinite-scroll-component";
-import FilmItem from "../Cards/FilmItem";
+import { MovieCard } from "../Cards";
 
 const ExploreResults = ({ config }) => {
   const {
@@ -22,11 +22,13 @@ const ExploreResults = ({ config }) => {
         }
         return undefined;
       },
+      keepPreviousData: true,
+      staleTime: 1000,
     }
   );
   if (movies?.pages.length === 0) {
     return (
-      <div className="grid grid-cols-sm md:grid-cols-lg gap-x-3 md:gap-x-8 gap-y-10 mt-5">
+      <div className="grid grid-cols-sm md:grid-cols-lg gap-x-2 md:gap-x-5 gap-y-5 mt-5">
         {Array(20)
           .fill(0)
           .map((i, _) => (
@@ -46,11 +48,15 @@ const ExploreResults = ({ config }) => {
       loader={<div>Loading...</div>}
       endMessage={<></>}
     >
-      <div className="grid grid-cols-sm md:grid-cols-lg gap-x-3 md:gap-x-8 gap-y-10 mt-5">
+      <div className="grid grid-cols-sm md:grid-cols-lg gap-x-2 md:gap-x-5 gap-y-5 mt-5">
         {movies?.pages.length > 0 &&
           movies?.pages.map((page, index) =>
             page.results.map((item, _) => (
-              <FilmItem item={item} key={v4()}></FilmItem>
+              <MovieCard
+                key={item.id}
+                showGenres={false}
+                detail={item}
+              ></MovieCard>
             ))
           )}
       </div>

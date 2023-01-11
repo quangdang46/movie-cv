@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-const Iframe = ({ lazy_src = "", title = "" }) => {
+const Iframe = ({ lazy_src = "", title = "", className = "", other }) => {
   const iframeRef = useRef();
 
   useEffect(() => {
@@ -14,6 +14,8 @@ const Iframe = ({ lazy_src = "", title = "" }) => {
       title={title}
       width="100%"
       style={{ border: 0 }}
+      className={className}
+      {...other}
     ></iframe>
   );
 };

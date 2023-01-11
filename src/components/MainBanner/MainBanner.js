@@ -48,7 +48,7 @@ const MainBanner = ({ randomMovies }) => {
           onClick={handlePlayModal}
         >
           <PlayIcon></PlayIcon>
-          <span>Play</span>
+          <span>Watch trailer</span>
         </button>
 
         <button

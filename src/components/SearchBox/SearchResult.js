@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useNavigate } from "react-router-dom";
 import { getSearchResult } from "../../service/movieService";
-import FilmItem from "../Cards/FilmItem";
+import { MovieCard } from "../Cards";
 import Image from "../Lazy/Image";
 import Skeleton from "../Skeleton/Skeleton";
 
@@ -25,7 +25,6 @@ const SearchResult = ({ currentTab, query, page }) => {
     );
   };
 
-
   return (
     <div className="md:mt-32 mt-7 px-[2vw]">
       <p className="text-white md:text-xl text-lg mb-10">
@@ -44,7 +43,7 @@ const SearchResult = ({ currentTab, query, page }) => {
         {data &&
           data.results.map((item) => (
             <li key={item.id}>
-              <FilmItem item={item}></FilmItem>
+              <MovieCard detail={item} showGenres={false}></MovieCard>
             </li>
           ))}
         {!data &&

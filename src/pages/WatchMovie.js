@@ -8,6 +8,7 @@ import { CalendarIcon } from "../components/Icon";
 import StarIcon from "../components/Icon/StarIcon";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
+import { Iframe } from "../components/Lazy";
 import ReadMore from "../components/ReadMore/ReadMore";
 import SearchBox from "../components/SearchBox/SearchBox";
 import RightSideBar from "../components/SideBar/RightSideBar";
@@ -35,12 +36,12 @@ const WatchMovie = () => {
             {!detail && (
               <Skeleton className="absolute top-0 left-0 w-full h-full rounded-sm" />
             )}
-            <iframe
+            <Iframe
               className="absolute w-full h-full top-0 left-0"
-              src={`${EMBED_TO}/movie?id=${detail?.id}`}
+              lazy_src={`${EMBED_TO}/movie?id=${detail?.id}`}
               title="Film Video Player"
               allowFullScreen
-            ></iframe>
+            ></Iframe>
           </div>
           <div className="mt-5 pb-8">
             <div className="flex justify-between md:text-base text-sm">

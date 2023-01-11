@@ -43,7 +43,6 @@ const CustomModal = () => {
     return <div>Loading...</div>;
   }
   const { detail, videos } = data;
-  console.log(detail);
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
     return date

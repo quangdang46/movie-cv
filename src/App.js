@@ -3,7 +3,6 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { v4 } from "uuid";
 import DashBoard from "./components/Dashboard/DashBoard";
 import { auth, db } from "./fire-base/firebase-config";
 import {
@@ -16,28 +15,9 @@ import {
   SearchPage,
   WatchMovie,
   SignUp,
+  ViewAllPage,
 } from "./pages";
-import ViewAllPage from "./pages/ViewAllPage";
 import { currentUser } from "./redux/userSlice";
-const routes = [
-  {
-    path: "/popular",
-    element: <ViewAllPage />,
-  },
-  {
-    path: "/nowplaying",
-    element: <ViewAllPage />,
-  },
-  {
-    path: "/toprated",
-    element: <ViewAllPage />,
-  },
-  {
-    path: "/upcoming",
-    element: <ViewAllPage />,
-  },
-];
-
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
@@ -68,18 +48,13 @@ function App() {
               </>
             }
           ></Route>
-          {routes.map((route, index) => {
-            return (
-              <Route
-                key={v4()}
-                path={route.path}
-                element={route.element}
-              ></Route>
-            );
-          })}
         </Route>
         <Route path="/movies/:id" element={<MovieDetail></MovieDetail>}></Route>
         <Route path="/watch/:id" element={<WatchMovie></WatchMovie>}></Route>
+        <Route
+          path="/viewall/:type"
+          element={<ViewAllPage></ViewAllPage>}
+        ></Route>
         <Route path="/explore" element={<Explore></Explore>}></Route>
         <Route path="/account" element={<Account></Account>}></Route>
         <Route path="/search" element={<SearchPage></SearchPage>}></Route>

@@ -1,10 +1,11 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
 import { Button } from "../components/Button";
 import { v4 } from "uuid";
 import StarRatings from "react-star-ratings";
 import { IMAGE_URL } from "../api/configApi";
+import { Tag } from "../components/Tag";
 import {
   CastList,
   InfiniteSlide,
@@ -20,6 +21,7 @@ import { Skeleton } from "../components/Skeleton";
 import { ReviewBox } from "../components/ReviewBox";
 const MovieDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { data, isError, error } = useQuery(["movieDetail", id], () =>
     getMovieFullDetail(id)
   );
@@ -120,10 +122,10 @@ const MovieDetail = () => {
                 {detail && (
                   <div className="flex items-center gap-x-4">
                     <span className="text-7xl font-bold">
-                      {detail.vote_average}
+                      {detail.vote_average / 2}
                     </span>
                     <div className="flex flex-col">
-                      <span className="text-4xl">/10</span>
+                      <span className="text-4xl">/5</span>
                       <span className="text-lg mt-1">
                         {detail.vote_count} votes
                       </span>
@@ -139,11 +141,11 @@ const MovieDetail = () => {
                 {detail && (
                   <div className="flex items-center gap-x-2">
                     <span className="text-lg flex-shrink-0">Rated this</span>
-                    <div className="flex-1">
+                    <div className="flex-1 flex-shrink-0">
                       <StarRatings
-                        rating={detail.vote_average || 10}
+                        rating={detail.vote_average / 2 || 5}
                         starRatedColor="#e74c3c"
-                        numberOfStars={10}
+                        numberOfStars={5}
                         name="rating"
                         starDimension="20px"
                         starSpacing="2px"
@@ -184,12 +186,13 @@ const MovieDetail = () => {
               {detail &&
                 detail.genres.length > 0 &&
                 detail.genres.map((genre, index) => (
-                  <span
+                  <Tag
                     key={v4()}
-                    className="m-1 py-1 px-3 text-lg font-bold border-primary text-secondary border rounded"
+                    onClick={() => navigate(`/explore?genre=${genre.id}`)}
+                    className="border-primary text-secondary"
                   >
                     {genre.name}
-                  </span>
+                  </Tag>
                 ))}
             </div>
             {!detail && (
@@ -198,9 +201,9 @@ const MovieDetail = () => {
             {detail && (
               <div className="flex 2xl:hidden items-center justify-center gap-x-3 mt-2">
                 <StarRatings
-                  rating={detail.vote_average || 10}
+                  rating={detail.vote_average / 2 || 5}
                   starRatedColor="#e74c3c"
-                  numberOfStars={10}
+                  numberOfStars={5}
                   name="rating"
                   starDimension="20px"
                   starSpacing="2px"
