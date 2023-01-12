@@ -6,7 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import DashBoard from "./components/Dashboard/DashBoard";
 import { auth, db } from "./fire-base/firebase-config";
 import {
-  Account,
+  GlobalUi,
   Explore,
   HomePage,
   SignIn,
@@ -58,7 +58,7 @@ function App() {
           path="/viewall/:type"
           element={<ViewAllPage></ViewAllPage>}
         ></Route>
-        <Route element={<Account></Account>}>
+        <Route element={<GlobalUi></GlobalUi>}>
           <Route path="/explore" element={<Explore></Explore>}></Route>
           <Route path="/profile" element={<ProfilePage></ProfilePage>}></Route>
           <Route path="/bookmarks" element={<Bookmarks></Bookmarks>}></Route>

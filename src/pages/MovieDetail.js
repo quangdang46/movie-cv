@@ -20,8 +20,14 @@ import { getMovieFullDetail } from "../service/movieService";
 import { Skeleton } from "../components/Skeleton";
 import { ReviewBox } from "../components/ReviewBox";
 import Header from "../components/layout/Header";
+import { PlusIcon, XIcon } from "../components/Icon";
+import { useSelector } from "react-redux";
+import { useAddToBookmarks } from "../hooks/useAddToBookmarks";
 const MovieDetail = () => {
   const { id } = useParams();
+  const user = useSelector((state) => state.auth.user);
+
+  const { addedToList, handleList } = useAddToBookmarks(id);
   const navigate = useNavigate();
   const { data, isError, error } = useQuery(["movieDetail", id], () =>
     getMovieFullDetail(id)
@@ -219,12 +225,19 @@ const MovieDetail = () => {
                 </div>
               )}
               {detail && (
-                <div className="mt-4">
+                <div className="mt-4 flex items-center gap-5 flex-wrap">
                   <Button
                     content={"Watch now"}
                     isWatching={true}
                     id={id}
                   ></Button>
+                  <button
+                    className="2xl:w-auto w-full flex items-center justify-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl bg-[gray]/70"
+                    onClick={handleList}
+                  >
+                    {!addedToList ? <PlusIcon></PlusIcon> : <XIcon></XIcon>}
+                    <span>Add to favorites</span>
+                  </button>
                 </div>
               )}
             </div>

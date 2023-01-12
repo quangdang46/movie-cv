@@ -1,51 +1,26 @@
 import { Modal } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
-import { useEffect } from "react";
 import ReactPlayer from "react-player/lazy";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { youtubePath } from "../../api/configApi";
-import { auth, db } from "../../fire-base/firebase-config";
+import { useAddToBookmarks } from "../../hooks/useAddToBookmarks";
 import { openModal } from "../../redux/modalSlice";
 import { getMovieFullDetail } from "../../service/movieService";
-import {
-  PlayIcon,
-  PlusIcon,
-  VolumeOff,
-  VolumeUp,
-  XIcon,
-} from "../Icon";
+import { PlayIcon, PlusIcon, VolumeOff, VolumeUp, XIcon } from "../Icon";
 import ReadMore from "../ReadMore/ReadMore";
 const CustomModal = () => {
   //
-  const user = useSelector((state) => state.auth.user);
+  const movieTrailer = localStorage.getItem("movieTrailer");
   const navigate = useNavigate();
   const showModal = useSelector((state) => state.modal.showModal);
   const dispatch = useDispatch();
   const [muted, setMuted] = useState(true);
-  const [addedToList, setAddedToList] = useState(false);
-
+  const { addedToList, handleList } = useAddToBookmarks(movieTrailer);
   const handleClose = () => {
     dispatch(openModal(false));
   };
-  // get movieTrailer from localstorage
-  const movieTrailer = localStorage.getItem("movieTrailer");
-  useEffect(() => {
-    if (user) {
-      const isAdded =
-        (user.bookmarks.length > 0 &&
-          user.bookmarks?.includes(+movieTrailer)) ||
-        false;
-      if (isAdded) {
-        setAddedToList(true);
-      } else {
-        setAddedToList(false);
-      }
-    }
-  }, [movieTrailer, user]);
 
   if (!movieTrailer) {
     handleClose();
@@ -72,34 +47,6 @@ const CustomModal = () => {
       .replace(/[/]/g, "-");
   };
 
-  const handleList = async () => {
-    if (user) {
-      const colRefUpdate = doc(db, "users", auth.currentUser.uid);
-      // update to firebase
-      if (!addedToList) {
-        await updateDoc(colRefUpdate, {
-          ...user,
-          // add bookmarks
-          bookmarks: [
-            ...user.bookmarks.filter((id) => id !== detail.id),
-            +detail.id,
-          ],
-        });
-        // succes
-        toast.success("Added to list successfully");
-      } else {
-        await updateDoc(colRefUpdate, {
-          ...user,
-          // remove bookmarks
-          bookmarks: user.bookmarks.filter((id) => id !== detail.id),
-        });
-        // succes
-        toast.success("Removed from list successfully");
-      }
-    } else {
-      toast.error("Please login to add to list");
-    }
-  };
   const handleClickPlay = () => {
     navigate(`/watch/${detail.id}`);
   };

@@ -3,7 +3,6 @@ import { doc, updateDoc } from "firebase/firestore";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import { EMBED_TO } from "../api/configApi";
 import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
 import Comments from "../components/Comment/Comments";
@@ -31,21 +30,25 @@ const WatchMovie = () => {
   useEffect(() => {
     // add id to recentlyWatch
     const addMovieToRecently = async () => {
-      if (user) {
+      if (user && data) {
         const colRefUpdate = doc(db, "users", auth.currentUser.uid);
-        const data = {
+        const payload = {
           ...user,
-          recentlyWatch: [...user.recentlyWatch, +id],
+          recentlyWatch: [
+            ...user.recentlyWatch.filter((movie) => +id !== movie.id),
+            {
+              ...data.detail,
+            },
+          ],
         };
-        await updateDoc(colRefUpdate, data);
+        await updateDoc(colRefUpdate, payload);
       } else {
         // toast
         console.log("not login");
       }
     };
     addMovieToRecently();
-  }, [id]);
-
+  }, [data, id]);
   if (isError) return <div>Something went wrong</div>;
   if (isLoading) return <div>Loading...</div>;
   const { detail, recommendations } = data || {};

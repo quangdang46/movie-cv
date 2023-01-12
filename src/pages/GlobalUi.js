@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { LeftSideBar, TopSideBar } from "../components/SideBar";
 import { useViewportView } from "../hooks/useViewportView";
-const Account = () => {
+const GlobalUi = () => {
   const [isShowSideBar, setIsShowSideBar] = useState(true);
   const { isMobile } = useViewportView();
   useEffect(() => {
@@ -32,4 +32,4 @@ const Account = () => {
   );
 };
 
-export default Account;
+export default GlobalUi;
