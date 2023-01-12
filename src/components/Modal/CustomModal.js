@@ -1,15 +1,17 @@
 import { Modal } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
+import { doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import ReactPlayer from "react-player/lazy";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { youtubePath } from "../../api/configApi";
+import { auth, db } from "../../fire-base/firebase-config";
 import { openModal } from "../../redux/modalSlice";
 import { getMovieFullDetail } from "../../service/movieService";
 import {
-  CheckIcon,
-  LikeIcon,
   PlayIcon,
   PlusIcon,
   VolumeOff,
@@ -19,10 +21,11 @@ import {
 import ReadMore from "../ReadMore/ReadMore";
 const CustomModal = () => {
   //
+  const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const showModal = useSelector((state) => state.modal.showModal);
   const dispatch = useDispatch();
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true);
   const [addedToList, setAddedToList] = useState(false);
 
   const handleClose = () => {
@@ -30,12 +33,27 @@ const CustomModal = () => {
   };
   // get movieTrailer from localstorage
   const movieTrailer = localStorage.getItem("movieTrailer");
+  useEffect(() => {
+    if (user) {
+      const isAdded =
+        (user.bookmarks.length > 0 &&
+          user.bookmarks?.includes(+movieTrailer)) ||
+        false;
+      if (isAdded) {
+        setAddedToList(true);
+      } else {
+        setAddedToList(false);
+      }
+    }
+  }, [movieTrailer, user]);
+
   if (!movieTrailer) {
     handleClose();
   }
   const { data, isError, error } = useQuery(["movieDetail", movieTrailer], () =>
     getMovieFullDetail(movieTrailer)
   );
+
   if (isError) {
     return <div>{error.message}</div>;
   }
@@ -53,10 +71,40 @@ const CustomModal = () => {
       })
       .replace(/[/]/g, "-");
   };
-  const handleList = () => {};
+
+  const handleList = async () => {
+    if (user) {
+      console.log(user.bookmarks.filter((id) => id !== detail.id));
+      const colRefUpdate = doc(db, "users", auth.currentUser.uid);
+      // update to firebase
+      if (!addedToList) {
+        await updateDoc(colRefUpdate, {
+          ...user,
+          // add bookmarks
+          bookmarks: [
+            ...user.bookmarks.filter((id) => id !== detail.id),
+            +detail.id,
+          ],
+        });
+        // succes
+        toast.success("Added to list successfully");
+      } else {
+        await updateDoc(colRefUpdate, {
+          ...user,
+          // remove bookmarks
+          bookmarks: user.bookmarks.filter((id) => id !== detail.id),
+        });
+        // succes
+        toast.success("Removed from list successfully");
+      }
+    } else {
+      toast.error("Please login to add to list");
+    }
+  };
   const handleClickPlay = () => {
     navigate(`/movies/${detail.id}`);
   };
+
   return (
     <Modal
       open={showModal}
@@ -93,11 +141,11 @@ const CustomModal = () => {
                 className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10"
                 onClick={handleList}
               >
-                {addedToList ? <CheckIcon></CheckIcon> : <PlusIcon></PlusIcon>}
+                {addedToList ? <XIcon></XIcon> : <PlusIcon></PlusIcon>}
               </button>
-              <button className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10">
+              {/* <button className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10">
                 <LikeIcon></LikeIcon>
-              </button>
+              </button> */}
             </div>
             <button
               className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10"
