@@ -20,7 +20,6 @@ const MainBanner = ({ randomMovies }) => {
   if (movie && movie.id) {
     localStorage.setItem("movieTrailer", movie?.id);
   }
-
   const handlePlayModal = () => {
     dispatch(openModal(!showModal));
   };

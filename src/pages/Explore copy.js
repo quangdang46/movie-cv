@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
 import { ExploreResults, Filter, Sort } from "../components/Explore";
 import { ChevronUpIcon } from "../components/Icon";
+import { LeftSideBar, TopSideBar } from "../components/SideBar";
 import { useScrollUp } from "../hooks/useScrolUp";
 import { useViewportView } from "../hooks/useViewportView";
 
 const Explore = () => {
   const { isMobile } = useViewportView();
   const { isShowScrollUpBtn, scrollToTop } = useScrollUp();
+  const [isShowSideBar, setIsShowSideBar] = useState(false);
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [config, setConfig] = useState({});
@@ -36,6 +40,11 @@ const Explore = () => {
   }, [searchParams]);
   return (
     <>
+      <TopSideBar
+        onClick={() => {
+          setIsShowSideBar(!isShowSideBar);
+        }}
+      ></TopSideBar>
       {isShowScrollUpBtn && (
         <button
           onClick={scrollToTop}
@@ -48,21 +57,33 @@ const Explore = () => {
           </div>
         </button>
       )}
-      {isMobile && (
-        <div className="mt-3 mx-0 xs:mx-2 md:mx-4">
-          <Sort></Sort>
-          <Filter></Filter>
+      <div className="flex min-h-screen flex-col md:flex-row gap-x-2">
+        {isMobile && (
+          <SimpleBreadcrumbs
+            className={"block rounded-none border-none bg-dark-lighten"}
+            textLight={true}
+          ></SimpleBreadcrumbs>
+        )}
+        <LeftSideBar
+          show={isShowSideBar}
+          setShow={setIsShowSideBar}
+        ></LeftSideBar>
+        {isMobile && (
+          <div className="mt-3 mx-0 xs:mx-2 md:mx-4">
+            <Sort></Sort>
+            <Filter></Filter>
+          </div>
+        )}
+        <div className="flex-grow">
+          <ExploreResults config={config}></ExploreResults>
         </div>
-      )}
-      <div className="flex-grow">
-        <ExploreResults config={config}></ExploreResults>
+        {!isMobile && (
+          <div className="shrink-0 md:max-w-[310px] w-full pt-4 px-3">
+            <Sort></Sort>
+            <Filter></Filter>
+          </div>
+        )}
       </div>
-      {!isMobile && (
-        <div className="shrink-0 md:max-w-[310px] w-full pt-4 px-3">
-          <Sort></Sort>
-          <Filter></Filter>
-        </div>
-      )}
     </>
   );
 };

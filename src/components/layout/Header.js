@@ -41,7 +41,14 @@ const Header = ({ isSearch = true }) => {
   // }
 
   return (
-    <header className={`${isScrolled && "bg-[#141414]"}`}>
+    <header
+      className={`${
+        // isScrolled
+        //   ? "bg-[#141414]"
+        //   : "bg-gradient-to-tr from-[rgba(0,0,0,0.1)] to-[rgba(0,0,0,0.05)]"
+        isScrolled && "bg-[#141414]"
+      }`}
+    >
       <div className="flex items-center space-x-2 md:space-x-10">
         <Link to="/">
           <Image
@@ -123,7 +130,7 @@ const Header = ({ isSearch = true }) => {
                   <button
                     className="py-2 px-10 text-xl rounded leading-none border hover:bg-dark-lighten flex gap-4 items-center justify-center"
                     onClick={() => {
-                      navigate("/account");
+                      navigate("/profile");
                     }}
                   >
                     <UserIcon></UserIcon>

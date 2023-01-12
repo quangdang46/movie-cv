@@ -9,10 +9,12 @@ import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useGetCurrentParams } from "../../hooks/useGetCurrentParams";
+import { useViewportView } from "../../hooks/useViewportView";
+const MIN_RUNTIME = 0;
+const MAX_RUNTIME = 400;
+const MAX_VOTES = 500;
 const Filter = () => {
-  const MIN_RUNTIME = 0;
-  const MAX_RUNTIME = 400;
-  const MAX_VOTES = 500;
+  const { isMobile } = useViewportView();
   const { isLoading, data, isError, error } = useQuery(["genres"], getGenres);
   const [parent] = useAutoAnimate();
   const [openFilter, setOpenFilter] = useState(true);
@@ -25,7 +27,9 @@ const Filter = () => {
   const sliderRangeRef = useRef(null);
   const timeoutRef = useRef(null);
   const sliderVotes = useRef(null);
-
+  useEffect(() => {
+    setOpenFilter(!isMobile);
+  }, [isMobile]);
   const handleFilterDate = (e) => {
     if (e.target.name === "from") {
       setSearchParams({

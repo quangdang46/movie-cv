@@ -5,9 +5,11 @@ import "./style.css";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useViewportView } from "../../hooks/useViewportView";
 
 const Sort = () => {
   const [parent] = useAutoAnimate();
+  const { isMobile } = useViewportView();
   const [searchParams, setSearchParams] = useSearchParams();
   const [openSort, setOpenSort] = useState(true);
   const [title, setTitle] = useState("Popularity Descending");
@@ -22,6 +24,10 @@ const Sort = () => {
       });
     }
   }, [setSearchParams]);
+
+  useEffect(() => {
+    setOpenSort(!isMobile);
+  }, [isMobile]);
 
   const options = [
     { value: "popularity.desc", label: "Popularity Descending" },

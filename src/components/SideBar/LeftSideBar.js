@@ -2,53 +2,40 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 } from "uuid";
 import { useViewportView } from "../../hooks/useViewportView";
-import {
-  BookmarkIcon,
-  BuggerIcon,
-  ExploreIcon,
-  HistoryIcon,
-  HomeIcon,
-  LogIcon,
-  SearchIcon,
-} from "../Icon";
+import { menus } from "../../shared/const";
+import { BuggerIcon } from "../Icon";
+import { Image } from "../Lazy";
 
-const LeftSideBar = () => {
+const LeftSideBar = ({ show, setShow }) => {
   const [open, setOpen] = useState(true);
-  const { width } = useViewportView();
+  const { width, isMobile } = useViewportView();
   useEffect(() => {
     if (width < 1024) {
       setOpen(false);
     }
   }, [width]);
-  const menus = [
-    {
-      name: "Home",
-      link: "/",
-      icon: <HomeIcon className="!w-6 !h-6 mr-0"></HomeIcon>,
-    },
-    { name: "Explore", link: "/explore", icon: <ExploreIcon></ExploreIcon> },
-    { name: "Search", link: "/search", icon: <SearchIcon></SearchIcon> },
-    { name: "Bookmark", link: "/", icon: <BookmarkIcon></BookmarkIcon> },
-    {
-      name: "History",
-      link: "/",
-      icon: <HistoryIcon></HistoryIcon>,
-    },
-    {
-      name: "Login",
-      link: "/login",
-      icon: <LogIcon></LogIcon>,
-      margin: true,
-    },
-  ];
   return (
-    <section className="flex gap-6">
+    <section
+      className={`flex gap-6 shrink-0 md:translate-x-0 md:bg-transparent md:shadow-none -translate-x-full shadow-md transition duration-300 z-50 ${
+        show && "translate-x-0 top-0"
+      } ${isMobile && "fixed"}`}
+    >
       <div
-        className={`bg-[#141414] min-h-screen ${
+        className={`bg-dark-lighten rounded-lg min-h-screen ${
           open ? "w-60" : "w-16"
-        } duration-500 text-gray-100 px-4`}
+        } duration-300 text-gray-100 px-4`}
       >
-        <div className="py-3 flex justify-end">
+        <div className="py-3 flex justify-between">
+          {open && (
+            <Link to="/">
+              <Image
+                lazy_src={`https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/799px-Netflix_2015_logo.svg.png`}
+                className="cursor-pointer object-contain"
+                width={100}
+                height={100}
+              ></Image>
+            </Link>
+          )}
           <BuggerIcon onClick={() => setOpen(!open)} />
         </div>
         <div className="mt-4 flex flex-col gap-4 relative">
@@ -73,13 +60,15 @@ const LeftSideBar = () => {
               >
                 {menu?.name}
               </h2>
-              <h2
-                className={`${
-                  open && "hidden"
-                } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit`}
-              >
-                {menu?.name}
-              </h2>
+              {!isMobile && (
+                <h2
+                  className={`${
+                    open && "hidden"
+                  } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit z-50`}
+                >
+                  {menu?.name}
+                </h2>
+              )}
             </Link>
           ))}
         </div>

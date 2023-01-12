@@ -74,7 +74,6 @@ const CustomModal = () => {
 
   const handleList = async () => {
     if (user) {
-      console.log(user.bookmarks.filter((id) => id !== detail.id));
       const colRefUpdate = doc(db, "users", auth.currentUser.uid);
       // update to firebase
       if (!addedToList) {
@@ -102,7 +101,7 @@ const CustomModal = () => {
     }
   };
   const handleClickPlay = () => {
-    navigate(`/movies/${detail.id}`);
+    navigate(`/watch/${detail.id}`);
   };
 
   return (

@@ -8,7 +8,7 @@ const SimpleBreadcrumbs = ({ className = "", textLight = false }) => {
   const pathnames = location.pathname.split("/").filter((x) => x);
   return (
     <div
-      className={`px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 inline-block ${className}`}
+      className={`hidden px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 xs:inline-block ${className}`}
     >
       <ol className="flex items-center gap-x-1 md:gap-x-3 flex-wrap">
         <li className="flex items-center">

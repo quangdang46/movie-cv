@@ -1,6 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import { doc, updateDoc } from "firebase/firestore";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { EMBED_TO } from "../api/configApi";
 import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
 import Comments from "../components/Comment/Comments";
@@ -13,19 +16,41 @@ import ReadMore from "../components/ReadMore/ReadMore";
 import SearchBox from "../components/SearchBox/SearchBox";
 import RightSideBar from "../components/SideBar/RightSideBar";
 import { Skeleton } from "../components/Skeleton";
+import { auth, db } from "../fire-base/firebase-config";
 import { useViewportView } from "../hooks/useViewportView";
 import { getWatchMovie } from "../service/movieService";
 
 const WatchMovie = () => {
+  const user = useSelector((state) => state.auth.user);
+
   const { id } = useParams();
   const { isMobile } = useViewportView();
   const { data, isLoading, isError } = useQuery(["movie", id], () =>
     getWatchMovie(id)
   );
+  useEffect(() => {
+    // add id to recentlyWatch
+    const addMovieToRecently = async () => {
+      if (user) {
+        const colRefUpdate = doc(db, "users", auth.currentUser.uid);
+        const data = {
+          ...user,
+          recentlyWatch: [...user.recentlyWatch, +id],
+        };
+        await updateDoc(colRefUpdate, data);
+      } else {
+        // toast
+        console.log("not login");
+      }
+    };
+    addMovieToRecently();
+  }, [id]);
+
   if (isError) return <div>Something went wrong</div>;
   if (isLoading) return <div>Loading...</div>;
   const { detail, recommendations } = data || {};
   if (!detail || !recommendations) return <div>Not found</div>;
+
   return (
     <>
       <Header isSearch={false}></Header>

@@ -16,6 +16,9 @@ import {
   WatchMovie,
   SignUp,
   ViewAllPage,
+  ProfilePage,
+  Bookmarks,
+  History,
 } from "./pages";
 import { currentUser } from "./redux/userSlice";
 function App() {
@@ -55,9 +58,15 @@ function App() {
           path="/viewall/:type"
           element={<ViewAllPage></ViewAllPage>}
         ></Route>
-        <Route path="/explore" element={<Explore></Explore>}></Route>
-        <Route path="/account" element={<Account></Account>}></Route>
-        <Route path="/search" element={<SearchPage></SearchPage>}></Route>
+        <Route element={<Account></Account>}>
+          <Route path="/explore" element={<Explore></Explore>}></Route>
+          <Route path="/profile" element={<ProfilePage></ProfilePage>}></Route>
+          <Route path="/bookmarks" element={<Bookmarks></Bookmarks>}></Route>
+          <Route path="/history" element={<History></History>}></Route>
+          <Route path="/search" element={<SearchPage></SearchPage>}></Route>
+        </Route>
+        {/* <Route path="/search" element={<SearchPage></SearchPage>}></Route> */}
+
         <Route path="/signin" element={<SignIn></SignIn>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
         <Route path="*" element={<PageNotFound></PageNotFound>}></Route>

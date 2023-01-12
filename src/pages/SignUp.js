@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../fire-base/firebase-config";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { LoadingSpinner } from "../components/Loading";
@@ -45,7 +45,6 @@ const SignUp = () => {
         photoURL: "https://source.unsplash.com/random",
         bookmarks: [],
         recentlyWatch: [],
-        createdAt: String(serverTimestamp()),
       });
       toast.success("Register successfully!!!");
       navigate("/");

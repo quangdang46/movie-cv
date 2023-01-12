@@ -1,4 +1,13 @@
-const links = [
+const {
+  HomeIcon,
+  ExploreIcon,
+  SearchIcon,
+  BookmarkIcon,
+  HistoryIcon,
+  LogIcon,
+} = require("../components/Icon");
+
+export const links = [
   { name: "Home", link: "/" },
   { name: "TV Shows", link: "/tv" },
   { name: "Movies", link: "/movies" },
@@ -6,7 +15,7 @@ const links = [
   { name: "Search", link: "/search" },
 ];
 
-const categories = [
+export const categories = [
   {
     id: 1,
     title: "Popular Movies",
@@ -33,8 +42,24 @@ const categories = [
     type: "latest",
   },
 ];
-
-module.exports = {
-  links,
-  categories,
-};
+export const menus = [
+  {
+    name: "Home",
+    link: "/",
+    icon: <HomeIcon className="!w-6 !h-6 mr-0"></HomeIcon>,
+  },
+  { name: "Explore", link: "/explore", icon: <ExploreIcon></ExploreIcon> },
+  { name: "Search", link: "/search", icon: <SearchIcon></SearchIcon> },
+  { name: "Bookmark", link: "/bookmarks", icon: <BookmarkIcon></BookmarkIcon> },
+  {
+    name: "History",
+    link: "/history",
+    icon: <HistoryIcon></HistoryIcon>,
+  },
+  {
+    name: "Login",
+    link: "/login",
+    icon: <LogIcon></LogIcon>,
+    margin: true,
+  },
+];
