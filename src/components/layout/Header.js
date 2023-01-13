@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BasicMenu } from "../BasicMenu";
 import { LogIcon, SearchIcon, UserIcon } from "../Icon";
@@ -9,12 +9,14 @@ import useClickOutSide from "../../hooks/useClickOutSide";
 import { auth } from "../../fire-base/firebase-config";
 import { signOut } from "firebase/auth";
 import { links } from "../../shared/const";
+import { currentUser } from "../../redux/userSlice";
 const Header = ({ isSearch = true }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
   const { isMobile } = useViewportView();
   const { show, setShow, nodeRef } = useClickOutSide();
+  const dispatch = useDispatch();
   const {
     show: showBox,
     setShow: setShowBox,
@@ -39,7 +41,10 @@ const Header = ({ isSearch = true }) => {
   // if (!user.payload) {
   //   return;
   // }
-
+  const handleSignOut = () => {
+    signOut(auth);
+    dispatch(currentUser(null));
+  };
   return (
     <header
       className={`${
@@ -138,9 +143,7 @@ const Header = ({ isSearch = true }) => {
                   </button>
                   <button
                     className="py-2 px-10 text-xl rounded leading-none border hover:bg-dark-lighten flex gap-4 items-center justify-center"
-                    onClick={() => {
-                      signOut(auth);
-                    }}
+                    onClick={handleSignOut}
                   >
                     <LogIcon></LogIcon>
                     <span>Logout</span>

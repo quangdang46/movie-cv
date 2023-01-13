@@ -61,7 +61,7 @@ const MovieCard = ({ detail, showGenres = true, useDelete = false }) => {
           ></Image>
         </div>
         <div className="mt-3 text-center flex flex-col flex-1">
-          <p className="font-bold text-sm text-shadow-sm whitespace-nowrap overflow-hidden text-ellipsis transition duration-300">
+          <p className="font-bold text-sm whitespace-nowrap overflow-hidden text-ellipsis transition duration-300">
             {detail.title}
           </p>
           {showGenres && detail.genres && (
@@ -69,7 +69,7 @@ const MovieCard = ({ detail, showGenres = true, useDelete = false }) => {
               {detail.genres.length > 0 &&
                 detail.genres.map((genre) => (
                   <span
-                    className="px-2 py-1 border-2 rounded-xl text-xs font-bold border-zinc-600 text-shadow-md"
+                    className="px-2 py-1 border-2 rounded-xl text-xs font-bold border-zinc-600"
                     key={genre.id}
                   >
                     {genre.name}

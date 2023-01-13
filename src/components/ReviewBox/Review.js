@@ -41,7 +41,7 @@ const Review = ({ review }) => {
               ></Image>
             </div>
           )}
-          <span className="mt-2 md:mt-0 text-lg text-shadow-lg">
+          <span className="mt-2 md:mt-0 text-lg">
             {review?.author_details.username || review?.author || "Anonymous"}
           </span>
           {!isMobile && (

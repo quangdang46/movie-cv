@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-[#141414] text-white scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-600;
+    @apply bg-[#1C1C1E] text-white scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-600;
   }
   header {
     @apply fixed top-0 z-50 flex w-full items-center justify-between px-4 py-4 transition-all lg:px-10 lg:py-6;
@@ -114,4 +114,18 @@
 
 .tw-slider-range::-webkit-slider-thumb {
   @apply appearance-none h-4 w-4 rounded-full bg-dark-lighten-2 pointer-events-auto;
+}
+.hidden-input {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+.form-layout {
+  @apply grid grid-cols-1 lg:grid-cols-2 lg:gap-x-10 mb-5 lg:mb-10;
 }

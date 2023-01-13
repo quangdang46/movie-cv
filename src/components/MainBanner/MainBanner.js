@@ -37,7 +37,7 @@ const MainBanner = ({ randomMovies }) => {
       <h1 className="text-2xl font-bold md:text-4xl lg:text-7xl">
         {movie?.title || movie?.name || movie?.original_name || "Netflix"}
       </h1>
-      <p className="max-w-xs text-xs text-shadow-md md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">
+      <p className="max-w-xs text-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">
         {movie?.overview ||
           "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore distinctio, ratione optio facilis ipsum laborum odio laboriosam in eligendi impedit, beatae tenetur dolor placeat obcaecati doloremque quasi soluta, quos vitae. "}
       </p>

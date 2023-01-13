@@ -1,12 +1,12 @@
 import { API_KEY } from "../api/configApi";
 import axios from "../configAxios/axios";
-const fetchMovies = async (type, page) => {
+const getTrending = async () => {
   const response = await axios.get(
-    `/movie/${type}?api_key=${API_KEY}&language=en-US` +
-      (page ? `&page=${page}` : "")
+    `/trending/movie/day?page=1&api_key=${API_KEY}&language=en-US`
   );
   return response.data;
 };
+
 const getGenres = async () => {
   // https://api.themoviedb.org/3/genre/movie/list?api_key=a8ee03e8420a8c4b12cd8edf16b4a3aa&language=en-US
   // /genre/movie/list?api_key=${API_KEY}&language=en-US
@@ -193,11 +193,11 @@ const getExploreMovie = async (page, config = {}) => {
 
 export {
   getSearchResult,
-  fetchMovies,
   getWatchMovie,
   getSearchKeyword,
   getMovieFullDetail,
   getListMovie,
   getGenres,
   getExploreMovie,
+  getTrending,
 };

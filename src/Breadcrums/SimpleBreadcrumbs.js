@@ -22,7 +22,7 @@ const SimpleBreadcrumbs = ({ className = "", textLight = false }) => {
           >
             <div
               className={`inline-flex items-center text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white ${
-                textLight ? "text-white text-shadow-sm hover:text-cyan-100" : ""
+                textLight ? "text-white hover:text-cyan-100" : ""
               }`}
             >
               <HomeIcon></HomeIcon>
@@ -40,7 +40,7 @@ const SimpleBreadcrumbs = ({ className = "", textLight = false }) => {
               <span
                 className={`ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400 ${
                   textLight
-                    ? "text-white text-shadow-sm hover:text-cyan-100"
+                    ? "text-white hover:text-cyan-100"
                     : ""
                 }`}
               >
@@ -61,7 +61,7 @@ const SimpleBreadcrumbs = ({ className = "", textLight = false }) => {
                 <span
                   className={`ml-1 text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white ${
                     textLight
-                      ? "text-white text-shadow-sm hover:text-cyan-100"
+                      ? "text-white hover:text-cyan-100"
                       : ""
                   }`}
                 >

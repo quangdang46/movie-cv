@@ -8,6 +8,7 @@ import { youtubePath } from "../../api/configApi";
 import { useAddToBookmarks } from "../../hooks/useAddToBookmarks";
 import { openModal } from "../../redux/modalSlice";
 import { getMovieFullDetail } from "../../service/movieService";
+import { formatDate } from "../../utils/func";
 import { PlayIcon, PlusIcon, VolumeOff, VolumeUp, XIcon } from "../Icon";
 import ReadMore from "../ReadMore/ReadMore";
 const CustomModal = () => {
@@ -36,16 +37,6 @@ const CustomModal = () => {
     return <div>Loading...</div>;
   }
   const { detail, videos } = data;
-  const formatDate = (dateStr) => {
-    const date = new Date(dateStr);
-    return date
-      .toLocaleDateString("en-US", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      })
-      .replace(/[/]/g, "-");
-  };
 
   const handleClickPlay = () => {
     navigate(`/watch/${detail.id}`);
@@ -89,9 +80,6 @@ const CustomModal = () => {
               >
                 {addedToList ? <XIcon></XIcon> : <PlusIcon></PlusIcon>}
               </button>
-              {/* <button className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10">
-                <LikeIcon></LikeIcon>
-              </button> */}
             </div>
             <button
               className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10"

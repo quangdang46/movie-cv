@@ -24,7 +24,6 @@ const ViewAllPage = () => {
     }
   );
   const { detail } = data || {};
-  console.log(detail);
   useEffect(() => {
     if (!detail?.results || !detail?.total_results) return;
     setPageCount(Math.ceil(detail.total_results / itemsPerPage));

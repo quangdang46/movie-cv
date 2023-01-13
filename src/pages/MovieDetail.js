@@ -77,9 +77,9 @@ const MovieDetail = () => {
                     </Skeleton>
                   )}
                   {detail && (
-                    <p className="text-2xl sm:text-5xl md:text-8xl font-bold text-shadow-lg">
+                    <p className="text-2xl sm:text-5xl md:text-8xl font-bold">
                       {detail.title}
-                      <span className="text-xl sm:text-3xl md:text-5xl text-shadow-lg overflow-hidden">
+                      <span className="text-xl sm:text-3xl md:text-5xl overflow-hidden">
                         {`(${new Date(detail.release_date).getFullYear()})`}
                       </span>
                     </p>
@@ -103,7 +103,7 @@ const MovieDetail = () => {
                   {detail && (
                     <ReadMore
                       limitTextLength={200}
-                      className="mt-6 text-2xl text-shadow-lg"
+                      className="mt-6 text-2xl"
                     >
                       Tagline: {detail.tagline || "No tagline"}
                     </ReadMore>
@@ -112,13 +112,13 @@ const MovieDetail = () => {
                     <Skeleton className="mt-4 w-[300px] h-[100px]"></Skeleton>
                   )}
                   {detail && (
-                    <p className="mt-4 text-2xl line-clamp-1 sm:line-clamp-none text-shadow-lg">
+                    <p className="mt-4 text-2xl line-clamp-1 sm:line-clamp-none">
                       Runtime: {`0${(detail.runtime / 60) ^ 0}`.slice(-2)}h{" "}
                       {`0${detail.runtime % 60}`.slice(-2)}m
                     </p>
                   )}
                 </div>
-                <div className="hidden 2xl:flex flex-col gap-y-2 justify-center text-orange-500 px-5 text-shadow w-auto box">
+                <div className="hidden 2xl:flex flex-col gap-y-2 justify-center text-orange-500 px-5 w-auto box">
                   {!detail && (
                     <Skeleton className="flex items-center gap-x-4">
                       <Skeleton className="w-20 h-20"></Skeleton>
@@ -179,7 +179,7 @@ const MovieDetail = () => {
                 <Skeleton className="mt-6 w-[200px] h-[300px]"></Skeleton>
               )}
               {detail && (
-                <p className="mt-6 text-lg text-shadow-lg">
+                <p className="mt-6 text-lg">
                   Spoken language:{" "}
                   {detail.spoken_languages.map((lang) => lang.name).join(", ")}
                 </p>
@@ -219,7 +219,7 @@ const MovieDetail = () => {
                     starDimension="20px"
                     starSpacing="2px"
                   />
-                  <div className="leading-normal text-shadow-lg">{`(${
+                  <div className="leading-normal">{`(${
                     detail.vote_count || 0
                   } vote)`}</div>
                 </div>
