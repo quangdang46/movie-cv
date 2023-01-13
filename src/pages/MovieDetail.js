@@ -112,7 +112,7 @@ const MovieDetail = () => {
                     <Skeleton className="mt-4 w-[300px] h-[100px]"></Skeleton>
                   )}
                   {detail && (
-                    <p className="mt-4 text-2xl line-clamp-1 sm:line-clamp-none">
+                    <p className="mt-4 text-2xl">
                       Runtime: {`0${(detail.runtime / 60) ^ 0}`.slice(-2)}h{" "}
                       {`0${detail.runtime % 60}`.slice(-2)}m
                     </p>
