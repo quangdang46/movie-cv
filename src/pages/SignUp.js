@@ -8,6 +8,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { LoadingSpinner } from "../components/Loading";
+import { useSelector } from "react-redux";
 
 const schema = yup.object({
   email: yup
@@ -31,7 +32,10 @@ const SignUp = () => {
   });
 
   const navigate = useNavigate();
-
+  const user = useSelector((state) => state.auth.user);
+  if (user) {
+    navigate("/");
+  }
   const onSubmit = async (data) => {
     const { email, password } = data;
     try {

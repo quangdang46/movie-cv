@@ -72,6 +72,7 @@ const ProfilePage = () => {
     try {
       const colRef = doc(db, "users", auth.currentUser.uid);
       await updateDoc(colRef, {
+        ...user,
         ...values,
         photoURL: image,
       });
@@ -179,6 +180,7 @@ const ProfilePage = () => {
                 control={control}
                 name="email"
                 disabled="disabled"
+                className="pointer-events-none"
               ></Input>
             </Field>
             <Field>
@@ -194,6 +196,7 @@ const ProfilePage = () => {
                 name="password"
                 type={isChangePassword ? "text" : "password"}
                 disabled="disabled"
+                className="pointer-events-none"
               ></Input>
               <p
                 className="mt-2 text-sm hover:text-blue-500 cursor-pointer"

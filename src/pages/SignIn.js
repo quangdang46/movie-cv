@@ -7,6 +7,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { LoadingSpinner } from "../components/Loading";
+import { useSelector } from "react-redux";
 const schema = yup.object({
   email: yup
     .string()
@@ -19,6 +20,10 @@ const schema = yup.object({
 });
 const SignIn = () => {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
+  if (user) {
+    navigate("/");
+  }
   const {
     register,
     handleSubmit,
