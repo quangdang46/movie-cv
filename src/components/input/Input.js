@@ -9,14 +9,15 @@ const InputStyles = styled.div`
   input {
     width: 100%;
     padding: ${(props) =>
-      props.hasIcon ? "16px 60px 16px 20px" : "16px 20px"};
+      props.hasIcon ? "16px 60px 16px 20px" : "10px"};
     background-color: transparent;
     outline: none;
-    border: 1px solid slateblue;
-    border-radius: 8px;
+    border-radius: 4px;
     transition: all 0.2s linear;
     color: whitesmoke;
-    font-size: 14px;
+    font-size: 15px;
+    line-height: 1;
+    background-color: #3a3939;
   }
   input::-webkit-input-placeholder {
     color: #b2b3bd;

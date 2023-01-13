@@ -42,9 +42,12 @@ const SignUp = () => {
       });
       await setDoc(doc(db, "users", auth.currentUser.uid), {
         name: auth.currentUser.displayName,
-        photoURL: "https://source.unsplash.com/random",
+        photoURL: auth.currentUser.photoURL,
         bookmarks: [],
         recentlyWatch: [],
+        username: "",
+        email,
+        password,
       });
       toast.success("Register successfully!!!");
       navigate("/");

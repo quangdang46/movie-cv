@@ -20,9 +20,9 @@ const History = () => {
     return null;
   }
   return (
-    <div className="flex-grow px-10 pt-5">
+    <div className="flex-grow xs:px-2 sm:px-5 md:px-10 pt-5">
       <div className="flex items-center justify-between">
-        <span className="uppercase text-white font-semibold text-[35px] mb-4">
+        <span className="uppercase text-white font-semibold text-2xl sm:text-[35px] mb-4">
           My History
         </span>
       </div>

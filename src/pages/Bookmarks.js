@@ -61,6 +61,7 @@ const Bookmarks = () => {
       toast.success("Delete successful", {
         autoClose: 500,
       });
+      setMovieList(newBookmark);
     }
     localStorage.setItem("deleteList", JSON.stringify([]));
   };
@@ -69,9 +70,9 @@ const Bookmarks = () => {
     localStorage.setItem("deleteList", JSON.stringify([]));
   };
   return (
-    <div className="flex-grow px-10 pt-5">
-      <div className="flex items-center justify-between">
-        <span className="uppercase text-white font-semibold text-[35px] mb-4">
+    <div className="flex-grow xs:px-2 sm:px-5 md:px-10 p-5">
+      <div className="flex items-center gap-2 justify-center sm:gap-0 xs:justify-between flex-wrap">
+        <span className="uppercase text-white font-semibold text-2xl sm:text-[35px] mb-4 flex-shrink-0">
           My film
         </span>
         {!editMovie && (
@@ -122,7 +123,7 @@ const Bookmarks = () => {
           <Image
             lazy_src="https://source.unsplash.com/random"
             alt="no movie"
-            className="w-full h-full"
+            className="w-[500px] h-[500px]"
           ></Image>
         </div>
       )}

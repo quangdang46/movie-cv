@@ -1,24 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { v4 } from "uuid";
+import useClickOutSide from "../../hooks/useClickOutSide";
 import { useViewportView } from "../../hooks/useViewportView";
 import { menus } from "../../shared/const";
 import { BuggerIcon } from "../Icon";
 import { Image } from "../Lazy";
 
 const LeftSideBar = ({ show, setShow }) => {
-  const [open, setOpen] = useState(true);
+  // const [open, setOpen] = useState(true);
   const { width, isMobile } = useViewportView();
+  const { show: open, setShow: setOpen, nodeRef } = useClickOutSide("div");
+
   useEffect(() => {
     if (width < 1024) {
       setOpen(false);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [width]);
   return (
-    <section
+    <div
       className={`flex gap-6 shrink-0 md:translate-x-0 md:bg-transparent md:shadow-none -translate-x-full shadow-md transition duration-300 z-50 ${
         show && "translate-x-0 top-0"
       } ${isMobile && "fixed"}`}
+      ref={nodeRef}
     >
       <div
         className={`bg-dark-lighten rounded-lg min-h-screen ${
@@ -73,7 +78,7 @@ const LeftSideBar = ({ show, setShow }) => {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

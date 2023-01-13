@@ -115,7 +115,7 @@ const Header = ({ isSearch = true }) => {
 
         {user && (
           <>
-            <p className="hidden lg:inline">{user.name}</p>
+            <p className="hidden lg:inline">{user.username || user.name}</p>
             <div
               className="relative cursor-pointer"
               ref={boxRef}

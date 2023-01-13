@@ -5,6 +5,7 @@ const {
   BookmarkIcon,
   HistoryIcon,
   LogIcon,
+  UserIcon,
 } = require("../components/Icon");
 
 export const links = [
@@ -55,6 +56,11 @@ export const menus = [
     name: "History",
     link: "/history",
     icon: <HistoryIcon></HistoryIcon>,
+  },
+  {
+    name: "User",
+    link: "/profile",
+    icon: <UserIcon></UserIcon>,
   },
   {
     name: "Login",
