@@ -10,7 +10,6 @@ const InputStyles = styled.div`
     width: 100%;
     padding: ${(props) =>
       props.hasIcon ? "16px 60px 16px 20px" : "10px"};
-    background-color: transparent;
     outline: none;
     border-radius: 4px;
     transition: all 0.2s linear;

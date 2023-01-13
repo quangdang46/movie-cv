@@ -1,5 +1,11 @@
+import {
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  updatePassword,
+} from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
-import React from "react";
+import React, { useState } from "react";
+import { useRef } from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -12,6 +18,9 @@ import { auth, db } from "../fire-base/firebase-config";
 import useFirebaseImage from "../hooks/useFirebaseImage";
 
 const ProfilePage = () => {
+  const [isChangePassword, setIsChangePassword] = useState(false);
+  const newPasswordRef = useRef(null);
+  const oldPasswordRef = useRef(null);
   const {
     control,
     handleSubmit,
@@ -27,8 +36,8 @@ const ProfilePage = () => {
   const imageRegex = /%2F(\S+)\?/gm.exec(imageUrl);
   const imageName = imageRegex?.length > 0 ? imageRegex[1] : "";
   const { image, setImage, progress, handleSelectImage, handleDeleteImage } =
-  useFirebaseImage(setValue, getValues, imageName, deleteAvatar);
-  
+    useFirebaseImage(setValue, getValues, imageName, deleteAvatar);
+
   const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {
@@ -46,6 +55,19 @@ const ProfilePage = () => {
     });
   }
 
+  async function updateUser(data) {
+    try {
+      const colRef = doc(db, "users", auth.currentUser.uid);
+      await updateDoc(colRef, {
+        ...user,
+        ...data,
+      });
+      toast.success("Update user successfully!");
+    } catch (error) {
+      toast.error("Update user failed!");
+    }
+  }
+
   const handleUpdateUser = async (values) => {
     try {
       const colRef = doc(db, "users", auth.currentUser.uid);
@@ -58,6 +80,54 @@ const ProfilePage = () => {
       toast.error("Update user failed!");
     }
   };
+  const handleChangePassword = () => {
+    const newPass = newPasswordRef.current.value;
+    if (newPass.trim().length === 0) {
+      toast.error("Password is required!");
+      return;
+    }
+
+    updatePassword(auth.currentUser, newPass)
+      .then(() => {
+        newPasswordRef.current.value = "";
+        oldPasswordRef.current.value = "";
+        updateUser({
+          password: newPass,
+        });
+        toast.success("Update password successfully!");
+      })
+      .catch((error) => {
+        toast.error("Update password failed!");
+      })
+      .finally(() => {
+        setIsChangePassword(false);
+      });
+  };
+  const reAuthentication = async (e) => {
+    e.preventDefault();
+    const oldPassword = oldPasswordRef.current.value;
+    if (oldPassword.trim().length === 0) {
+      toast.error("Password is required!");
+      return;
+    }
+
+    const credential = EmailAuthProvider.credential(
+      auth.currentUser.email,
+      oldPassword
+    );
+    reauthenticateWithCredential(auth.currentUser, credential)
+      .then(() => {
+        // setShowReAuth(true);
+        // setIsChangePassword(true);
+        handleChangePassword();
+        toast.success("Re-authentication successfully!");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        // console.log(error);
+      });
+  };
+
   return (
     <div className="flex-grow xs:px-2 sm:px-5 md:px-10 px-2 pt-5">
       <div className="flex items-center justify-between">
@@ -108,6 +178,7 @@ const ProfilePage = () => {
                 placeholder="Enter your email"
                 control={control}
                 name="email"
+                disabled="disabled"
               ></Input>
             </Field>
             <Field>
@@ -115,14 +186,23 @@ const ProfilePage = () => {
                 htmlFor="username"
                 className="text-white mt-5 text-base font-medium mb-3"
               >
-                Password
+                {isChangePassword ? "Current your password" : "Password"}
               </label>
               <Input
                 placeholder="Enter your password"
                 control={control}
                 name="password"
-                type="password"
+                type={isChangePassword ? "text" : "password"}
+                disabled="disabled"
               ></Input>
+              <p
+                className="mt-2 text-sm hover:text-blue-500 cursor-pointer"
+                onClick={() => setIsChangePassword(!isChangePassword)}
+              >
+                {!isChangePassword
+                  ? "Change password"
+                  : "Don't change password"}
+              </p>
             </Field>
           </div>
           <div className="flex items-center flex-col shrink-0 md:max-w-[400px] w-full">
@@ -141,6 +221,7 @@ const ProfilePage = () => {
             <p className="text-white text-lg font-medium mt-2">Anynomous</p>
           </div>
         </div>
+
         <button
           className="block mx-auto cursor-pointer active:scale-[.98] active:duration-75 transition-all hover:opacity-90 ease-in-out transform bg-violet-500 rounded-lg text-white font-bold text-lg py-2 px-4"
           type="submit"
@@ -148,6 +229,47 @@ const ProfilePage = () => {
           {isSubmitting ? <LoadingSpinner></LoadingSpinner> : "Update"}
         </button>
       </form>
+      {isChangePassword && (
+        <form onSubmit={reAuthentication} autoComplete="off">
+          <Field>
+            <label
+              htmlFor="oldpassword"
+              className="text-white mt-5 text-base font-medium mb-3"
+            >
+              Enter your current password
+            </label>
+            <input
+              ref={oldPasswordRef}
+              type="text"
+              name="oldpassword"
+              id="oldpassword"
+              className="p-2 transition-all leading-none bg-dark-lighten-2 text-sm rounded border-none outline-none w-[200px]"
+            />
+          </Field>
+
+          <Field>
+            <label
+              htmlFor="newpassword"
+              className="text-white mt-5 text-base font-medium mb-3"
+            >
+              Enter your new password
+            </label>
+            <input
+              ref={newPasswordRef}
+              type="text"
+              name="newpassword"
+              id="newpassword"
+              className="p-2 transition-all leading-none bg-dark-lighten-2 text-sm rounded border-none outline-none w-[200px]"
+            />
+          </Field>
+          <button
+            type="submit"
+            className="mt-5 p-2 bg-dark-lighten-2 rounded hover:bg-gray-800"
+          >
+            Change password
+          </button>
+        </form>
+      )}
     </div>
   );
 };
