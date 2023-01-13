@@ -24,8 +24,6 @@ module.exports = {
         "dark-darken": "#19191b",
         "dark-lighten": "#333335",
         "dark-lighten-2": "#49494b",
-        tagsLinear:
-          "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(180,175,46,0.9048723897911833) 0%, rgba(162,255,0,0.9953596287703016) 70%);",
       },
       fontSize: {
         xxs: ".65rem",
