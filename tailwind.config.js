@@ -27,16 +27,8 @@ module.exports = {
         tagsLinear:
           "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(180,175,46,0.9048723897911833) 0%, rgba(162,255,0,0.9953596287703016) 70%);",
       },
-      backgroundImage: {
-        banner: "url('../public/images/banner.jpg')",
-        "gradient-to-b":
-          "linear-gradient(to bottom,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 15%,rgba(20,20,20,.35) 29%,rgba(20,20,20,.58) 44%,#141414 68%,#141414 100%);",
-      },
       fontSize: {
         xxs: ".65rem",
-      },
-      textShadow: {
-        md: "2px 2px 4px rgb(0 0 0 / 45%);",
       },
       gridTemplateColumns: {
         sm: "repeat(auto-fill, minmax(130px, 1fr))",
@@ -44,8 +36,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require("tailwind-scrollbar-hide"),
-    require("tailwind-scrollbar"),
-  ],
+  plugins: [require("tailwind-scrollbar-hide"), require("tailwind-scrollbar")],
 };
