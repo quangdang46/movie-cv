@@ -8,7 +8,6 @@ import { auth, db } from "./fire-base/firebase-config";
 import {
   GlobalUi,
   Explore,
-  HomePage,
   SignIn,
   MovieDetail,
   PageNotFound,
@@ -19,11 +18,11 @@ import {
   ProfilePage,
   Bookmarks,
   History,
+  AuthenUi,
 } from "./pages";
 import { currentUser } from "./redux/userSlice";
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -42,16 +41,7 @@ function App() {
   return (
     <div className="">
       <Routes>
-        <Route element={<DashBoard></DashBoard>}>
-          <Route
-            path="/"
-            element={
-              <>
-                <HomePage></HomePage>
-              </>
-            }
-          ></Route>
-        </Route>
+        <Route path="/" element={<DashBoard></DashBoard>}></Route>
         <Route path="/movies/:id" element={<MovieDetail></MovieDetail>}></Route>
         <Route path="/watch/:id" element={<WatchMovie></WatchMovie>}></Route>
         <Route
@@ -65,10 +55,10 @@ function App() {
           <Route path="/history" element={<History></History>}></Route>
           <Route path="/search" element={<SearchPage></SearchPage>}></Route>
         </Route>
-        {/* <Route path="/search" element={<SearchPage></SearchPage>}></Route> */}
-
-        <Route path="/signin" element={<SignIn></SignIn>}></Route>
-        <Route path="/signup" element={<SignUp></SignUp>}></Route>
+        <Route element={<AuthenUi></AuthenUi>}>
+          <Route path="/signin" element={<SignIn></SignIn>}></Route>
+          <Route path="/signup" element={<SignUp></SignUp>}></Route>
+        </Route>
         <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
     </div>

@@ -11,3 +11,4 @@ export { default as ViewAllPage } from "./ViewAllPage";
 export { default as ProfilePage } from "./ProfilePage";
 export { default as History } from "./History";
 export { default as Bookmarks } from "./Bookmarks";
+export { default as AuthenUi } from "./AuthenUi";

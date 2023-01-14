@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { HomePage } from "../../pages";
 import { openModal } from "../../redux/modalSlice";
 import { getTrending } from "../../service/movieService";
 import Header from "../layout/Header";
@@ -34,7 +34,8 @@ const DashBoard = () => {
       <main className="relative pl-4 pr-4 pb-24 lg:space-y-24 lg:pl-16 lg:pr-16">
         <MainBanner randomMovies={data.results}></MainBanner>
         <section className="md:space-y-24">
-          <Outlet></Outlet>
+          {/* <Outlet></Outlet> */}
+          <HomePage></HomePage>
         </section>
       </main>
       {showModal && <CustomModal />}
