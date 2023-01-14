@@ -41,7 +41,7 @@ const MainBanner = ({ randomMovies }) => {
         {movie?.overview ||
           "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore distinctio, ratione optio facilis ipsum laborum odio laboriosam in eligendi impedit, beatae tenetur dolor placeat obcaecati doloremque quasi soluta, quos vitae. "}
       </p>
-      <div className="flex space-x-3">
+      <div className="flex gap-3 flex-wrap ">
         <button
           className="flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl bg-white text-black"
           onClick={handlePlayModal}

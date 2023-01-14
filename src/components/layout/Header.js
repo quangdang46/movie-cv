@@ -29,7 +29,7 @@ const Header = () => {
     return (
       <a
         href={props.link}
-        className="hover:bg-dark-lighten-2 h-12 flex items-center rounded-md p-2"
+        className="hover:bg-dark-lighten-2 h-12 flex items-center rounded-md p-2 cursor-pointer"
         style={{
           transition: "all 500ms ease",
         }}

@@ -31,7 +31,7 @@ const DashBoard = () => {
       }`}
     >
       <Header></Header>
-      <main className="relative pl-4 pr-4 pb-24 lg:space-y-24 lg:pl-16 lg:pr-16">
+      <main className="relative pl-4 pr-4 pb-24 lg:space-y-24 lg:pl-10 lg:pr-10">
         <MainBanner randomMovies={data.results}></MainBanner>
         <section className="md:space-y-24">
           {/* <Outlet></Outlet> */}
