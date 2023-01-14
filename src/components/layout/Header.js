@@ -4,8 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { BasicMenu } from "../BasicMenu";
 import {
   ChevronLeftIcon,
-  ExploreIcon,
-  HistoryIcon,
   LogIcon,
   SearchIcon,
   UserIcon,
@@ -26,15 +24,18 @@ const Header = () => {
   const [activeMenu, setActiveMenu] = useState("main");
   const dropdownRef = useRef(null);
   const [show, setShow] = useState(false);
+  const handleClick = (props) => {
+    props.goToMenu && setActiveMenu(props.goToMenu);
+    if (props.cb) {
+      props.cb();
+    }
+  };
   function DropdownItem(props) {
     return (
       <a
         href={props.link}
-        className="hover:bg-dark-lighten-2 h-12 flex items-center rounded-md p-2 cursor-pointer"
-        style={{
-          transition: "all 500ms ease",
-        }}
-        onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}
+        className="hover:bg-dark-lighten-2 h-12 flex items-center rounded-md p-2 cursor-pointer transition-all duration-500"
+        onClick={() => handleClick(props)}
       >
         <span className="p-2 hover:filter-none hidden xs:block">
           {props.leftIcon}
@@ -66,7 +67,6 @@ const Header = () => {
     dispatch(currentUser(null));
   };
 
-  console.log(show);
 
   return (
     <header
@@ -169,6 +169,7 @@ const Header = () => {
                     <DropdownItem
                       onClick={handleSignOut}
                       leftIcon={<LogIcon></LogIcon>}
+                      cb={handleSignOut}
                     >
                       Logout
                     </DropdownItem>
@@ -188,17 +189,15 @@ const Header = () => {
                     >
                       Back
                     </DropdownItem>
-                    {menus
-                      .slice(1, menus.length - 1)
-                      .map((item, _) => (
-                        <DropdownItem
-                          leftIcon={item.icon}
-                          link={item.link}
-                          key={v4()}
-                        >
-                          {item.name}
-                        </DropdownItem>
-                      ))}
+                    {menus.slice(1, menus.length - 1).map((item, _) => (
+                      <DropdownItem
+                        leftIcon={item.icon}
+                        link={item.link}
+                        key={v4()}
+                      >
+                        {item.name}
+                      </DropdownItem>
+                    ))}
                   </div>
                 </CSSTransition>
               </div>

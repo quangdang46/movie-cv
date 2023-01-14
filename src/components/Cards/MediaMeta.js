@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { v4 } from "uuid";
 import { youtubePath } from "../../api/configApi";
 import { Iframe } from "../Lazy";
 const MediaMeta = ({ meta }) => {
@@ -17,7 +18,7 @@ const MediaMeta = ({ meta }) => {
         {meta &&
           meta.length > 0 &&
           meta.map((item, index) => (
-            <SwiperSlide key={item.id}>
+            <SwiperSlide key={v4()}>
               <Iframe
                 title={item.name}
                 lazy_src={youtubePath(item.key)}

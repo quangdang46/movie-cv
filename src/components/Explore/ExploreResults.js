@@ -25,7 +25,7 @@ const ExploreResults = ({ config }) => {
       keepPreviousData: true,
       staleTime: 1000,
     }
-  );
+    );
   if (movies?.pages.length === 0) {
     return (
       <div className="grid grid-cols-sm md:grid-cols-lg gap-x-2 md:gap-x-5 gap-y-5 mt-5">

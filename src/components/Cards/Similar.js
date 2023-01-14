@@ -4,6 +4,7 @@ import MovieCard from "./MovieCard";
 import SwiperCore, { Navigation } from "swiper";
 import { useViewportView } from "../../hooks/useViewportView";
 import { useParams } from "react-router-dom";
+import { v4 } from "uuid";
 const Similar = ({ similar }) => {
   SwiperCore.use([Navigation]);
   const { id } = useParams();
@@ -31,7 +32,7 @@ const Similar = ({ similar }) => {
         {similar
           ?.filter((p) => p.id !== id)
           .map((item) => (
-            <SwiperSlide key={item.id}>
+            <SwiperSlide key={v4()}>
               <MovieCard detail={item}></MovieCard>
             </SwiperSlide>
           ))}

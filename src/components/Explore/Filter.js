@@ -86,7 +86,7 @@ const Filter = () => {
   };
   const chooseGenre = (genreId) => {
     if (currentSearchParams.genre) {
-      if (currentSearchParams.genre.includes(genreId)) {
+      if (currentSearchParams.genre.includes(String(genreId))) {
         const newGenre = currentSearchParams.genre.filter(
           (genre) => genre !== genreId
         );

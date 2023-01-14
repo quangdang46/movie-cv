@@ -42,13 +42,10 @@ const WatchMovie = () => {
           ],
         };
         await updateDoc(colRefUpdate, payload);
-      } else {
-        // toast
-        console.log("not login");
       }
     };
     addMovieToRecently();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, id]);
   if (isError) return <div>Something went wrong</div>;
   if (isLoading) return <div>Loading...</div>;

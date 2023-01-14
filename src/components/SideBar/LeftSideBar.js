@@ -19,8 +19,8 @@ const LeftSideBar = ({ show, setShow }) => {
   }, [width]);
   return (
     <div
-      className={`flex gap-6 shrink-0 md:translate-x-0 md:bg-transparent md:shadow-none -translate-x-full shadow-md transition duration-500 z-50 ${
-        show && "translate-x-0 top-0"
+      className={`flex gap-6 shrink-0 md:translate-x-0 md:bg-transparent md:shadow-none -translate-x-full shadow-md transition duration-500 z-50 top-0 ${
+        show && "translate-x-0"
       } ${isMobile && "fixed"}`}
       ref={nodeRef}
     >
@@ -34,7 +34,7 @@ const LeftSideBar = ({ show, setShow }) => {
             <Link to="/">
               <Image
                 lazy_src={`https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/799px-Netflix_2015_logo.svg.png`}
-                className="cursor-pointer object-contain"
+                className="cursor-pointer object-cover flex-shrink-0"
                 width={100}
                 height={100}
               ></Image>
@@ -48,22 +48,22 @@ const LeftSideBar = ({ show, setShow }) => {
               to={menu?.link}
               key={v4()}
               className={` ${
-                menu?.margin && "mt-5"
+                menu?.margin && "mt-7"
               } group flex items-center text-sm ${
                 !open ? "gap-x-0 justify-center" : "gap-x-3"
               } font-medium p-3 hover:bg-gray-800 rounded-md`}
             >
               {menu?.icon}
-              <h2
+              <p
                 style={{
-                  transitionDelay: `${index + 3}00ms`,
+                  transitionDelay: `${index + 4}00ms`,
                 }}
                 className={`whitespace-pre duration-500 ${
                   !open && "opacity-0 translate-x-28 overflow-hidden"
                 }`}
               >
                 {menu?.name}
-              </h2>
+              </p>
               {!isMobile && (
                 <h2
                   className={`${
