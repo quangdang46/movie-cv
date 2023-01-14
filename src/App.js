@@ -1,7 +1,7 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import DashBoard from "./components/Dashboard/DashBoard";
 import { auth, db } from "./fire-base/firebase-config";
@@ -19,6 +19,7 @@ import {
   Bookmarks,
   History,
   AuthenUi,
+  ForgotPass,
 } from "./pages";
 import { currentUser } from "./redux/userSlice";
 function App() {
@@ -58,6 +59,7 @@ function App() {
         <Route element={<AuthenUi></AuthenUi>}>
           <Route path="/signin" element={<SignIn></SignIn>}></Route>
           <Route path="/signup" element={<SignUp></SignUp>}></Route>
+          <Route path="/forgotpass" element={<ForgotPass></ForgotPass>}></Route>
         </Route>
         <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>

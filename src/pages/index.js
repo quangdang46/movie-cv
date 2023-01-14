@@ -12,3 +12,4 @@ export { default as ProfilePage } from "./ProfilePage";
 export { default as History } from "./History";
 export { default as Bookmarks } from "./Bookmarks";
 export { default as AuthenUi } from "./AuthenUi";
+export { default as ForgotPass } from "./ForgotPass";

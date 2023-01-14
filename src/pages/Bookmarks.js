@@ -118,13 +118,8 @@ const Bookmarks = () => {
         </div>
       )}
       {movieList.length === 0 && (
-        <div className="text-white text-2xl font-semibold w-full">
+        <div className="mt-2 text-white text-2xl font-semibold w-full">
           You have no movie in your list
-          <Image
-            lazy_src="https://source.unsplash.com/random"
-            alt="no movie"
-            className="w-[500px] h-[500px]"
-          ></Image>
         </div>
       )}
     </div>
