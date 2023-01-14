@@ -7,7 +7,6 @@ import { MovieCard } from "../components/Cards";
 import { CancelIcon, DeleteIcon, EditIcon } from "../components/Icon";
 import { doc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../fire-base/firebase-config";
-import { Image } from "../components/Lazy";
 const Bookmarks = () => {
   const user = useSelector((state) => state.auth.user);
   const [movieList, setMovieList] = useState([]);

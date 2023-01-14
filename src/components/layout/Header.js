@@ -10,6 +10,7 @@ import { auth } from "../../fire-base/firebase-config";
 import { signOut } from "firebase/auth";
 import { links } from "../../shared/const";
 import { currentUser } from "../../redux/userSlice";
+import { DropdownMenu } from "../Dropdown";
 const Header = ({ isSearch = true }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
@@ -129,7 +130,7 @@ const Header = ({ isSearch = true }) => {
                 }
                 className="cursor-pointer rounded w-5 h-5 pointer-events-none"
               ></Image>
-
+              <DropdownMenu></DropdownMenu>
               {showBox && !isMobile && (
                 <div className="absolute right-0 top-10 bg-dark-darken flex flex-col gap-2 p-3 min-w-max rounded z-30">
                   <button
