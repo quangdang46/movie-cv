@@ -48,6 +48,7 @@ const WatchMovie = () => {
       }
     };
     addMovieToRecently();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, id]);
   if (isError) return <div>Something went wrong</div>;
   if (isLoading) return <div>Loading...</div>;
@@ -56,7 +57,7 @@ const WatchMovie = () => {
 
   return (
     <>
-      <Header isSearch={false}></Header>
+      <Header></Header>
       <div className="flex flex-col md:flex-row pl-4 pr-4 pb-24 lg:pl-16 lg:pr-16 mt-10">
         <div className="flex-grow px-[2vw] md:pt-11 pt-5">
           {!isMobile && <SimpleBreadcrumbs></SimpleBreadcrumbs>}
