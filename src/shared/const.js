@@ -47,7 +47,7 @@ export const menus = [
   {
     name: "Home",
     link: "/",
-    icon: <HomeIcon className="!w-6 !h-6 mr-0"></HomeIcon>,
+    icon: <HomeIcon className="!w-6 !h-6 !mr-0"></HomeIcon>,
   },
   { name: "Explore", link: "/explore", icon: <ExploreIcon></ExploreIcon> },
   { name: "Search", link: "/search", icon: <SearchIcon></SearchIcon> },

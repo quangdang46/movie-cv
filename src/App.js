@@ -3,7 +3,6 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import DashBoard from "./components/Dashboard/DashBoard";
 import { auth, db } from "./fire-base/firebase-config";
 import {
   GlobalUi,
@@ -20,6 +19,7 @@ import {
   History,
   AuthenUi,
   ForgotPass,
+  HomePage,
 } from "./pages";
 import { currentUser } from "./redux/userSlice";
 function App() {
@@ -38,11 +38,12 @@ function App() {
         dispatch(currentUser(null));
       }
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="">
       <Routes>
-        <Route path="/" element={<DashBoard></DashBoard>}></Route>
+        <Route path="/" element={<HomePage></HomePage>}></Route>
         <Route path="/movies/:id" element={<MovieDetail></MovieDetail>}></Route>
         <Route path="/watch/:id" element={<WatchMovie></WatchMovie>}></Route>
         <Route

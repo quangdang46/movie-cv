@@ -13,10 +13,11 @@ import {
 import { Image } from "../Lazy";
 import { auth } from "../../fire-base/firebase-config";
 import { signOut } from "firebase/auth";
-import { links } from "../../shared/const";
+import { links, menus } from "../../shared/const";
 import { currentUser } from "../../redux/userSlice";
 import { useRef } from "react";
 import { CSSTransition } from "react-transition-group";
+import { v4 } from "uuid";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
@@ -112,12 +113,9 @@ const Header = () => {
             </span>
             <div className="relative">
               <div
-                className={`font-montserrat absolute top-10 right-0 w-40 xs:w-80 bg-dark-darken rounded-lg p-4 overflow-hidden transition-all z-[999] ${
+                className={`font-montserrat absolute top-10 right-0 w-40 xs:w-80 bg-dark-darken rounded-lg p-4 overflow-hidden transition-all duration-500 z-[999] ${
                   show ? "block" : "hidden"
                 }`}
-                style={{
-                  transition: "all 500ms ease",
-                }}
                 ref={dropdownRef}
               >
                 <CSSTransition
@@ -150,12 +148,9 @@ const Header = () => {
             ></Image>
             <div className="relative">
               <div
-                className={`font-montserrat absolute top-10 right-0 w-40 xs:w-80 bg-dark-darken rounded-lg p-4 overflow-hidden transition-all z-[999] ${
+                className={`font-montserrat absolute top-10 right-0 w-40 xs:w-80 bg-dark-darken rounded-lg p-4 overflow-hidden transition-all duration-500 z-[999] ${
                   show ? "block" : "hidden"
                 }`}
-                style={{
-                  transition: "all 500ms ease",
-                }}
                 ref={dropdownRef}
               >
                 <CSSTransition
@@ -193,30 +188,17 @@ const Header = () => {
                     >
                       Back
                     </DropdownItem>
-                    <DropdownItem
-                      leftIcon={<UserIcon></UserIcon>}
-                      link="/profile"
-                    >
-                      Profile
-                    </DropdownItem>
-                    <DropdownItem
-                      leftIcon={<ExploreIcon></ExploreIcon>}
-                      link="/explore"
-                    >
-                      Explore
-                    </DropdownItem>
-                    <DropdownItem
-                      leftIcon={<HistoryIcon></HistoryIcon>}
-                      link="/history"
-                    >
-                      History
-                    </DropdownItem>
-                    <DropdownItem
-                      leftIcon={<SearchIcon></SearchIcon>}
-                      link="/search"
-                    >
-                      Search
-                    </DropdownItem>
+                    {menus
+                      .slice(1, menus.length - 1)
+                      .map((item, _) => (
+                        <DropdownItem
+                          leftIcon={item.icon}
+                          link={item.link}
+                          key={v4()}
+                        >
+                          {item.name}
+                        </DropdownItem>
+                      ))}
                   </div>
                 </CSSTransition>
               </div>
