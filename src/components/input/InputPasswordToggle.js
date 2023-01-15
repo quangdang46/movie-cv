@@ -4,7 +4,6 @@ import Input from "./Input";
 
 const InputPasswordToggle = ({ control, name, ...props }) => {
   const [togglePassword, setTogglePassword] = useState(false);
-  console.log(props);
   if (!control) return null;
   return (
     <Fragment>

@@ -11,6 +11,8 @@ import { currentUser } from "../../redux/userSlice";
 import { useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import { v4 } from "uuid";
+import { ToggleDarkMode } from "../Button";
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
@@ -97,6 +99,7 @@ const Header = () => {
         </ul>
       </div>
       <div className="flex items-center gap-x-1 xs:gap-x-3 text-sm font-light">
+        <ToggleDarkMode></ToggleDarkMode>
         <p
           onClick={() => navigate("/search")}
           className="cursor-pointer hidden xs:block"
@@ -130,7 +133,6 @@ const Header = () => {
             </div>
           </>
         )}
-
         {user && (
           <>
             <p className="hidden lg:inline">{user.username || user.name}</p>
