@@ -240,7 +240,7 @@ const MovieDetail = () => {
             </div>
           </div>
           <div className="mt-10">
-            <Label title={"Cast"} isLink={false}></Label>
+            <Label title="Cast"></Label>
             {!detail &&
               Array(10)
                 .fill(0)
@@ -256,15 +256,15 @@ const MovieDetail = () => {
           </div>
 
           <div className="mt-10">
-            <Label title={"Video"} isLink={false}></Label>
+            <Label title={"Video"}></Label>
             {detail && <MediaMeta meta={videos}></MediaMeta>}
           </div>
           <div className="mt-10">
-            <Label title={"Poster"} isLink={false}></Label>
+            <Label title={"Poster"}></Label>
             {detail && <InfiniteSlide meta={posters}></InfiniteSlide>}
           </div>
           <div className="mt-10">
-            <Label title={"Similar movies"} isLink={false}></Label>
+            <Label title={"Similar movies"}></Label>
             {!detail &&
               Array(10)
                 .fill(0)
@@ -278,7 +278,7 @@ const MovieDetail = () => {
           </div>
 
           <div className="mt-10">
-            <Label title={"Review"} isLink={false}></Label>
+            <Label title={"Review"}></Label>
             {!detail &&
               Array(10)
                 .fill(0)

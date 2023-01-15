@@ -1,14 +1,19 @@
 import React from "react";
 import ViewAll from "./ViewAll";
+const ConditionalWrapper = ({ conditional, wrapper, children }) => {
+  return conditional ? wrapper(children) : children;
+};
 
 const Label = ({ title, url }) => {
-  const WrappedViewAll = () => {
-    if (!url) {
-      return null;
-    }
-    return <ViewAll url={url}></ViewAll>;
-  };
-
+  if (!url) {
+    return (
+      <div className="w-full sm:w-fit group flex sm:gap-x-3 items-baseline justify-between sm:justify-start mb-2 flex-wrap">
+        <p className="text-lg xs:text-2xl sm:text-3xl uppercase font-montserrat font-semibold cursor-pointer">
+          {title}
+        </p>
+      </div>
+    );
+  }
   return (
     <div className="w-full sm:w-fit group flex sm:gap-x-3 items-baseline justify-between sm:justify-start mb-2 flex-wrap">
       <p className="text-lg xs:text-2xl sm:text-3xl uppercase font-montserrat font-semibold cursor-pointer">
@@ -23,7 +28,7 @@ const Label = ({ title, url }) => {
           <ChevronRightIcon></ChevronRightIcon>
         </span>
       </div> */}
-      <WrappedViewAll></WrappedViewAll>
+      <ViewAll url={url}></ViewAll>
     </div>
   );
 };

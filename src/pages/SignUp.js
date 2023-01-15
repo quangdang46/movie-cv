@@ -32,7 +32,11 @@ const SignUp = () => {
 
   const navigate = useNavigate();
   const onSubmit = async (data) => {
-    const { email, password } = data;
+    const { email, password, rePassword } = data;
+    if (password !== rePassword) {
+      toast.error("Password not match!!!");
+      return;
+    }
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser, {
@@ -90,6 +94,24 @@ const SignUp = () => {
           {errors && errors.password && (
             <p className="text-red-500 text-sm font-medium">
               {errors.password?.message}
+            </p>
+          )}
+        </div>
+        {/* re input password */}
+        <div className="flex flex-col mt-4">
+          <label className="text-lg font-medium text-gray-500">
+            Re-enter password
+          </label>
+          <input
+            className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent text-dark-darken"
+            placeholder="Enter your email"
+            type="password"
+            autoComplete="on"
+            {...register("rePassword")}
+          />
+          {errors && errors.rePassword && (
+            <p className="text-red-500 text-sm font-medium">
+              {errors.rePassword?.message}
             </p>
           )}
         </div>

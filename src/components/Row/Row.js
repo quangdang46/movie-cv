@@ -31,16 +31,22 @@ const Row = ({ title, type }) => {
   };
   return (
     <div className="h-40 space-y-0.5 md:space-y-2">
-      <Label toPath={`/viewall/${type}`} title={title} isLink={true}></Label>
+      {/* <Label toPath={`/viewall/${type}`} title={title} isLink={true}></Label> */}
+      <Label
+        title={title}
+        url={`/viewall/${type}`}
+      ></Label>
       <div className="group relative md:-ml-2">
-        <span
+        <div
           className={`absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125  group-hover:opacity-100 ${
             !isMoved && "hidden"
           }`}
           onClick={() => handleClick("left")}
         >
-          <ChevronLeftIcon></ChevronLeftIcon>
-        </span>
+          <span>
+            <ChevronLeftIcon></ChevronLeftIcon>
+          </span>
+        </div>
         <div
           className="flex items-center space-x-0.5 overflow-x-scroll scrollbar-hide md:space-x-2.5 md:p-2"
           ref={rowRef}
@@ -50,12 +56,14 @@ const Row = ({ title, type }) => {
               <Thumbnail key={movie.id} movie={movie} />
             ))}
         </div>
-        <span
+        <div
           className="absolute top-0 bottom-0 right-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100"
           onClick={() => handleClick("right")}
         >
-          <ChevronRightIcon></ChevronRightIcon>
-        </span>
+          <span>
+            <ChevronRightIcon></ChevronRightIcon>
+          </span>
+        </div>
       </div>
     </div>
   );

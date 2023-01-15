@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useParams } from "react-router-dom";
 import { v4 } from "uuid";
-import { Label } from "../components/Label";
+import Label from "../components/Label/Label";
 import Header from "../components/layout/Header";
 import List from "../components/List/List";
 import { Skeleton } from "../components/Skeleton";
@@ -41,11 +41,12 @@ const ViewAllPage = () => {
   return (
     <>
       <Header></Header>
-      <div className="mt-10 xs:p-10">
-        <Label
-          title={categories.find((item) => item.type === type).title}
-          isLink={true}
-        ></Label>
+      <div className="mt-20 p-3 sm:p-10">
+        <div className="p-2">
+          <Label
+            title={categories.find((item) => item.type === type).title}
+          ></Label>
+        </div>
         <div className="mt-10">
           {!detail && (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4 xl:gap-5">

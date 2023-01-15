@@ -96,10 +96,13 @@ const Header = () => {
             })}
         </ul>
       </div>
-      <div className="flex items-center space-x-4 text-sm font-light">
-        <span onClick={() => navigate("/search")} className="cursor-pointer">
+      <div className="flex items-center gap-x-1 xs:gap-x-3 text-sm font-light">
+        <p
+          onClick={() => navigate("/search")}
+          className="cursor-pointer hidden xs:block"
+        >
           <SearchIcon></SearchIcon>
-        </span>
+        </p>
         {!user && (
           <>
             <div className="cursor-pointer p-1" onClick={() => setShow(!show)}>
@@ -138,7 +141,7 @@ const Header = () => {
                     ? user.photoURL
                     : `https://occ-0-1190-2774.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbme8JMz4rEKFJhtzpOKWFJ_6qX-0y5wwWyYvBhWS0VKFLa289dZ5zvRBggmFVWVPL2AAYE8xevD4jjLZjWumNo.png?r=a41`
                 }
-                className="cursor-pointer rounded w-5 h-5"
+                className="cursor-pointer rounded w-5 h-5 flex-shrink-0"
               ></Image>
             </div>
 
