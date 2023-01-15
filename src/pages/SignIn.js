@@ -1,13 +1,12 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { auth } from "../fire-base/firebase-config";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import * as yup from "yup";
 import { LoadingSpinner } from "../components/Loading";
-import { useSelector } from "react-redux";
+import { auth } from "../fire-base/firebase-config";
 const schema = yup.object({
   email: yup
     .string()

@@ -8,7 +8,6 @@ import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
 import Comments from "../components/Comment/Comments";
 import { CalendarIcon } from "../components/Icon";
 import StarIcon from "../components/Icon/StarIcon";
-import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import { Iframe } from "../components/Lazy";
 import ReadMore from "../components/ReadMore/ReadMore";
@@ -140,7 +139,6 @@ const WatchMovie = () => {
           />
         </div>
       </div>
-      <Footer />
     </>
   );
 };

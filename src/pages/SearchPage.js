@@ -1,10 +1,10 @@
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ChevronDownIcon, ChevronRightIcon } from "../components/Icon";
 import { SearchResult } from "../components/SearchBox";
 import SearchBox from "../components/SearchBox/SearchBox";
 import { useViewportView } from "../hooks/useViewportView";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 const SearchPage = () => {
   const { isMobile, width } = useViewportView();
   const [searchParams, setSearchParams] = useSearchParams();

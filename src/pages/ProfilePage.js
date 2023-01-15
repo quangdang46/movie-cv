@@ -1,12 +1,10 @@
 import {
   EmailAuthProvider,
   reauthenticateWithCredential,
-  updatePassword,
+  updatePassword
 } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
-import React, { useState } from "react";
-import { useRef } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";

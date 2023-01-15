@@ -1,32 +1,29 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import StarRatings from "react-star-ratings";
+import { v4 } from "uuid";
+import { IMAGE_URL } from "../api/configApi";
 import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
 import { Button } from "../components/Button";
-import { v4 } from "uuid";
-import StarRatings from "react-star-ratings";
-import { IMAGE_URL } from "../api/configApi";
-import { Tag } from "../components/Tag";
 import {
   CastList,
   InfiniteSlide,
   MediaMeta,
-  Similar,
+  Similar
 } from "../components/Cards";
+import { PlusIcon, XIcon } from "../components/Icon";
 import Label from "../components/Label/Label";
+import Header from "../components/layout/Header";
 import { Image } from "../components/Lazy";
 import ReadMore from "../components/ReadMore/ReadMore";
-import { useQuery } from "@tanstack/react-query";
-import { getMovieFullDetail } from "../service/movieService";
-import { Skeleton } from "../components/Skeleton";
 import { ReviewBox } from "../components/ReviewBox";
-import Header from "../components/layout/Header";
-import { PlusIcon, XIcon } from "../components/Icon";
-import { useSelector } from "react-redux";
+import { Skeleton } from "../components/Skeleton";
+import { Tag } from "../components/Tag";
 import { useAddToBookmarks } from "../hooks/useAddToBookmarks";
+import { getMovieFullDetail } from "../service/movieService";
 const MovieDetail = () => {
   const { id } = useParams();
-  const user = useSelector((state) => state.auth.user);
-
   const { addedToList, handleList } = useAddToBookmarks(id);
   const navigate = useNavigate();
   const { data, isError, error } = useQuery(["movieDetail", id], () =>
@@ -169,7 +166,7 @@ const MovieDetail = () => {
               )}
               {detail && (
                 <ReadMore
-                  limitTextLength={300}
+                  limitTextLength={150}
                   className="mt-6 text-lg leading-8"
                 >
                   {"Story: " + detail.overview}

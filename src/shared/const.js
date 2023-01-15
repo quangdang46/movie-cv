@@ -43,24 +43,42 @@ export const categories = [
     type: "latest",
   },
 ];
+
 export const menus = [
   {
     name: "Home",
     link: "/",
     icon: <HomeIcon className="!w-6 !h-6 !mr-0"></HomeIcon>,
   },
-  { name: "Explore", link: "/explore", icon: <ExploreIcon></ExploreIcon> },
-  { name: "Search", link: "/search", icon: <SearchIcon></SearchIcon> },
-  { name: "Bookmark", link: "/bookmarks", icon: <BookmarkIcon></BookmarkIcon> },
+  {
+    name: "Explore",
+    link: "/explore",
+    icon: <ExploreIcon></ExploreIcon>,
+    requiredLogin: true,
+  },
+  {
+    name: "Search",
+    link: "/search",
+    icon: <SearchIcon></SearchIcon>,
+    requiredLogin: false,
+  },
+  {
+    name: "Bookmark",
+    link: "/bookmarks",
+    icon: <BookmarkIcon></BookmarkIcon>,
+    requiredLogin: true,
+  },
   {
     name: "History",
     link: "/history",
     icon: <HistoryIcon></HistoryIcon>,
+    requiredLogin: true,
   },
   {
     name: "User",
     link: "/profile",
     icon: <UserIcon></UserIcon>,
+    requiredLogin: true,
   },
   {
     name: "Login",

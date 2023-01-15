@@ -1,14 +1,13 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, db } from "../fire-base/firebase-config";
-import { doc, setDoc } from "firebase/firestore";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import * as yup from "yup";
 import { LoadingSpinner } from "../components/Loading";
-import { useSelector } from "react-redux";
+import { auth, db } from "../fire-base/firebase-config";
 
 const schema = yup.object({
   email: yup

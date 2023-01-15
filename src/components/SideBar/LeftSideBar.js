@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { v4 } from "uuid";
 import useClickOutSide from "../../hooks/useClickOutSide";
 import { useViewportView } from "../../hooks/useViewportView";
@@ -10,6 +12,15 @@ const LeftSideBar = ({ show, setShow }) => {
   // const [open, setOpen] = useState(true);
   const { width, isMobile } = useViewportView();
   const { show: open, setShow: setOpen, nodeRef } = useClickOutSide("div");
+  const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+  const cb = (requiredLogin, link) => {
+    if (requiredLogin && !user) {
+      toast.error("You need to login to access this page");
+      return;
+    }
+    navigate(link);
+  };
 
   useEffect(() => {
     if (width < 1024) {
@@ -43,20 +54,21 @@ const LeftSideBar = ({ show, setShow }) => {
           <BuggerIcon onClick={() => setOpen(!open)} />
         </div>
         <div className="mt-4 flex flex-col gap-4 relative">
-          {menus?.map((menu, index) => (
-            <Link
-              to={menu?.link}
+          {menus?.map(({ requiredLogin, ...menu }, index) => (
+            <div
+              // to={`${menu?.link}`}
+              onClick={() => cb(requiredLogin, menu?.link)}
               key={v4()}
               className={` ${
                 menu?.margin && "mt-7"
-              } group flex items-center text-sm ${
+              } group flex items-center text-sm cursor-pointer ${
                 !open ? "gap-x-0 justify-center" : "gap-x-3"
               } font-medium p-3 hover:bg-gray-800 rounded-md`}
             >
               {menu?.icon}
               <p
                 style={{
-                  transitionDelay: `${index + 4}00ms`,
+                  transitionDelay: `${index + 3}00ms`,
                 }}
                 className={`whitespace-pre duration-500 ${
                   !open && "opacity-0 translate-x-28 overflow-hidden"
@@ -65,15 +77,15 @@ const LeftSideBar = ({ show, setShow }) => {
                 {menu?.name}
               </p>
               {!isMobile && (
-                <h2
+                <p
                   className={`${
                     open && "hidden"
                   } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit z-50`}
                 >
                   {menu?.name}
-                </h2>
+                </p>
               )}
-            </Link>
+            </div>
           ))}
         </div>
       </div>

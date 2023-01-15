@@ -1,13 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { Label } from "../components/Label";
-import List from "../components/List/List";
-import { useQuery } from "@tanstack/react-query";
-import { getListMovie } from "../service/movieService";
-import { v4 } from "uuid";
-import { Skeleton } from "../components/Skeleton";
-import Header from "../components/layout/Header";
 import { useParams } from "react-router-dom";
+import { v4 } from "uuid";
+import { Label } from "../components/Label";
+import Header from "../components/layout/Header";
+import List from "../components/List/List";
+import { Skeleton } from "../components/Skeleton";
+import { getListMovie } from "../service/movieService";
 import { categories } from "../shared/const";
 const itemsPerPage = 20;
 const ViewAllPage = () => {
@@ -41,7 +41,7 @@ const ViewAllPage = () => {
   return (
     <>
       <Header></Header>
-      <div className="mt-10 p-10">
+      <div className="mt-10 xs:p-10">
         <Label
           title={categories.find((item) => item.type === type).title}
           isLink={true}
