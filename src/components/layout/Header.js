@@ -2,12 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BasicMenu } from "../BasicMenu";
-import {
-  ChevronLeftIcon,
-  LogIcon,
-  SearchIcon,
-  UserIcon,
-} from "../Icon";
+import { ChevronLeftIcon, LogIcon, SearchIcon, UserIcon } from "../Icon";
 import { Image } from "../Lazy";
 import { auth } from "../../fire-base/firebase-config";
 import { signOut } from "firebase/auth";
@@ -67,7 +62,6 @@ const Header = () => {
     dispatch(currentUser(null));
   };
 
-
   return (
     <header
       className={`${
@@ -108,9 +102,9 @@ const Header = () => {
         </span>
         {!user && (
           <>
-            <span className="cursor-pointer" onClick={() => setShow(!show)}>
+            <div className="cursor-pointer p-1" onClick={() => setShow(!show)}>
               <UserIcon></UserIcon>
-            </span>
+            </div>
             <div className="relative">
               <div
                 className={`font-montserrat absolute top-10 right-0 w-40 xs:w-80 bg-dark-darken rounded-lg p-4 overflow-hidden transition-all duration-500 z-[999] ${
@@ -137,15 +131,17 @@ const Header = () => {
         {user && (
           <>
             <p className="hidden lg:inline">{user.username || user.name}</p>
-            <Image
-              lazy_src={
-                user.photoURL
-                  ? user.photoURL
-                  : `https://occ-0-1190-2774.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbme8JMz4rEKFJhtzpOKWFJ_6qX-0y5wwWyYvBhWS0VKFLa289dZ5zvRBggmFVWVPL2AAYE8xevD4jjLZjWumNo.png?r=a41`
-              }
-              className="cursor-pointer rounded w-5 h-5"
-              onClick={() => setShow(!show)}
-            ></Image>
+            <div onClick={() => setShow(!show)} className="p-1">
+              <Image
+                lazy_src={
+                  user.photoURL
+                    ? user.photoURL
+                    : `https://occ-0-1190-2774.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbme8JMz4rEKFJhtzpOKWFJ_6qX-0y5wwWyYvBhWS0VKFLa289dZ5zvRBggmFVWVPL2AAYE8xevD4jjLZjWumNo.png?r=a41`
+                }
+                className="cursor-pointer rounded w-5 h-5"
+              ></Image>
+            </div>
+
             <div className="relative">
               <div
                 className={`font-montserrat absolute top-10 right-0 w-40 xs:w-80 bg-dark-darken rounded-lg p-4 overflow-hidden transition-all duration-500 z-[999] ${
