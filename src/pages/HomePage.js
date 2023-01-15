@@ -13,6 +13,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(openModal(false));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const { data, isError, error } = useQuery(["movieList"], () => getTrending());
   if (isError) {

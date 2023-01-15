@@ -1,17 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { v4 } from "uuid";
-import useClickOutSide from "../../hooks/useClickOutSide";
 import { useViewportView } from "../../hooks/useViewportView";
 import { menus } from "../../shared/const";
 import { BuggerIcon } from "../Icon";
 import { Image } from "../Lazy";
 const LeftSideBar = ({ show, setShow }) => {
-  // const [open, setOpen] = useState(true);
   const { width, isMobile } = useViewportView();
-  const { show: open, setShow: setOpen, nodeRef } = useClickOutSide("div");
+  const [open, setOpen] = useState(true);
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const cb = (requiredLogin, link) => {
@@ -33,7 +31,6 @@ const LeftSideBar = ({ show, setShow }) => {
       className={`flex gap-6 shrink-0 md:translate-x-0 md:bg-transparent md:shadow-none -translate-x-full shadow-md transition duration-500 z-50 top-0 ${
         show && "translate-x-0"
       } ${isMobile && "fixed"}`}
-      ref={nodeRef}
     >
       <div
         className={`bg-dark-lighten min-h-screen ${

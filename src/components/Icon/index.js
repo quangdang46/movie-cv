@@ -23,3 +23,5 @@ export { default as UserIcon } from "./UserIcon";
 export { default as DeleteIcon } from "./DeleteIcon";
 export { default as EditIcon } from "./EditIcon";
 export { default as CancelIcon } from "./CancelIcon";
+export { default as IconEyeClose } from "./IconEyeClose";
+export { default as IconEyeOpen } from "./IconEyeOpen";

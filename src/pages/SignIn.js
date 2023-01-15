@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as yup from "yup";
+import { Input, InputPasswordToggle } from "../components/input";
 import { LoadingSpinner } from "../components/Loading";
 import { auth } from "../fire-base/firebase-config";
 const schema = yup.object({
@@ -20,7 +21,7 @@ const schema = yup.object({
 const SignIn = () => {
   const navigate = useNavigate();
   const {
-    register,
+    control,
     handleSubmit,
     formState: { isValid, isSubmitting, errors },
   } = useForm({
@@ -51,11 +52,12 @@ const SignIn = () => {
       >
         <div className="flex flex-col">
           <label className="text-lg font-medium text-gray-500">Email</label>
-          <input
-            className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent text-dark-darken"
+          <Input
             placeholder="Enter your email"
-            {...register("email")}
-          />
+            name="email"
+            control={control}
+            className="border-2 border-gray-100 !p-4 !rounded-xl mt-1 !bg-white !text-dark-darken"
+          ></Input>
           {errors && errors.email && (
             <p className="text-red-500 text-sm font-medium">
               {errors.email?.message}
@@ -64,31 +66,17 @@ const SignIn = () => {
         </div>
         <div className="flex flex-col mt-4">
           <label className="text-lg font-medium text-gray-500">Password</label>
-          <input
-            className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent text-dark-darken"
-            placeholder="Enter your email"
-            type="password"
-            autoComplete="on"
-            {...register("password")}
-          />
+          <InputPasswordToggle
+            control={control}
+            className="border-2 border-gray-100 !p-4 !rounded-xl mt-1 !bg-white !text-dark-darken"
+          ></InputPasswordToggle>
           {errors && errors.password && (
             <p className="text-red-500 text-sm font-medium">
               {errors.password?.message}
             </p>
           )}
         </div>
-        <div className="mt-8 flex justify-between items-center">
-          <div>
-            <div>
-              <input type="checkbox" id="remember" />
-              <label
-                className="ml-2 font-medium text-base text-gray-500"
-                htmlFor="remember"
-              >
-                Remember for 30 days
-              </label>
-            </div>
-          </div>
+        <div className="mt-8 flex justify-end items-center">
           <p
             className="font-medium text-base text-violet-500 cursor-pointer"
             onClick={() => navigate("/forgotpass")}
