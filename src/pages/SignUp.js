@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import * as yup from "yup";
 import { Input, InputPasswordToggle } from "../components/input";
 import { LoadingSpinner } from "../components/Loading";
+import { Label } from "../components/Text";
 import { auth, db } from "../fire-base/firebase-config";
 
 const schema = yup.object({
@@ -71,7 +72,9 @@ const SignUp = () => {
         autoComplete="off"
       >
         <div className="flex flex-col">
-          <label className="text-lg font-medium text-gray-500">Email</label>
+          <Label htmlFor="email" className="!text-gray-500 mb-2">
+            Email
+          </Label>
           <Input
             placeholder="Enter your email"
             name="email"
@@ -85,7 +88,9 @@ const SignUp = () => {
           )}
         </div>
         <div className="flex flex-col mt-4">
-          <label className="text-lg font-medium text-gray-500">Password</label>
+          <Label htmlFor="password" className="!text-gray-500 mb-2">
+            Password
+          </Label>
           <InputPasswordToggle
             control={control}
             className="border-2 border-gray-100 !p-4 !rounded-xl mt-1 !bg-white !text-dark-darken"
@@ -97,9 +102,9 @@ const SignUp = () => {
           )}
         </div>
         <div className="flex flex-col mt-4">
-          <label className="text-lg font-medium text-gray-500">
+          <Label htmlFor="rePassword" className="!text-gray-500 mb-2">
             Re-enter password
-          </label>
+          </Label>
           <InputPasswordToggle
             control={control}
             className="border-2 border-gray-100 !p-4 !rounded-xl mt-1 !bg-white !text-dark-darken"

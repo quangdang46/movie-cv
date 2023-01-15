@@ -10,10 +10,10 @@ import {
   CastList,
   InfiniteSlide,
   MediaMeta,
-  Similar
+  Similar,
 } from "../components/Cards";
 import { PlusIcon, XIcon } from "../components/Icon";
-import Label from "../components/Label/Label";
+import { Title } from "../components/Text";
 import Header from "../components/layout/Header";
 import { Image } from "../components/Lazy";
 import ReadMore from "../components/ReadMore/ReadMore";
@@ -98,10 +98,7 @@ const MovieDetail = () => {
                     <Skeleton className="mt-6 w-[200px] h-[300px]"></Skeleton>
                   )}
                   {detail && (
-                    <ReadMore
-                      limitTextLength={200}
-                      className="mt-6 text-2xl"
-                    >
+                    <ReadMore limitTextLength={200} className="mt-6 text-2xl">
                       Tagline: {detail.tagline || "No tagline"}
                     </ReadMore>
                   )}
@@ -240,7 +237,7 @@ const MovieDetail = () => {
             </div>
           </div>
           <div className="mt-10">
-            <Label title="Cast"></Label>
+            <Title title="Cast"></Title>
             {!detail &&
               Array(10)
                 .fill(0)
@@ -256,15 +253,15 @@ const MovieDetail = () => {
           </div>
 
           <div className="mt-10">
-            <Label title={"Video"}></Label>
+            <Title title={"Video"}></Title>
             {detail && <MediaMeta meta={videos}></MediaMeta>}
           </div>
           <div className="mt-10">
-            <Label title={"Poster"}></Label>
+            <Title title={"Poster"}></Title>
             {detail && <InfiniteSlide meta={posters}></InfiniteSlide>}
           </div>
           <div className="mt-10">
-            <Label title={"Similar movies"}></Label>
+            <Title title={"Similar movies"}></Title>
             {!detail &&
               Array(10)
                 .fill(0)
@@ -278,7 +275,7 @@ const MovieDetail = () => {
           </div>
 
           <div className="mt-10">
-            <Label title={"Review"}></Label>
+            <Title title={"Review"}></Title>
             {!detail &&
               Array(10)
                 .fill(0)

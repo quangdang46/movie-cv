@@ -1,7 +1,7 @@
 import {
   EmailAuthProvider,
   reauthenticateWithCredential,
-  updatePassword
+  updatePassword,
 } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
 import React, { useEffect, useRef, useState } from "react";
@@ -12,6 +12,7 @@ import Field from "../components/Field/Field";
 import { ImageUpload } from "../components/Image";
 import Input from "../components/input/Input";
 import { LoadingSpinner } from "../components/Loading";
+import { Label } from "../components/Text";
 import { auth, db } from "../fire-base/firebase-config";
 import useFirebaseImage from "../hooks/useFirebaseImage";
 
@@ -23,7 +24,6 @@ const ProfilePage = () => {
     control,
     handleSubmit,
     setValue,
-    watch,
     getValues,
     formState: { isValid, isSubmitting },
     reset,
@@ -141,12 +141,9 @@ const ProfilePage = () => {
               User Information
             </p>
             <Field>
-              <label
-                htmlFor="username"
-                className="text-white mt-5 text-base font-medium mb-3"
-              >
+              <Label htmlFor="username" className="mb-3">
                 Username
-              </label>
+              </Label>
               <Input
                 placeholder="Enter your full name"
                 control={control}
@@ -154,12 +151,9 @@ const ProfilePage = () => {
               ></Input>
             </Field>
             <Field>
-              <label
-                htmlFor="username"
-                className="text-white mt-5 text-base font-medium mb-3"
-              >
-                Fullname
-              </label>
+              <Label htmlFor="name" className="mb-3">
+                Full name
+              </Label>
               <Input
                 placeholder="Enter your name"
                 control={control}
@@ -167,12 +161,9 @@ const ProfilePage = () => {
               ></Input>
             </Field>
             <Field>
-              <label
-                htmlFor="username"
-                className="text-white mt-5 text-base font-medium mb-3"
-              >
+              <Label htmlFor="email" className="mb-3">
                 Email
-              </label>
+              </Label>
               <Input
                 placeholder="Enter your email"
                 control={control}
@@ -182,12 +173,9 @@ const ProfilePage = () => {
               ></Input>
             </Field>
             <Field>
-              <label
-                htmlFor="username"
-                className="text-white mt-5 text-base font-medium mb-3"
-              >
+              <Label htmlFor="password" className="mb-3">
                 {isChangePassword ? "Current your password" : "Password"}
-              </label>
+              </Label>
               <Input
                 placeholder="Enter your password"
                 control={control}
@@ -233,12 +221,10 @@ const ProfilePage = () => {
       {isChangePassword && (
         <form onSubmit={reAuthentication} autoComplete="off">
           <Field>
-            <label
-              htmlFor="oldpassword"
-              className="text-white mt-5 text-base font-medium mb-3"
-            >
+            <Label htmlFor="oldpassword" className="mb-3">
               Enter your current password
-            </label>
+            </Label>
+
             <input
               ref={oldPasswordRef}
               type="text"
@@ -247,14 +233,10 @@ const ProfilePage = () => {
               className="p-2 transition-all leading-none bg-dark-lighten-2 text-sm rounded border-none outline-none w-[200px]"
             />
           </Field>
-
           <Field>
-            <label
-              htmlFor="newpassword"
-              className="text-white mt-5 text-base font-medium mb-3"
-            >
+            <Label htmlFor="newpassword" className="mb-3">
               Enter your new password
-            </label>
+            </Label>
             <input
               ref={newPasswordRef}
               type="text"

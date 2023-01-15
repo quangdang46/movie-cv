@@ -1,7 +1,7 @@
 import React from "react";
 import ViewAll from "./ViewAll";
 
-const Label = ({ title, url }) => {
+const Title = ({ title, url }) => {
   const WrappedViewAll = () => {
     if (!url) {
       return null;
@@ -27,4 +27,4 @@ const Label = ({ title, url }) => {
     </div>
   );
 };
-export default Label;
+export default Title;

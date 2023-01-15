@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { getListMovie } from "../../service/movieService";
 import { Thumbnail } from "../Cards";
 import { ChevronLeftIcon, ChevronRightIcon } from "../Icon";
-import { Label } from "../Label";
+import { Title } from "../Text";
 const Row = ({ title, type }) => {
   const rowRef = useRef(null);
   const [isMoved, setIsMoved] = useState(false);
@@ -31,11 +31,7 @@ const Row = ({ title, type }) => {
   };
   return (
     <div className="h-40 space-y-0.5 md:space-y-2">
-      {/* <Label toPath={`/viewall/${type}`} title={title} isLink={true}></Label> */}
-      <Label
-        title={title}
-        url={`/viewall/${type}`}
-      ></Label>
+      <Title title={title} url={`/viewall/${type}`}></Title>
       <div className="group relative md:-ml-2">
         <div
           className={`absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125  group-hover:opacity-100 ${

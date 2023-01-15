@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../fire-base/firebase-config";
 import { useNavigate } from "react-router-dom";
+import { Label } from "../components/Text";
+import { Input } from "../components/input";
 
 const schema = yup.object({
   email: yup
@@ -16,7 +18,7 @@ const schema = yup.object({
 });
 const ForgotPass = () => {
   const {
-    register,
+    control,
     handleSubmit,
     formState: { isValid, isSubmitting, errors },
   } = useForm({
@@ -54,12 +56,20 @@ const ForgotPass = () => {
         autoComplete="off"
       >
         <div className="flex flex-col">
-          <label className="text-lg font-medium text-gray-500">Email</label>
-          <input
+          <Label htmlFor="email" className="!text-gray-500 mb-2">
+            Email
+          </Label>
+          {/* <input
             className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent text-dark-darken"
             placeholder="Enter your email"
             {...register("email")}
-          />
+          /> */}
+          <Input
+            placeholder="Enter your email"
+            name="email"
+            control={control}
+            className="border-2 border-gray-100 !p-4 !rounded-xl mt-1 !bg-white !text-dark-darken"
+          ></Input>
           {errors && errors.email && (
             <p className="text-red-500 text-sm font-medium">
               {errors.email?.message}
