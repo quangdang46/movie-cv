@@ -27,7 +27,7 @@ const SearchResult = ({ currentTab, query, page }) => {
 
   return (
     <div className="md:mt-32 mt-7 px-[2vw]">
-      <p className="text-white md:text-xl text-lg mb-10">
+      <p className="text-black dark:text-white md:text-xl text-lg mb-10">
         Search results for "{query}" ({data?.total_results} results found)
       </p>
       {data && data.results?.length === 0 && (
@@ -36,7 +36,7 @@ const SearchResult = ({ currentTab, query, page }) => {
             lazy_src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuHWK06y8c81VfuX3R5sNXDfKWxWIOqH8C2g&usqp=CAU"
             className="w-[600px] opacity-60"
           ></Image>
-          <p className="text-white text-3xl mt-5">There is no such films</p>
+          <p className="text-black dark:text-white text-3xl mt-5">There is no such films</p>
         </div>
       )}
       <ul className="grid grid-cols-sm md:grid-cols-lg gap-x-3 md:gap-x-8 gap-y-10">
@@ -55,8 +55,8 @@ const SearchResult = ({ currentTab, query, page }) => {
       </ul>
       {data && (
         <ReactPaginate
-          previousLabel={"previous"}
-          nextLabel={"next"}
+          previousLabel={"Previous"}
+          nextLabel={"Next"}
           breakLabel={"..."}
           breakClassName={"break-me"}
           pageCount={data.total_pages}

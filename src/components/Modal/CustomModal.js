@@ -68,7 +68,7 @@ const CustomModal = () => {
           <div className="absolute bottom-10 flex w-full items-center justify-between px-10">
             <div className="flex space-x-2">
               <button
-                className="flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-[#e6e6e6]"
+                className="flex items-center gap-x-2 rounded bg-gray-500 dark:bg-white px-8 text-xl font-bold text-white dark:text-black transition hover:bg-slate-500 dark:hover:bg-[#e6e6e6]"
                 onClick={handleClickPlay}
               >
                 <PlayIcon></PlayIcon>
@@ -89,17 +89,17 @@ const CustomModal = () => {
             </button>
           </div>
         </div>
-        <div className="flex space-x-16 rounded-b-md bg-[#181818] p-8">
+        <div className="flex space-x-16 rounded-b-md  bg-gray-400 dark:bg-[#181818] p-8 text-black dark:text-white">
           <div className="space-y-6 text-lg">
             <div className="flex items-center space-x-2 text-sm">
-              <p className="font-semibold text-green-400">
+              <p className="font-semibold text-red-700 dark:text-green-400">
                 {(detail?.vote_average * 10).toFixed(2)}% Match
               </p>
               <p className="font-light">
                 {formatDate(detail?.release_date) ||
                   formatDate(detail?.first_air_date)}
               </p>
-              <div className="flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs">
+              <div className="flex h-4 items-center justify-center rounded border border-black dark:border-white/40 px-1.5 text-xs">
                 HD
               </div>
             </div>
@@ -109,19 +109,23 @@ const CustomModal = () => {
               </ReadMore>
               <div className="flex flex-col space-y-3 text-sm">
                 <div>
-                  <span className="text-[gray]">Genres:</span>{" "}
+                  <span className=" text-black dark:text-[gray]">Genres:</span>{" "}
                   {detail.genres.map((genre) => genre.name).join(", ")}
                 </div>
 
                 <div>
-                  <span className="text-[gray]">Original language:</span>{" "}
+                  <span className="text-black dark:text-[gray]">
+                    Original language:
+                  </span>{" "}
                   {detail?.original_language
                     .toLowerCase()
                     .replace(/\b(\w)/g, (s) => s.toUpperCase())}
                 </div>
 
                 <div>
-                  <span className="text-[gray]">Total votes:</span>{" "}
+                  <span className="text-black dark:text-[gray]">
+                    Total votes:
+                  </span>{" "}
                   {detail?.vote_count}
                 </div>
               </div>

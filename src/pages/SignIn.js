@@ -41,9 +41,11 @@ const SignIn = () => {
     }
   };
   return (
-    <div className=" w-11/12 max-w-[700px] px-10 py-20 rounded-3xl bg-white border-2 border-gray-100">
-      <h1 className="text-5xl font-semibold text-gray-500">Welcome Back</h1>
-      <p className="font-medium text-lg text-gray-500 mt-4">
+    <div className=" w-11/12 max-w-[700px] px-10 py-20 rounded-3xl bg-white dark:bg-[#1C1C1E] border-2 border-gray-100 dark:border-slate-500">
+      <h1 className="text-5xl font-semibold text-gray-500 dark:text-white">
+        Welcome Back
+      </h1>
+      <p className="font-medium text-lg text-gray-500 dark:text-white mt-4">
         Welcome back! Please enter you details.
       </p>
       <form
@@ -52,14 +54,17 @@ const SignIn = () => {
         autoComplete="off"
       >
         <div className="flex flex-col">
-          <Label htmlFor="email" className="!text-gray-500 mb-2">
+          <Label
+            htmlFor="email"
+            className="!text-gray-500 dark:!text-white mb-2"
+          >
             Email
           </Label>
           <Input
             placeholder="Enter your email"
             name="email"
             control={control}
-            className="border-2 border-gray-100 !p-4 !rounded-xl mt-1 !bg-white !text-dark-darken"
+            className="border-2 border-gray-100 !p-4 !rounded-xl mt-1 !bg-white !text-dark-darken dark:!bg-dark-lighten dark:!text-white dark:!border-slate-500"
           ></Input>
           {errors && errors.email && (
             <p className="text-red-500 text-sm font-medium">
@@ -68,12 +73,15 @@ const SignIn = () => {
           )}
         </div>
         <div className="flex flex-col mt-4">
-          <Label htmlFor="password" className="!text-gray-500 mb-2">
+          <Label
+            htmlFor="password"
+            className="!text-gray-500 mb-2  dark:!text-white"
+          >
             Password
           </Label>
           <InputPasswordToggle
             control={control}
-            className="border-2 border-gray-100 !p-4 !rounded-xl mt-1 !bg-white !text-dark-darken"
+            className="border-2 border-gray-100 !p-4 !rounded-xl mt-1 !bg-white !text-dark-darken dark:!bg-dark-lighten dark:!text-white dark:!border-slate-500"
           ></InputPasswordToggle>
           {errors && errors.password && (
             <p className="text-red-500 text-sm font-medium">
@@ -98,7 +106,7 @@ const SignIn = () => {
           </button>
         </div>
         <div className="mt-8 flex justify-center items-center">
-          <p className="font-medium text-base text-gray-500">
+          <p className="font-medium text-base text-gray-500 dark:text-white">
             Don't have an account?
           </p>
           <p

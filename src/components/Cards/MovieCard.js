@@ -37,7 +37,7 @@ const MovieCard = ({ detail, showGenres = true, useDelete = false }) => {
   };
   return (
     <div
-      className={`relative flex flex-col dark:border-zinc-600 p-2 rounded-xl h-full bg-zinc-700 overflow-hidden hover:scale-105 hover:brightness-110 transition duration-300 ${
+      className={`relative flex flex-col dark:border-zinc-600 p-2 rounded-xl h-full dark:bg-zinc-700 bg-gray-500 overflow-hidden hover:scale-105 hover:brightness-110 transition duration-300 ${
         useDelete && "cursor-pointer"
       }`}
       onClick={() => handleDelete(detail.id)}
@@ -62,14 +62,14 @@ const MovieCard = ({ detail, showGenres = true, useDelete = false }) => {
         </div>
         <div className="mt-3 text-center flex flex-col flex-1">
           <p className="font-bold text-sm whitespace-nowrap overflow-hidden text-ellipsis transition duration-300">
-            {detail.title}
+            {detail.title || detail.original_name}
           </p>
           {showGenres && detail.genres && (
             <div className="mt-2 flex items-center gap-1 justify-center flex-wrap">
               {detail.genres.length > 0 &&
                 detail.genres.map((genre) => (
                   <span
-                    className="px-2 py-1 border-2 rounded-xl text-xs font-bold border-zinc-600"
+                    className="px-2 py-1 border-2 rounded-xl text-xs font-bold border-gray-700 dark:border-zinc-600"
                     key={genre.id}
                   >
                     {genre.name}

@@ -5,8 +5,7 @@ import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { EMBED_TO } from "../api/configApi";
 import SimpleBreadcrumbs from "../Breadcrums/SimpleBreadcrumbs";
-import Comments from "../components/Comment/Comments";
-import { CalendarIcon } from "../components/Icon";
+import { HistoryIcon } from "../components/Icon";
 import StarIcon from "../components/Icon/StarIcon";
 import Header from "../components/layout/Header";
 import { Iframe } from "../components/Lazy";
@@ -72,7 +71,7 @@ const WatchMovie = () => {
             <div className="flex justify-between md:text-base text-sm">
               <div className="flex-1">
                 {!detail && <Skeleton className="h-8 w-[400px]" />}
-                <h1 className="text-white md:text-3xl text-xl font-medium">
+                <h1 className="text-black dark:text-white md:text-3xl text-xl font-medium">
                   <Link
                     to={`/movies/${detail?.id}`}
                     className="hover:brightness-75 transition duration-300"
@@ -88,7 +87,9 @@ const WatchMovie = () => {
                       <StarIcon className={"text-primary"}></StarIcon>
                     </div>
                     <div className="flex gap-2 items-center">
-                      <CalendarIcon className={"text-primary"}></CalendarIcon>
+                      <span className="text-primary">
+                        <HistoryIcon></HistoryIcon>
+                      </span>
                       <p>
                         {new Date(detail?.release_date).getFullYear() ||
                           new Date(detail?.first_air_date).getFullYear()}
@@ -103,7 +104,7 @@ const WatchMovie = () => {
                       <li key={genre.id} className="mb-2">
                         <Link
                           to={`/explore?genre=${genre.id}`}
-                          className="px-3 py-1 bg-dark-lighten rounded-full hover:brightness-75 duration-300 transition"
+                          className="px-3 py-1 bg-gray-500 dark:bg-dark-lighten rounded-full hover:brightness-75 duration-300 transition"
                         >
                           {genre.name}
                         </Link>
@@ -113,7 +114,7 @@ const WatchMovie = () => {
                 )}
               </div>
             </div>
-            <div className="md:text-xl text-lg font-medium text-white mt-5">
+            <div className="md:text-xl text-lg font-medium text-black dark:text-white mt-5">
               Overview:
             </div>
             {!detail && <Skeleton className="h-[84px] mt-2" />}
@@ -126,7 +127,7 @@ const WatchMovie = () => {
               </ReadMore>
             )}
           </div>
-          <Comments></Comments>
+          {/* <Comments></Comments> */}
         </div>
         <div className="shrink-0 md:max-w-[400px] w-full relative px-6">
           {!isMobile && <SearchBox />}

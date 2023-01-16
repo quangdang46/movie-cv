@@ -57,20 +57,22 @@ const Sort = () => {
   return (
     <>
       <div
-        className="bg-dark-lighten rounded-md shadow-md px-4 pt-3"
+        className="bg-gray-500 dark:bg-dark-lighten rounded-md shadow-md px-4 pt-3"
         ref={parent}
       >
-        <div className="flex justify-between items-center text-white pb-3">
-          <p className="text-lg ">Sort</p>
+        <div className="flex justify-between items-center text-black dark:text-white pb-3">
+          <p className="text-lg">Sort</p>
           <button onClick={() => setOpenSort((prev) => !prev)}>
             {openSort && <ChevronDownIcon />}
             {!openSort && <ChevronUpIcon />}
           </button>
         </div>
         {openSort && (
-          <div className="py-3 border-t border-dark-darken">
-            <p className="text-lg mb-2 text-white/80">Sort results by </p>
-            <div className="select-container">
+          <div className="py-3 border-t border-gray-800 dark:border-dark-darken">
+            <p className="text-lg mb-2 text-black dark:text-white/80">
+              Sort results by{" "}
+            </p>
+            <div className="select-container bg-gray-600 dark:bg-[#49494b] text-black dark:text-white">
               <select value={title} onChange={chooseSort}>
                 {options.map((option) => (
                   <option value={option.value} key={option.value}>

@@ -16,7 +16,7 @@ const RightSideBar = ({
   return (
     <div className={className}>
       <p className="mb-6 text-xl font-medium flex justify-between items-center">
-        <span className="text-white">{name}</span>
+        <span className="text-black dark:text-white">{name}</span>
         <BulletIcon></BulletIcon>
       </p>
       <ul className="flex flex-col gap-5">
@@ -45,7 +45,7 @@ const RightSideBar = ({
                     ></Image>
                   </div>
                   <div className="flex-grow">
-                    <p className="text-white mb-3 text-lg">
+                    <p className="text-black dark:text-white mb-3 text-lg">
                       {item.title || item.name}
                     </p>
                     <p className="mb-8">
@@ -62,7 +62,7 @@ const RightSideBar = ({
       </ul>
       <button
         onClick={() => navigate("/explore")}
-        className="bg-dark-lighten py-2 w-full rounded-full mt-7 hover:brightness-75 transition duration-300 "
+        className="bg-gray-500 dark:bg-dark-lighten py-2 w-full rounded-full mt-7 hover:brightness-75 transition duration-300 "
       >
         See more
       </button>

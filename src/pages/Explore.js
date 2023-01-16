@@ -43,7 +43,7 @@ const Explore = () => {
             isShowScrollUpBtn ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className="w-[35px] h-[35px] rounded-full flex items-center justify-center bg-slate-700">
+          <div className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-gray-500 dark:bg-slate-700">
             <ChevronUpIcon />
           </div>
         </button>

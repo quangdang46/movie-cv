@@ -8,7 +8,6 @@ export { default as VolumeOff } from "./VolumeOff";
 export { default as VolumeUp } from "./VolumeUp";
 export { default as InfoIcon } from "./InfoIcon";
 export { default as SearchIcon } from "./SearchIcon";
-export { default as CalendarIcon } from "./CalendarIcon";
 export { default as BulletIcon } from "./BulletIcon";
 export { default as HomeIcon } from "./HomeIcon";
 export { default as BreadcrumbsIcon } from "./BreadcrumbsIcon";

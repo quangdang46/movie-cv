@@ -17,7 +17,7 @@ const MediaMeta = ({ meta }) => {
       >
         {meta &&
           meta.length > 0 &&
-          meta.map((item, index) => (
+          meta.slice(0,10).map((item, index) => (
             <SwiperSlide key={v4()}>
               <Iframe
                 title={item.name}

@@ -1,3 +1,5 @@
+import { ToggleDarkMode } from "../components/Button";
+
 const {
   HomeIcon,
   ExploreIcon,
@@ -49,40 +51,45 @@ export const menus = [
     name: "Home",
     link: "/",
     icon: <HomeIcon className="!w-6 !h-6 !mr-0"></HomeIcon>,
+    requiredLogin: "home",
   },
   {
     name: "Explore",
     link: "/explore",
     icon: <ExploreIcon></ExploreIcon>,
-    requiredLogin: true,
+    requiredLogin: "search",
   },
   {
     name: "Search",
     link: "/search",
     icon: <SearchIcon></SearchIcon>,
-    requiredLogin: false,
+    requiredLogin: "search",
   },
   {
     name: "Bookmark",
     link: "/bookmarks",
     icon: <BookmarkIcon></BookmarkIcon>,
-    requiredLogin: true,
   },
   {
     name: "History",
     link: "/history",
     icon: <HistoryIcon></HistoryIcon>,
-    requiredLogin: true,
   },
   {
     name: "User",
     link: "/profile",
     icon: <UserIcon></UserIcon>,
-    requiredLogin: true,
   },
   {
-    name: "Login",
-    link: "/login",
+    name: "Dark mode",
+    link: "#",
+    icon: <ToggleDarkMode></ToggleDarkMode>,
+    margin: true,
+  },
+  {
+    name: "Log",
+    link: "#",
+    requiredLogin: "login",
     icon: <LogIcon></LogIcon>,
     margin: true,
   },

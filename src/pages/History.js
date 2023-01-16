@@ -22,7 +22,7 @@ const History = () => {
   return (
     <div className="flex-grow xs:px-2 sm:px-5 md:px-10 pt-5">
       <div className="flex items-center justify-between">
-        <span className="uppercase text-white font-semibold text-2xl sm:text-[35px] mb-4">
+        <span className="uppercase text-black dark:text-white font-semibold text-2xl sm:text-[35px] mb-4">
           My History
         </span>
       </div>
@@ -38,13 +38,8 @@ const History = () => {
         </div>
       )}
       {movieList.length === 0 && (
-        <div className="text-white text-2xl font-semibold w-full">
+        <div className="text-black dark:text-white text-2xl font-semibold w-full">
           You have no movie in your list
-          <Image
-            lazy_src="https://source.unsplash.com/random"
-            alt="no movie"
-            className="w-full h-full"
-          ></Image>
         </div>
       )}
     </div>

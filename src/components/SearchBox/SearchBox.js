@@ -52,18 +52,18 @@ const SearchBox = ({ autoFocus = false }) => {
 
   return (
     <div
-      className={`absolute z-30 shadow-md left-6 right-6 top-12 xs:top-10 group bg-[#333335] rounded-full ${
+      className={`absolute z-30 shadow-md left-6 right-6 top-12 xs:top-10 group bg-gray-500 dark:bg-dark-lighten rounded-full ${
         suggestions?.length > 0 && "!rounded-3xl"
       }`}
     >
       <form className="relative" onSubmit={searchSubmitHandler}>
         <button className="absolute top-1/2 -translate-y-1/2 left-5">
-          <SearchIcon className="hover:text-white transition duration-300"></SearchIcon>
+          <SearchIcon></SearchIcon>
         </button>
         <input
-          className="w-full pl-14 pr-7 outline-none bg-transparent py-3 placeholder-gray-500 text-white"
+          className="w-full pl-14 pr-7 outline-none bg-transparent py-3 placeholder-gray-800 dark:placeholder-gray-500 text-black dark:text-white"
           type="text"
-          placeholder="Search..."
+          placeholder="Enter keyword"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           autoFocus={autoFocus}

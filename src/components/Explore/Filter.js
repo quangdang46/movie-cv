@@ -137,10 +137,10 @@ const Filter = () => {
   };
   return (
     <div
-      className="bg-dark-lighten rounded-md shadow-md px-4 pt-3"
+      className="bg-gray-500 dark:bg-dark-lighten rounded-md shadow-md px-4 pt-3"
       ref={parent}
     >
-      <div className="flex justify-between items-center text-white pb-3">
+      <div className="flex justify-between items-center text-black dark:text-white pb-3">
         <p className="text-lg ">Filter</p>
         <button onClick={() => setOpenFilter((prev) => !prev)}>
           {openFilter && <ChevronDownIcon />}
@@ -148,8 +148,10 @@ const Filter = () => {
         </button>
       </div>
       {openFilter && (
-        <div className="py-3 border-t border-dark-darken">
-          <p className="text-lg mb-2 mt-5 text-white/80">Release Dates</p>
+        <div className="py-3 border-t border-gray-800 dark:border-dark-darken">
+          <p className="text-lg mb-2 mt-5 text-black dark:text-white/80">
+            Release Dates
+          </p>
           <div className="flex flex-col gap-3">
             <div className="flex justify-between items-center flex-wrap">
               <label htmlFor="from">From</label>
@@ -157,7 +159,7 @@ const Filter = () => {
                 type="date"
                 id="from"
                 name="from"
-                className="outline-none bg-dark-lighten-2 px-3 py-1 rounded-md"
+                className="outline-none  bg-gray-600 dark:bg-dark-lighten-2 px-3 py-1 rounded-md"
                 onChange={handleFilterDate}
                 value={searchParams.get("from") || "2002-11-04"}
               />
@@ -168,23 +170,23 @@ const Filter = () => {
                 type="date"
                 id="to"
                 name="to"
-                className="outline-none bg-dark-lighten-2 px-3 py-1 rounded-md"
+                className="outline-none  bg-gray-600 dark:bg-dark-lighten-2 px-3 py-1 rounded-md"
                 onChange={handleFilterDate}
                 value={searchParams.get("to") || "2022-07-28"}
               />
             </div>
           </div>
 
-          <p className="text-lg mb-4 text-white/80">Genres</p>
+          <p className="text-lg mb-4  text-black dark:text-white/80">Genres</p>
           <div className="flex gap-3 flex-wrap max-h-[180px] overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-600">
             {data &&
               data.movieGenres.map((genre) => (
                 <div key={genre.id}>
                   <button
                     onClick={() => chooseGenre(String(genre.id))}
-                    className={`px-4 py-1 border border-[#989898] rounded-full hover:brightness-75 transition duration-300 inline-block ${
+                    className={`px-4 py-1 border border-[#989898] rounded-full hover:brightness-50 dark:hover:brightness-75 transition duration-300 inline-block ${
                       searchParams.getAll("genre").includes(String(genre.id)) &&
-                      "bg-dark-lighten-2 text-white"
+                      "bg-gray-600 dark:bg-dark-lighten-2 text-black dark:text-white"
                     }`}
                   >
                     {genre.name}
@@ -193,13 +195,15 @@ const Filter = () => {
               ))}
           </div>
 
-          <p className="text-lg mb-2 mt-8 text-white/80">Runtime</p>
+          <p className="text-lg mb-2 mt-8 text-black dark:text-white/80">
+            Runtime
+          </p>
           <div>
             <div className="flex justify-between mb-3 flex-wrap">
               <div className="flex gap-2 items-center">
                 <span>From</span>
                 <p className="flex gap-1 items-center">
-                  <span className="text-lg font-medium text-white/60">
+                  <span className="text-lg font-medium text-gray-800 dark:text-white/60">
                     {minRuntime}
                   </span>
                   <span className="text-sm">min</span>
@@ -208,17 +212,17 @@ const Filter = () => {
               <div className="flex gap-2 items-center">
                 <span>To</span>
                 <p className="flex gap-1 items-center">
-                  <span className="text-lg font-medium text-white/60">
+                  <span className="text-lg font-medium text-gray-800 dark:text-white/60">
                     {maxRuntime}
                   </span>
                   <span className="text-sm">min</span>
                 </p>
               </div>
             </div>
-            <div className="relative h-[5px] bg-dark-darken rounded-md">
+            <div className="relative h-[5px] bg-gray-600 dark:bg-dark-darken rounded-md">
               <div
                 ref={sliderRangeRef}
-                className="absolute top-0 h-[5px] bg-dark-lighten-2 rounded-md"
+                className="absolute top-0 h-[5px] bg-gray-800 dark:bg-dark-lighten-2 rounded-md"
               ></div>
             </div>
             <div className="relative">
@@ -245,23 +249,25 @@ const Filter = () => {
             </div>
           </div>
 
-          <p className="text-lg mb-2 mt-8 text-white/80">Rating</p>
+          <p className="text-lg mb-2 mt-8 text-black dark:text-white/80">
+            Rating
+          </p>
           <div>
             <div className="flex justify-between mb-3">
               <div className="flex gap-2 items-center">
                 <span>Votes</span>
                 <p className="flex gap-1 items-center">
-                  <span className="text-lg font-medium text-white/60">
+                  <span className="text-lg font-medium text-gray-800 dark:text-white/60">
                     {vote}
                   </span>
                   <span className="text-sm">vote</span>
                 </p>
               </div>
             </div>
-            <div className="relative h-[5px] bg-dark-darken rounded-md">
+            <div className="relative h-[5px] bg-gray-600 dark:bg-dark-darken rounded-md">
               <div
                 ref={sliderVotes}
-                className="absolute top-0 h-[5px] bg-dark-lighten-2 rounded-md"
+                className="absolute top-0 h-[5px] bg-gray-800 dark:bg-dark-lighten-2 rounded-md"
               ></div>
             </div>
             <div className="relative">
@@ -278,13 +284,16 @@ const Filter = () => {
             </div>
           </div>
 
-          <p className="text-lg mb-2 mt-8 text-white/80">Keywords</p>
+          <p className="text-lg mb-2 mt-8 text-black dark:text-white/80">
+            Keywords
+          </p>
           <div className="">
             <input
               type="text"
               name="keywords"
+              autoComplete="off"
               placeholder="Enter a keyword"
-              className="outline-none border-none px-2 py-2 w-full rounded-md bg-dark-lighten-2"
+              className="outline-none border-none px-2 py-2 w-full rounded-md bg-gray-600 dark:bg-dark-lighten-2"
               defaultValue={searchParams.get("keywords") || ""}
               onChange={handleChangeKeyWord}
             />

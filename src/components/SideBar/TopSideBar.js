@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { ToggleDarkMode } from "../Button";
 import { BuggerIcon } from "../Icon";
 import { Image } from "../Lazy";
 
@@ -14,9 +15,12 @@ const TopSideBar = ({ onClick = () => {} }) => {
           height={100}
         ></Image>
       </Link>
-      <button onClick={onClick}>
-        <BuggerIcon size={25} />
-      </button>
+      <div className="flex items-center gap-x-2">
+        <ToggleDarkMode></ToggleDarkMode>
+        <button onClick={onClick} className="w-7 h-7">
+          <BuggerIcon />
+        </button>
+      </div>
     </div>
   );
 };

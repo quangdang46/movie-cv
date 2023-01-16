@@ -5,7 +5,7 @@ const ToggleDarkMode = () => {
   return (
     <button
       type="button"
-      className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
+      className="text-white dark:text-red-900 rounded-lg text-sm"
       onClick={() => setDarkMode(!darkMode)}
     >
       {darkMode ? (
@@ -15,7 +15,7 @@ const ToggleDarkMode = () => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-7 h-7"
         >
           <path
             strokeLinecap="round"
@@ -30,7 +30,7 @@ const ToggleDarkMode = () => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-7 h-7"
         >
           <path
             strokeLinecap="round"

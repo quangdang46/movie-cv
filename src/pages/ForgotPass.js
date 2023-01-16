@@ -42,11 +42,11 @@ const ForgotPass = () => {
     }
   };
   return (
-    <div className=" w-11/12 max-w-[700px] px-10 py-20 rounded-3xl bg-white border-2 border-gray-100">
-      <h1 className="text-5xl font-semibold text-gray-500  select-none">
+    <div className=" w-11/12 max-w-[700px] px-10 py-20 rounded-3xl bg-white dark:bg-[#1C1C1E] border-2 border-gray-100 dark:border-slate-500">
+      <h1 className="text-5xl font-semibold text-gray-500 dark:text-white  select-none">
         Forgot password
       </h1>
-      <p className="font-medium text-lg text-gray-500 mt-4 select-none">
+      <p className="font-medium text-lg text-gray-500 dark:text-white mt-4 select-none">
         Enter your email to reset your password.We will send you an email to
         reset your password
       </p>
@@ -56,19 +56,17 @@ const ForgotPass = () => {
         autoComplete="off"
       >
         <div className="flex flex-col">
-          <Label htmlFor="email" className="!text-gray-500 mb-2">
+          <Label
+            htmlFor="email"
+            className="!text-gray-500 mb-2 dark:!text-white"
+          >
             Email
           </Label>
-          {/* <input
-            className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent text-dark-darken"
-            placeholder="Enter your email"
-            {...register("email")}
-          /> */}
           <Input
             placeholder="Enter your email"
             name="email"
             control={control}
-            className="border-2 border-gray-100 !p-4 !rounded-xl mt-1 !bg-white !text-dark-darken"
+            className="border-2 border-gray-100 !p-4 !rounded-xl mt-1 !bg-white !text-dark-darken dark:!bg-dark-lighten dark:!text-white dark:!border-slate-500"
           ></Input>
           {errors && errors.email && (
             <p className="text-red-500 text-sm font-medium">

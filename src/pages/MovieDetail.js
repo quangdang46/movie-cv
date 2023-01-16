@@ -36,7 +36,7 @@ const MovieDetail = () => {
     return <div>Loading...</div>;
   }
   const { detail, credits, reviews, similar, videos, posters } = data;
-
+// dark:from-[rgba(0,0,0,0.5)] dark:to-[rgba(0,0,0,0.2)]
   return (
     <>
       <Header></Header>
@@ -46,9 +46,9 @@ const MovieDetail = () => {
             ? `url(` + IMAGE_URL + "/original" + detail.backdrop_path + `)`
             : `url(` + IMAGE_URL + "/original" + detail.poster_path + `)`,
         }}
-        className="bg-cover bg-center bg-no-repeat bg-fixed min-h-screen text-white "
+        className="bg-cover bg-center bg-no-repeat bg-fixed min-h-screen text-black dark:text-white "
       >
-        <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.2)] rounded-lg z-10"></div>
+        <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgb(190,193,196,0.4)] to-[rgb(47,60,83,0.29)] dark:from-gray-900/10 dark:to-[#010511] rounded-lg z-10"></div>
         <div className="top-10 absolute z-40 inset-0 py-10 2xl:max-w-screen-2xl 2xl:mx-auto px-2 sm:px-10 2xl:px-0">
           <div className="2xl:flex gap-x-5 items-stretch">
             <div className="hidden 2xl:block 2xl:shrink-0 w-full h-[600px] 2xl:h-auto 2xl:max-w-[400px] rounded-lg">

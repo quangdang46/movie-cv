@@ -71,7 +71,7 @@ const Bookmarks = () => {
   return (
     <div className="flex-grow xs:px-2 sm:px-5 md:px-10 p-5">
       <div className="flex items-center gap-2 justify-center sm:gap-0 xs:justify-between flex-wrap">
-        <span className="uppercase text-white font-semibold text-2xl sm:text-[35px] mb-4 flex-shrink-0">
+        <span className="uppercase text-black dark:text-white font-semibold text-2xl sm:text-[35px] mb-4 flex-shrink-0">
           My film
         </span>
         {!editMovie && (
@@ -117,7 +117,7 @@ const Bookmarks = () => {
         </div>
       )}
       {movieList.length === 0 && (
-        <div className="mt-2 text-white text-2xl font-semibold w-full">
+        <div className="mt-2 text-black dark:text-white text-2xl font-semibold w-full">
           You have no movie in your list
         </div>
       )}

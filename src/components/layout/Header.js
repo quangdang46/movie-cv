@@ -31,7 +31,7 @@ const Header = () => {
     return (
       <a
         href={props.link}
-        className="hover:bg-dark-lighten-2 h-12 flex items-center rounded-md p-2 cursor-pointer transition-all duration-500"
+        className="hover:bg-slate-100 dark:hover:bg-dark-lighten-2 h-12 flex items-center rounded-md p-2 cursor-pointer transition-all duration-500"
         onClick={() => handleClick(props)}
       >
         <span className="p-2 hover:filter-none hidden xs:block">
@@ -70,7 +70,7 @@ const Header = () => {
         // isScrolled
         //   ? "bg-[#141414]"
         //   : "bg-gradient-to-tr from-[rgba(0,0,0,0.1)] to-[rgba(0,0,0,0.05)]"
-        isScrolled && "bg-[#141414]"
+        isScrolled && "bg-gray-500 dark:bg-[#141414]"
       }`}
     >
       <div className="flex items-center space-x-2 md:space-x-10">
@@ -90,7 +90,7 @@ const Header = () => {
               return (
                 <li
                   key={name}
-                  className="cursor-pointer text-sm font-light text-[#e5e5e5] transition duration-[.4s] hover:text-[#b3b3b3]"
+                  className="cursor-pointer text-sm font-light text-black dark:text-white transition duration-[.4s] hover:text-gray-200 dark:hover:text-[#b3b3b3]"
                 >
                   <Link to={link}>{name}</Link>
                 </li>
@@ -113,7 +113,7 @@ const Header = () => {
             </div>
             <div className="relative">
               <div
-                className={`font-montserrat absolute top-10 right-0 w-40 xs:w-80 bg-dark-darken rounded-lg p-4 overflow-hidden transition-all duration-500 z-[999] ${
+                className={`font-montserrat absolute top-10 right-0 w-40 xs:w-80 bg-gray-400 dark:bg-dark-darken rounded-lg p-4 overflow-hidden transition-all duration-500 z-[999] ${
                   show ? "block" : "hidden"
                 }`}
                 ref={dropdownRef}
@@ -149,7 +149,7 @@ const Header = () => {
 
             <div className="relative">
               <div
-                className={`font-montserrat absolute top-10 right-0 w-40 xs:w-80 bg-dark-darken rounded-lg p-4 overflow-hidden transition-all duration-500 z-[999] ${
+                className={`font-montserrat absolute top-10 right-0 w-40 xs:w-80 bg-gray-400 dark:bg-dark-darken rounded-lg p-4 overflow-hidden transition-all duration-500 z-[999] ${
                   show ? "block" : "hidden"
                 }`}
                 ref={dropdownRef}

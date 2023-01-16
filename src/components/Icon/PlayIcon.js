@@ -7,7 +7,7 @@ const PlayIcon = () => {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
-        className="h-7 w-7 text-black pointer-events-none"
+        className="h-7 w-7 text-white dark:text-black pointer-events-none"
       >
         <path
           fillRule="evenodd"

@@ -26,9 +26,11 @@ const HomePage = () => {
       </div>
     );
   }
+      // className={`relative h-screen bg-gradient-to-b dark:from-gray-900/10 dark:to-[#010511] from-slate-100/40 to-slate-50/20 lg:h-[140vh] ${
+
   return (
     <div
-      className={`relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh] ${
+      className={`relative h-screen bg-gradient-to-b dark:from-gray-900/10 dark:to-[#010511] from-[rgb(190,193,196,0.4)] to-[rgb(47,60,83,0.29)]   lg:h-[140vh] ${
         showModal && "!h-screen overflow-hidden"
       }`}
     >

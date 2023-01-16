@@ -27,9 +27,14 @@ const MainBanner = ({ randomMovies }) => {
     <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12">
       <div className="absolute top-0 left-0 -z-10 h-[100vh] w-screen">
         <Image
-          lazy_src={`${IMAGE_URL}/w500${
-            movie?.backdrop_path || movie?.poster_path
-          }`}
+          // lazy_src={`${IMAGE_URL}/w500${
+          //   movie?.backdrop_path || movie?.poster_path
+          // }`}
+          lazy_src={
+            movie?.backdrop_path
+              ? `${IMAGE_URL}/w500${movie?.backdrop_path}`
+              : `${IMAGE_URL}/w500${movie?.poster_path}`
+          }
           className="w-full h-full object-cover"
         ></Image>
       </div>
@@ -43,7 +48,7 @@ const MainBanner = ({ randomMovies }) => {
       </p>
       <div className="flex gap-3 flex-wrap ">
         <button
-          className="flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl bg-white text-black"
+          className="flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl bg-gray-500 dark:bg-white text-white dark:text-black"
           onClick={handlePlayModal}
         >
           <PlayIcon></PlayIcon>
@@ -51,7 +56,7 @@ const MainBanner = ({ randomMovies }) => {
         </button>
 
         <button
-          className="flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl bg-[gray]/70"
+          className="flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl bg-slate-900 dark:bg-[gray]/70 text-white dark:text-black"
           onClick={() => {
             navigate(`/movies/${movie?.id}`);
           }}
