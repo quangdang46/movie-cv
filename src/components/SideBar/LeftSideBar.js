@@ -19,14 +19,14 @@ const LeftSideBar = ({ show, setShow }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cb = (requiredLogin, link) => {
-    if (!requiredLogin && !user) {
-      toast.error("You need to login to access this page");
-      return;
-    }
     if (requiredLogin && requiredLogin === "login") {
       toast.success("You have been logged out successfully");
       signOut(auth);
       dispatch(currentUser(null));
+    }
+    if (!requiredLogin && !user) {
+      toast.error("You need to login to access this page");
+      return;
     }
     navigate(link);
   };
