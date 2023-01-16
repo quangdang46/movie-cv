@@ -1,27 +1,26 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, onSnapshot } from "firebase/firestore";
-import { useEffect } from "react";
+import { lazy } from "react";
+import { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { auth, db } from "./fire-base/firebase-config";
-import {
-  GlobalUi,
-  Explore,
-  SignIn,
-  MovieDetail,
-  PageNotFound,
-  SearchPage,
-  WatchMovie,
-  SignUp,
-  ViewAllPage,
-  ProfilePage,
-  Bookmarks,
-  History,
-  AuthenUi,
-  ForgotPass,
-  HomePage,
-} from "./pages";
 import { currentUser } from "./redux/userSlice";
+const AuthenUi = lazy(() => import("./pages/AuthenUi"));
+const Bookmarks = lazy(() => import("./pages/Bookmarks"));
+const Explore = lazy(() => import("./pages/Explore"));
+const ForgotPass = lazy(() => import("./pages/ForgotPass"));
+const GlobalUi = lazy(() => import("./pages/GlobalUi"));
+const History = lazy(() => import("./pages/History"));
+const HomePage = lazy(() => import("./pages/HomePage"));
+const MovieDetail = lazy(() => import("./pages/MovieDetail"));
+const PageNotFound = lazy(() => import("./pages/PageNotFound"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
+const SearchPage = lazy(() => import("./pages/SearchPage"));
+const SignIn = lazy(() => import("./pages/SignIn"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+const ViewAllPage = lazy(() => import("./pages/ViewAllPage"));
+const WatchMovie = lazy(() => import("./pages/WatchMovie"));
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -38,10 +37,10 @@ function App() {
         dispatch(currentUser(null));
       }
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className="">
+    <Suspense>
       <Routes>
         <Route path="/" element={<HomePage></HomePage>}></Route>
         <Route path="/movies/:id" element={<MovieDetail></MovieDetail>}></Route>
@@ -64,7 +63,7 @@ function App() {
         </Route>
         <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
-    </div>
+    </Suspense>
   );
 }
 

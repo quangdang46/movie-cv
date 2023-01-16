@@ -94,6 +94,12 @@ const ForgotPass = () => {
             )}
           </button>
         </div>
+        <p
+          className="mt-8 text-center font-medium text-base text-gray-500 dark:text-white hover:text-violet-500 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          Go to Home Page
+        </p>
       </form>
     </div>
   );

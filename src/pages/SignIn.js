@@ -41,8 +41,8 @@ const SignIn = () => {
     }
   };
   return (
-    <div className=" w-11/12 max-w-[700px] px-10 py-20 rounded-3xl bg-white dark:bg-[#1C1C1E] border-2 border-gray-100 dark:border-slate-500">
-      <h1 className="text-5xl font-semibold text-gray-500 dark:text-white">
+    <div className=" w-11/12 max-w-[700px] px-5 xs:px-10 py-10 xs:py-20 rounded-3xl bg-white dark:bg-[#1C1C1E] border-2 border-gray-100 dark:border-slate-500">
+      <h1 className="text-2xl xs:text-5xl font-semibold text-gray-500 dark:text-white">
         Welcome Back
       </h1>
       <p className="font-medium text-lg text-gray-500 dark:text-white mt-4">
@@ -116,6 +116,12 @@ const SignIn = () => {
             Sign up
           </p>
         </div>
+        <p
+          className="mt-8 text-center font-medium text-base text-gray-500 dark:text-white hover:text-violet-500 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          Go to Home Page
+        </p>
       </form>
     </div>
   );
