@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { v4 } from "uuid";
 import { youtubePath } from "../../api/configApi";
 import { Iframe } from "../Lazy";
+import PropTypes from "prop-types";
+
 const MediaMeta = ({ meta }) => {
   return (
     <div className="meta">
@@ -28,6 +30,9 @@ const MediaMeta = ({ meta }) => {
       </Swiper>
     </div>
   );
+};
+MediaMeta.propTypes = {
+  meta: PropTypes.array.isRequired,
 };
 
 export default MediaMeta;

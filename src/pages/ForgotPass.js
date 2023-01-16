@@ -9,6 +9,7 @@ import { auth } from "../fire-base/firebase-config";
 import { useNavigate } from "react-router-dom";
 import { Label } from "../components/Text";
 import { Input } from "../components/input";
+import { Field } from "../components/Field";
 
 const schema = yup.object({
   email: yup
@@ -55,7 +56,7 @@ const ForgotPass = () => {
         onSubmit={handleSubmit(onSubmit)}
         autoComplete="off"
       >
-        <div className="flex flex-col">
+        <Field>
           <Label
             htmlFor="email"
             className="!text-gray-500 mb-2 dark:!text-white"
@@ -73,7 +74,7 @@ const ForgotPass = () => {
               {errors.email?.message}
             </p>
           )}
-        </div>
+        </Field>
         <div className="mt-8 flex justify-end items-center">
           <p
             className="font-medium text-base text-violet-500 cursor-pointer"

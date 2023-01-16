@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 const ReadMore = ({ children, className = "", limitTextLength, ...others }) => {
   const [isReadingMore, setIsReadingMore] = useState(false);
@@ -17,6 +18,11 @@ const ReadMore = ({ children, className = "", limitTextLength, ...others }) => {
       </button>
     </span>
   );
+};
+ReadMore.propTypes = {
+  children: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  limitTextLength: PropTypes.number,
 };
 
 export default ReadMore;

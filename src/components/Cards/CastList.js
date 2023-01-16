@@ -1,5 +1,6 @@
 import React from "react";
 import CastCard from "./CastCard";
+import PropTypes from "prop-types";
 
 const CastList = ({ credits = [], className = "" }) => {
   return (
@@ -13,6 +14,10 @@ const CastList = ({ credits = [], className = "" }) => {
           .map((item) => <CastCard key={item.id} data={item}></CastCard>)}
     </div>
   );
+};
+CastList.propTypes = {
+  credits: PropTypes.array.isRequired,
+  className: PropTypes.string,
 };
 
 export default CastList;

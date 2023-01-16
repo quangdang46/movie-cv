@@ -8,12 +8,13 @@ import { Row } from "../components/Row";
 import { openModal } from "../redux/modalSlice";
 import { getTrending } from "../service/movieService";
 import { categories } from "../shared/const";
+
 const HomePage = () => {
   const showModal = useSelector((state) => state.modal.showModal);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(openModal(false));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const { data, isError, error } = useQuery(["movieList"], () => getTrending());
   if (isError) {
@@ -26,7 +27,7 @@ const HomePage = () => {
       </div>
     );
   }
-      // className={`relative h-screen bg-gradient-to-b dark:from-gray-900/10 dark:to-[#010511] from-slate-100/40 to-slate-50/20 lg:h-[140vh] ${
+  // className={`relative h-screen bg-gradient-to-b dark:from-gray-900/10 dark:to-[#010511] from-slate-100/40 to-slate-50/20 lg:h-[140vh] ${
 
   return (
     <div

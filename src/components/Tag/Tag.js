@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Tag = ({ className, onClick = () => {}, children }) => {
   return (
@@ -10,6 +11,11 @@ const Tag = ({ className, onClick = () => {}, children }) => {
       {children}
     </button>
   );
+};
+Tag.propTypes = {
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  children: PropTypes.node,
 };
 
 export default Tag;

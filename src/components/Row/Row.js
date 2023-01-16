@@ -5,6 +5,8 @@ import { getListMovie } from "../../service/movieService";
 import { Thumbnail } from "../Cards";
 import { ChevronLeftIcon, ChevronRightIcon } from "../Icon";
 import { Title } from "../Text";
+import PropTypes from "prop-types";
+
 const Row = ({ title, type }) => {
   const rowRef = useRef(null);
   const [isMoved, setIsMoved] = useState(false);
@@ -63,6 +65,10 @@ const Row = ({ title, type }) => {
       </div>
     </div>
   );
+};
+Row.propTypes = {
+  title: PropTypes.string,
+  type: PropTypes.string.isRequired,
 };
 
 export default Row;

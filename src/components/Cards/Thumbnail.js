@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { IMAGE_URL } from "../../api/configApi";
 import { Image } from "../Lazy";
+import PropTypes from "prop-types";
+
 const Thumbnail = ({ movie }) => {
   // const [currentMovie, setCurrentMovie] = useState(null);
   // const [showModal, setShowModal] = useState(null);
@@ -17,6 +19,9 @@ const Thumbnail = ({ movie }) => {
       </div>
     </Link>
   );
+};
+Thumbnail.propTypes = {
+  movie: PropTypes.object.isRequired,
 };
 
 export default Thumbnail;

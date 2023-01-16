@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 
 const Iframe = ({ lazy_src = "", title = "", className = "", other }) => {
   const iframeRef = useRef();
@@ -18,6 +19,12 @@ const Iframe = ({ lazy_src = "", title = "", className = "", other }) => {
       {...other}
     ></iframe>
   );
+};
+Iframe.propTypes = {
+  lazy_src: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  className: PropTypes.string,
+  other: PropTypes.object,
 };
 
 export default Iframe;

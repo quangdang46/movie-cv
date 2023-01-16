@@ -1,5 +1,6 @@
 import React from "react";
 import { Image } from "../Lazy";
+import PropTypes from "prop-types";
 
 const CastCard = ({ data }) => {
   const { name, character, profile_path } = data;
@@ -27,6 +28,9 @@ const CastCard = ({ data }) => {
       </div>
     </div>
   );
+};
+CastCard.propTypes = {
+  data: PropTypes.object.isRequired,
 };
 
 export default CastCard;

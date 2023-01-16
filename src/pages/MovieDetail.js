@@ -22,6 +22,7 @@ import { Skeleton } from "../components/Skeleton";
 import { Tag } from "../components/Tag";
 import { useAddToBookmarks } from "../hooks/useAddToBookmarks";
 import { getMovieFullDetail } from "../service/movieService";
+
 const MovieDetail = () => {
   const { id } = useParams();
   const { addedToList, handleList } = useAddToBookmarks(id);
@@ -36,7 +37,7 @@ const MovieDetail = () => {
     return <div>Loading...</div>;
   }
   const { detail, credits, reviews, similar, videos, posters } = data;
-// dark:from-[rgba(0,0,0,0.5)] dark:to-[rgba(0,0,0,0.2)]
+  // dark:from-[rgba(0,0,0,0.5)] dark:to-[rgba(0,0,0,0.2)]
   return (
     <>
       <Header></Header>

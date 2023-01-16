@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { getSearchKeyword } from "../../service/movieService";
 import { SearchIcon } from "../Icon";
+import PropTypes from "prop-types";
+
 let isInitial = true;
 const SearchBox = ({ autoFocus = false }) => {
   const [searchParams] = useSearchParams();
@@ -95,6 +97,9 @@ const SearchBox = ({ autoFocus = false }) => {
       )}
     </div>
   );
+};
+SearchBox.propTypes = {
+  autoFocus: PropTypes.bool,
 };
 
 export default SearchBox;

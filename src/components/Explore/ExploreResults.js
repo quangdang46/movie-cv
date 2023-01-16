@@ -5,6 +5,7 @@ import { Image } from "../Lazy";
 import { v4 } from "uuid";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { MovieCard } from "../Cards";
+import PropTypes from "prop-types";
 
 const ExploreResults = ({ config }) => {
   const {
@@ -62,6 +63,9 @@ const ExploreResults = ({ config }) => {
       </div>
     </InfiniteScroll>
   );
+};
+ExploreResults.propTypes = {
+  config: PropTypes.object.isRequired,
 };
 
 export default ExploreResults;

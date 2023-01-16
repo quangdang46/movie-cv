@@ -9,6 +9,7 @@ import { Skeleton } from "../components/Skeleton";
 import { Title } from "../components/Text";
 import { getListMovie } from "../service/movieService";
 import { categories } from "../shared/const";
+
 const itemsPerPage = 20;
 const ViewAllPage = () => {
   // get slug

@@ -4,6 +4,8 @@ import { v4 } from "uuid";
 import { Dropdown } from "../Dropdown";
 import Review from "./Review";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import PropTypes from "prop-types";
+
 const ReviewBox = ({ reviews }) => {
   const [parent] = useAutoAnimate();
   const [reviewList, setReviewList] = useState(reviews || {});
@@ -50,6 +52,9 @@ const ReviewBox = ({ reviews }) => {
       </div>
     </div>
   );
+};
+ReviewBox.propTypes = {
+  reviews: PropTypes.array,
 };
 
 export default ReviewBox;

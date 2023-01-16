@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 
 const Image = ({ className, onLoad, crossOrigin: _, lazy_src, ...others }) => {
   const [loaded, setLoaded] = useState(false);
@@ -42,5 +43,11 @@ const Image = ({ className, onLoad, crossOrigin: _, lazy_src, ...others }) => {
     />
   );
 };
+Image.propTypes = {
+  className: PropTypes.string,
+  onLoad: PropTypes.func,
+  crossOrigin: PropTypes.string,
+  lazy_src: PropTypes.string.isRequired,
+}
 
 export default Image;

@@ -1,5 +1,6 @@
 import React from "react";
 import MovieCard from "../Cards/MovieCard";
+import PropTypes from "prop-types";
 
 const List = ({ movies, className = "" }) => {
   return (
@@ -13,6 +14,10 @@ const List = ({ movies, className = "" }) => {
         })}
     </div>
   );
+};
+List.propTypes = {
+  movies: PropTypes.array.isRequired,
+  className: PropTypes.string,
 };
 
 export default List;

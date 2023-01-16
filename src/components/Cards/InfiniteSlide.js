@@ -5,6 +5,7 @@ import { Image } from "../Lazy";
 import { IMAGE_URL } from "../../api/configApi";
 import { v4 } from "uuid";
 import { useViewportView } from "../../hooks/useViewportView";
+import PropTypes from "prop-types";
 
 const InfiniteSlide = ({ meta }) => {
   const { width } = useViewportView();
@@ -46,6 +47,9 @@ const InfiniteSlide = ({ meta }) => {
       </Swiper>
     </div>
   );
+};
+InfiniteSlide.propTypes = {
+  meta: PropTypes.array.isRequired,
 };
 
 export default InfiniteSlide;

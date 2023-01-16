@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as yup from "yup";
+import { Field } from "../components/Field";
 import { Input, InputPasswordToggle } from "../components/input";
 import { LoadingSpinner } from "../components/Loading";
 import { Label } from "../components/Text";
@@ -53,7 +54,7 @@ const SignIn = () => {
         onSubmit={handleSubmit(onSubmit)}
         autoComplete="off"
       >
-        <div className="flex flex-col">
+        <Field>
           <Label
             htmlFor="email"
             className="!text-gray-500 dark:!text-white mb-2"
@@ -71,8 +72,8 @@ const SignIn = () => {
               {errors.email?.message}
             </p>
           )}
-        </div>
-        <div className="flex flex-col mt-4">
+        </Field>
+        <Field>
           <Label
             htmlFor="password"
             className="!text-gray-500 mb-2  dark:!text-white"
@@ -88,7 +89,7 @@ const SignIn = () => {
               {errors.password?.message}
             </p>
           )}
-        </div>
+        </Field>
         <div className="mt-8 flex justify-end items-center">
           <p
             className="font-medium text-base text-violet-500 cursor-pointer"

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "../Icon";
+import PropTypes from "prop-types";
 
 const Dropdown = ({ options, onChange }) => {
   const [open, setOpen] = useState(false);
@@ -45,6 +46,15 @@ const Dropdown = ({ options, onChange }) => {
       )}
     </div>
   );
+};
+Dropdown.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Dropdown;

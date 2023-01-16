@@ -6,6 +6,7 @@ import ReadMore from "../ReadMore/ReadMore";
 import parse from "html-react-parser";
 import { useViewportView } from "../../hooks/useViewportView";
 import { StarIcon } from "../Icon";
+import PropTypes from "prop-types";
 
 const Review = ({ review }) => {
   const { isMobile } = useViewportView();
@@ -74,6 +75,9 @@ const Review = ({ review }) => {
       </div>
     </div>
   );
+};
+Review.propTypes = {
+  review: PropTypes.object,
 };
 
 export default Review;

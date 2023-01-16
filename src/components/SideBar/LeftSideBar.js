@@ -10,6 +10,8 @@ import { currentUser } from "../../redux/userSlice";
 import { menus } from "../../shared/const";
 import { BuggerIcon } from "../Icon";
 import { Image } from "../Lazy";
+import PropTypes from "prop-types";
+
 const LeftSideBar = ({ show, setShow }) => {
   const { width, isMobile } = useViewportView();
   const [open, setOpen] = useState(true);
@@ -102,6 +104,10 @@ const LeftSideBar = ({ show, setShow }) => {
       </div>
     </div>
   );
+};
+LeftSideBar.propTypes = {
+  show: PropTypes.bool,
+  setShow: PropTypes.func,
 };
 
 export default LeftSideBar;

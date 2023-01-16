@@ -6,6 +6,7 @@ import { getSearchResult } from "../../service/movieService";
 import { MovieCard } from "../Cards";
 import Image from "../Lazy/Image";
 import Skeleton from "../Skeleton/Skeleton";
+import PropTypes from "prop-types";
 
 const SearchResult = ({ currentTab, query, page }) => {
   const navigate = useNavigate();
@@ -36,7 +37,9 @@ const SearchResult = ({ currentTab, query, page }) => {
             lazy_src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuHWK06y8c81VfuX3R5sNXDfKWxWIOqH8C2g&usqp=CAU"
             className="w-[600px] opacity-60"
           ></Image>
-          <p className="text-black dark:text-white text-3xl mt-5">There is no such films</p>
+          <p className="text-black dark:text-white text-3xl mt-5">
+            There is no such films
+          </p>
         </div>
       )}
       <ul className="grid grid-cols-sm md:grid-cols-lg gap-x-3 md:gap-x-8 gap-y-10">
@@ -70,5 +73,9 @@ const SearchResult = ({ currentTab, query, page }) => {
       )}
     </div>
   );
+};
+SearchResult.propTypes = {
+  currentTab: PropTypes.string,
+  query: PropTypes.string,
 };
 export default SearchResult;

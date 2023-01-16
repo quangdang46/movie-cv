@@ -1,5 +1,6 @@
 import React from "react";
 import ViewAll from "./ViewAll";
+import PropTypes from "prop-types";
 
 const Title = ({ title, url }) => {
   const WrappedViewAll = () => {
@@ -26,5 +27,9 @@ const Title = ({ title, url }) => {
       <WrappedViewAll></WrappedViewAll>
     </div>
   );
+};
+Title.propTypes = {
+  title: PropTypes.string,
+  url: PropTypes.string,
 };
 export default Title;

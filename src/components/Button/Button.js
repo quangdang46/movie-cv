@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import PropTypes from "prop-types";
+
 const Button = ({
   id,
   className,
@@ -15,6 +17,12 @@ const Button = ({
       {content}
     </button>
   );
+};
+Button.propTypes = {
+  id: PropTypes.string,
+  className: PropTypes.string,
+  content: PropTypes.string,
+  isWatching: PropTypes.bool,
 };
 
 export default Button;

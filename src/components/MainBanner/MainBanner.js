@@ -7,6 +7,7 @@ import { IMAGE_URL } from "../../api/configApi";
 import { openModal } from "../../redux/modalSlice";
 import { InfoIcon, PlayIcon } from "../Icon";
 import { Image } from "../Lazy";
+import PropTypes from "prop-types";
 // banner
 const MainBanner = ({ randomMovies }) => {
   const [movie, setMovie] = useState(null);
@@ -67,6 +68,9 @@ const MainBanner = ({ randomMovies }) => {
       </div>
     </div>
   );
+};
+MainBanner.propTypes = {
+  randomMovies: PropTypes.array.isRequired,
 };
 
 export default MainBanner;

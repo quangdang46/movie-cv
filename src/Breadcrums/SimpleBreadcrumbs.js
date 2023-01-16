@@ -2,6 +2,7 @@ import React from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { v4 } from "uuid";
 import { BreadcrumbsIcon, HomeIcon } from "../components/Icon";
+import PropTypes from "prop-types";
 
 const SimpleBreadcrumbs = ({ className = "", textLight = false }) => {
   const location = useLocation();
@@ -39,9 +40,7 @@ const SimpleBreadcrumbs = ({ className = "", textLight = false }) => {
               <BreadcrumbsIcon></BreadcrumbsIcon>
               <span
                 className={`ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400 ${
-                  textLight
-                    ? "text-white hover:text-cyan-100"
-                    : ""
+                  textLight ? "text-white hover:text-cyan-100" : ""
                 }`}
               >
                 {value}
@@ -60,9 +59,7 @@ const SimpleBreadcrumbs = ({ className = "", textLight = false }) => {
               >
                 <span
                   className={`ml-1 text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white ${
-                    textLight
-                      ? "text-white hover:text-cyan-100"
-                      : ""
+                    textLight ? "text-white hover:text-cyan-100" : ""
                   }`}
                 >
                   {value}
@@ -75,5 +72,8 @@ const SimpleBreadcrumbs = ({ className = "", textLight = false }) => {
     </div>
   );
 };
-
+SimpleBreadcrumbs.propTypes = {
+  className: PropTypes.string,
+  textLight: PropTypes.bool,
+};
 export default SimpleBreadcrumbs;

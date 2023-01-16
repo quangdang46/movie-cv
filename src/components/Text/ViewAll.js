@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronRightIcon } from "../Icon";
+import PropTypes from "prop-types";
 
-const ViewAll = ({ url }) => {
+const ViewAll = ({ url = "/" }) => {
   const navigate = useNavigate();
 
   return (
@@ -17,5 +18,7 @@ const ViewAll = ({ url }) => {
     </div>
   );
 };
-
+ViewAll.propTypes = {
+  url: PropTypes.string,
+};
 export default ViewAll;

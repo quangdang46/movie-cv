@@ -5,6 +5,7 @@ import { IMAGE_URL } from "../../api/configApi";
 import { StarIcon } from "../Icon";
 import { Image } from "../Lazy";
 import { Skeleton } from "../Skeleton";
+import PropTypes from "prop-types";
 
 const MovieCard = ({ detail, showGenres = true, useDelete = false }) => {
   const navigate = useNavigate();
@@ -87,6 +88,11 @@ const MovieCard = ({ detail, showGenres = true, useDelete = false }) => {
       </div>
     </div>
   );
+};
+MovieCard.propTypes = {
+  detail: PropTypes.object.isRequired,
+  showGenres: PropTypes.bool,
+  useDelete: PropTypes.bool,
 };
 
 export default MovieCard;

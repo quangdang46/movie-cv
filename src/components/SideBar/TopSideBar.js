@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ToggleDarkMode } from "../Button";
 import { BuggerIcon } from "../Icon";
 import { Image } from "../Lazy";
+import PropTypes from "prop-types";
 
 const TopSideBar = ({ onClick = () => {} }) => {
   return (
@@ -23,6 +24,9 @@ const TopSideBar = ({ onClick = () => {} }) => {
       </div>
     </div>
   );
+};
+TopSideBar.propTypes = {
+  onClick: PropTypes.func,
 };
 
 export default TopSideBar;

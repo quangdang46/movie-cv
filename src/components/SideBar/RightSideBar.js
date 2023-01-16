@@ -4,6 +4,7 @@ import { IMAGE_URL } from "../../api/configApi";
 import { BulletIcon, StarIcon } from "../Icon";
 import Image from "../Lazy/Image";
 import { Skeleton } from "../Skeleton";
+import PropTypes from "prop-types";
 
 const RightSideBar = ({
   films,
@@ -68,6 +69,13 @@ const RightSideBar = ({
       </button>
     </div>
   );
+};
+RightSideBar.propTypes = {
+  films: PropTypes.array,
+  name: PropTypes.string,
+  limitNumber: PropTypes.number,
+  isLoading: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default RightSideBar;

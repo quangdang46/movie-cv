@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { MovieCard } from "../components/Cards";
-import { Image } from "../components/Lazy";
 
 const History = () => {
   const user = useSelector((state) => state.auth.user);

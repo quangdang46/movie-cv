@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as yup from "yup";
+import { Field } from "../components/Field";
 import { Input, InputPasswordToggle } from "../components/input";
 import { LoadingSpinner } from "../components/Loading";
 import { Label } from "../components/Text";
@@ -73,7 +74,7 @@ const SignUp = () => {
         onSubmit={handleSubmit(onSubmit)}
         autoComplete="off"
       >
-        <div className="flex flex-col">
+        <Field>
           <Label
             htmlFor="email"
             className="!text-gray-500 mb-2 dark:!text-white"
@@ -91,8 +92,8 @@ const SignUp = () => {
               {errors.email?.message}
             </p>
           )}
-        </div>
-        <div className="flex flex-col mt-4">
+        </Field>
+        <Field>
           <Label
             htmlFor="password"
             className="!text-gray-500 mb-2  dark:!text-white"
@@ -108,8 +109,8 @@ const SignUp = () => {
               {errors.password?.message}
             </p>
           )}
-        </div>
-        <div className="flex flex-col mt-4">
+        </Field>
+        <Field>
           <Label
             htmlFor="rePassword"
             className="!text-gray-500 mb-2  dark:!text-white"
@@ -126,7 +127,7 @@ const SignUp = () => {
               {errors.rePassword?.message}
             </p>
           )}
-        </div>
+        </Field>
         <div className="mt-8 flex flex-col gap-y-4">
           <button
             className="active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01]  ease-in-out transform py-4 bg-violet-500 rounded-xl text-white font-bold text-lg  flex items-center justify-center"
